@@ -40,6 +40,9 @@ void opcontrol() {
 	fourBar.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 	roller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 
+	//Sensors
+	pros::ADIDigitalIn liftDown ('A');
+
 
 	while (true) {
 		/*
@@ -48,36 +51,60 @@ void opcontrol() {
 		                 (pros::lcd::read_buttons() & LCD_BTN_RIGHT) >> 0);
 										 */
 		//Lift Code:
-
-		if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
-      rightLift.move_velocity(150);
-			leftLift.move_velocity(150);
-    }
-		else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
-			rightLift.move_velocity(-150);
-			leftLift.move_velocity(-150);
+		if(liftDown.get_value() == 1)	{
+			if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
+	      rightLift.move_velocity(150);
+				leftLift.move_velocity(150);
+	    }
+			else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
+				rightLift.move_velocity(0);
+				leftLift.move_velocity(0);
+			}
+	    else {
+				rightLift.move_velocity(0);
+				leftLift.move_velocity(0);
+	    }
 		}
-    else {
-			rightLift.move_velocity(0);
-			leftLift.move_velocity(0);
-    }
+		else {
+			if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
+	      rightLift.move_velocity(150);
+				leftLift.move_velocity(150);
+	    }
+			else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
+				rightLift.move_velocity(-150);
+				leftLift.move_velocity(-150);
+			}
+	    else {
+				rightLift.move_velocity(0);
+				leftLift.move_velocity(0);
+	    }
+		}
 
-		//Roller Code:
+
+		//Roller Code Normal:
 		if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
-			roller.move_velocity(200);
+			roller.move_velocity(-200);
     }
 		else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {
-			roller.move_velocity(-200);
+			roller.move_velocity(200);
+		}
+		else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_UP)) {
+			roller.move_velocity(100);
+    }
+		else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN)) {
+			roller.move_velocity(-100);
 		}
     else {
 			roller.move_velocity(0);
     }
 
+
+
 		if (master.get_digital(pros::E_CONTROLLER_DIGITAL_X)) {
-			fourBar.move_velocity(-25);
+			fourBar.move_velocity(-100);
 		}
 		else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_B)) {
-			fourBar.move_velocity(25);
+			fourBar.move_velocity(100);
 		}
 		else {
 			fourBar.move_velocity(0);
