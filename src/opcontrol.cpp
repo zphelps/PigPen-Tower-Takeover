@@ -28,17 +28,17 @@ void opcontrol() {
 	pros::Motor leftLift(7);
 
 	//Roller Definition
-	pros::Motor roller(10);
+	pros::Motor leftRoller(10);
 
 	//Four bar Definition
-	pros::Motor fourBar(1);
+	pros::Motor rightRoller(1);
 
 	//Set motors to brake
 
 	rightLift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 	leftLift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-	fourBar.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-	roller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+	rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+	leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 
 	//Sensors
 	pros::ADIDigitalIn liftDown ('A');
@@ -60,7 +60,7 @@ void opcontrol() {
 				rightLift.move_velocity(0);
 				leftLift.move_velocity(0);
 			}
-	    else {
+			else {
 				rightLift.move_velocity(0);
 				leftLift.move_velocity(0);
 	    }
@@ -74,6 +74,10 @@ void opcontrol() {
 				rightLift.move_velocity(-150);
 				leftLift.move_velocity(-150);
 			}
+			else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN)) {
+				rightLift.move_velocity(25);
+				leftLift.move_velocity(25);
+			}
 	    else {
 				rightLift.move_velocity(0);
 				leftLift.move_velocity(0);
@@ -84,33 +88,34 @@ void opcontrol() {
 
 		//Roller Code Normal:
 		if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
-			roller.move_velocity(-200);
-    }
+			leftRoller.move_velocity(-200);
+			rightRoller.move_velocity(-200);
+		}
 		else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {
-			roller.move_velocity(200);
+			leftRoller.move_velocity(200);
+			rightRoller.move_velocity(200);
 		}
 		else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_UP)) {
-			roller.move_velocity(100);
-    }
-		else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN)) {
-			roller.move_velocity(-100);
-		}
-    else {
-			roller.move_velocity(0);
-    }
-
-
-
-		if (master.get_digital(pros::E_CONTROLLER_DIGITAL_X)) {
-			fourBar.move_velocity(-200);
-		}
-		else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_B)) {
-			fourBar.move_velocity(200);
+			leftRoller.move_velocity(100);
+			rightRoller.move_velocity(100);
 		}
 		else {
-			fourBar.move_velocity(0);
+			leftRoller.move_velocity(0);
+			rightRoller.move_velocity(0);
 		}
 
+		if (master.get_digital(pros::E_CONTROLLER_DIGITAL_RIGHT))	{
+			leftFront.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+			leftBack.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+			rightFront.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+			rightBack.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+		}
+		else if(master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT)){
+			leftFront.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+			leftBack.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+			rightFront.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+			rightBack.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+		}
 		//Drive Code:
 
 		leftFront.move(master.get_analog(ANALOG_LEFT_Y));
