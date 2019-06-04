@@ -18,20 +18,20 @@ void opcontrol() {
 	pros::Controller master(pros::E_CONTROLLER_MASTER);
 
 	//Drive Base Definitions
-	pros::Motor leftFront(5);
-	pros::Motor leftBack(4);
-	pros::Motor rightFront(3);
-	pros::Motor rightBack(2);
+	pros::Motor leftFront(15);
+	pros::Motor leftBack(11);
+	pros::Motor rightFront(13);
+	pros::Motor rightBack(20);
 
 	//Lift Definitions
-	pros::Motor rightLift(6);
-	pros::Motor leftLift(7);
+	pros::Motor rightLift(16);
+	pros::Motor leftLift(17);
 
 	//Roller Definition
-	pros::Motor leftRoller(10);
+	pros::Motor leftRoller(12);
 
 	//Four bar Definition
-	pros::Motor rightRoller(1);
+	pros::Motor rightRoller(10);
 
 	//Set motors to brake
 
