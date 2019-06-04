@@ -34,9 +34,10 @@ void opcontrol() {
 	pros::Motor rightRoller(10);
 
 	//Set motors to brake
-
+/*
 	rightLift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 	leftLift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+	*/
 	rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 	leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 
