@@ -16,6 +16,8 @@
 
 void opcontrol() {
 	pros::Controller master(pros::E_CONTROLLER_MASTER);
+	pros::Controller partner(pros::E_CONTROLLER_PARTNER);
+
 
 	//Drive Base Definitions
 	pros::Motor leftFront(15);
@@ -61,9 +63,13 @@ void opcontrol() {
 				rightLift.move_velocity(0);
 				leftLift.move_velocity(0);
 			}
+			else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN) || (partner.get_digital(pros::E_CONTROLLER_DIGITAL_R1))) {
+				rightLift.move_velocity(25);
+				leftLift.move_velocity(25);
+			}
 			else {
-				rightLift.move_velocity(0);
-				leftLift.move_velocity(0);
+				leftLift.move(partner.get_analog(ANALOG_LEFT_Y));
+				rightLift.move(partner.get_analog(ANALOG_LEFT_Y));
 	    }
 		}
 		else {
@@ -75,28 +81,27 @@ void opcontrol() {
 				rightLift.move_velocity(-100);
 				leftLift.move_velocity(-100);
 			}
-			else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN)) {
+			else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN) || (partner.get_digital(pros::E_CONTROLLER_DIGITAL_R1))) {
 				rightLift.move_velocity(25);
 				leftLift.move_velocity(25);
 			}
 	    else {
-				rightLift.move_velocity(0);
-				leftLift.move_velocity(0);
+				leftLift.move(partner.get_analog(ANALOG_LEFT_Y));
+				rightLift.move(partner.get_analog(ANALOG_LEFT_Y));
 	    }
 		}
 
 
-
 		//Roller Code Normal:
-		if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
+		if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R1) || (partner.get_digital(pros::E_CONTROLLER_DIGITAL_L1))) {
 			leftRoller.move_velocity(-200);
 			rightRoller.move_velocity(-200);
 		}
-		else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {
+		else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R2) || (partner.get_digital(pros::E_CONTROLLER_DIGITAL_L2))) {
 			leftRoller.move_velocity(200);
 			rightRoller.move_velocity(200);
 		}
-		else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_UP)) {
+		else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_UP) || (partner.get_digital(pros::E_CONTROLLER_DIGITAL_R2))){
 			leftRoller.move_velocity(100);
 			rightRoller.move_velocity(100);
 		}
@@ -123,6 +128,11 @@ void opcontrol() {
 		leftBack.move(master.get_analog(ANALOG_LEFT_Y));
     rightFront.move(master.get_analog(ANALOG_RIGHT_Y));
 		rightBack.move(master.get_analog(ANALOG_RIGHT_Y));
+
+		//PARTNER CONTROLLER COMMANDS
+
+
+
 
 
 		/*
