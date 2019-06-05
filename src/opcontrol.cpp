@@ -34,10 +34,10 @@ void opcontrol() {
 	pros::Motor rightRoller(10);
 
 	//Set motors to brake
-/*
+
 	rightLift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 	leftLift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-	*/
+
 	rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 	leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 
@@ -68,12 +68,12 @@ void opcontrol() {
 		}
 		else {
 			if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
-	      rightLift.move_velocity(150);
-				leftLift.move_velocity(150);
+	      rightLift.move_velocity(100);
+				leftLift.move_velocity(100);
 	    }
 			else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
-				rightLift.move_velocity(-150);
-				leftLift.move_velocity(-150);
+				rightLift.move_velocity(-100);
+				leftLift.move_velocity(-100);
 			}
 			else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN)) {
 				rightLift.move_velocity(25);
