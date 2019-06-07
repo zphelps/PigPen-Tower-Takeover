@@ -23,7 +23,7 @@ void opcontrol() {
 	pros::Motor leftFront(15);
 	pros::Motor leftBack(11);
 	pros::Motor rightFront(13);
-	pros::Motor rightBack(20);
+	pros::Motor rightBack(19);
 
 	//Lift Definitions
 	pros::Motor rightLift(16);
