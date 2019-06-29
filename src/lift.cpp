@@ -22,10 +22,12 @@ void liftOP()
       rightLift.move_velocity(0);
       leftLift.move_velocity(0);
     }
+    /*
     else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN) || (partner.get_digital(pros::E_CONTROLLER_DIGITAL_R1))) {
       rightLift.move_velocity(50);
       leftLift.move_velocity(50);
     }
+    */
     else {
       leftLift.move(partner.get_analog(ANALOG_LEFT_Y));
       rightLift.move(partner.get_analog(ANALOG_LEFT_Y));
@@ -40,10 +42,12 @@ void liftOP()
       rightLift.move_velocity(-100);
       leftLift.move_velocity(-100);
     }
+    /*
     else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN) || (partner.get_digital(pros::E_CONTROLLER_DIGITAL_R1))) {
       rightLift.move_velocity(50);
       leftLift.move_velocity(50);
     }
+    */
     else {
       leftLift.move(partner.get_analog(ANALOG_LEFT_Y));
       rightLift.move(partner.get_analog(ANALOG_LEFT_Y));

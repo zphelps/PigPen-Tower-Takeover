@@ -17,10 +17,12 @@ void rollerOP()
     leftRoller.move_velocity(200);
     rightRoller.move_velocity(200);
   }
+  /*
   else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_UP) || (partner.get_digital(pros::E_CONTROLLER_DIGITAL_R2))){
     leftRoller.move_velocity(200);
     rightRoller.move_velocity(200);
   }
+  */
   else {
     leftRoller.move_velocity(0);
     rightRoller.move_velocity(0);

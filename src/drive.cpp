@@ -46,6 +46,7 @@ void current_position(void* parameter)
 
 void driveOP()
 {
+  /*
   if (master.get_digital(pros::E_CONTROLLER_DIGITAL_Y)) {
     leftFront.move(200);
     leftBack.move(200);
@@ -59,6 +60,7 @@ void driveOP()
     rightFront.move(0);
     rightBack.move(0);
   }
+  */
   leftFront.move(master.get_analog(ANALOG_LEFT_Y));
   leftBack.move(master.get_analog(ANALOG_LEFT_Y));
   rightFront.move(master.get_analog(ANALOG_RIGHT_Y));

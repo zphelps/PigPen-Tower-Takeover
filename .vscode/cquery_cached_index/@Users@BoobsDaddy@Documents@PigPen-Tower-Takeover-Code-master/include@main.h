@@ -11,6 +11,7 @@
 #include "drive.hpp"
 #include "lift.hpp"
 #include "roller.hpp"
+#include "macros.hpp"
 
 extern pros::Controller master;
 extern pros::Controller partner;
