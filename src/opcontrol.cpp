@@ -9,6 +9,6 @@ void opcontrol() {
 		driveOP();
 		liftOP();
 		rollerOP();
-		pros::delay(20);
+		pros::delay(10);
 	}
 }

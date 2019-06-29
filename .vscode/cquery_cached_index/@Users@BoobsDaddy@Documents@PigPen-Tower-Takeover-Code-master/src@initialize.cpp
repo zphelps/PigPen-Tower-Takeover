@@ -16,7 +16,7 @@ void initialize() {
 	//pros::lcd::initialize();
 
 	pros::Task drive_pos(current_position);
-
+	pros::Task driveOP(driveOP);
 }
 
 /**
