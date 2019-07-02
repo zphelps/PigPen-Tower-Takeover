@@ -114,6 +114,7 @@ void current_position(void* parameter)
     thetaLocal = atan(deltaylocal/deltaxlocal);
   }
 
+
 //Rotate from local to global coordinate System
   rGlobal  = rlocal;
 
