@@ -14,9 +14,11 @@ void on_center_button() {
 
 void initialize() {
 	//pros::lcd::initialize();
+//	double PIE = 3.14159;
 
 	pros::Task drive_pos(current_position);
-	pros::Task deposit(deposit_cubes);
+
+
 }
 
 /**
