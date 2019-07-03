@@ -8,6 +8,9 @@ pros::Motor leftLift (5, pros::E_MOTOR_GEARSET_36, true, pros::E_MOTOR_ENCODER_D
 pros::ADIDigitalIn liftDown ('A');
 pros::ADIPotentiometer liftPot ('B');
 
+
+//Github Test
+
 //Constants
 int pickUpPos = 1000;
 
