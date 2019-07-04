@@ -61,9 +61,9 @@ void current_position(void* parameter)
   while(true)
   {
 
-  double LInches = L.get_value() * pi * wheelDiameter / ticsPerRotation;
-  double RInches = R.get_value() * pi * wheelDiameter / ticsPerRotation;
-  double SInches = S.get_value() * pi * wheelDiameter / ticsPerRotation;
+  double LInches = (L.get_value() * -1) * pi * wheelDiameter / ticsPerRotation;
+  double RInches = (R.get_value() * -1) * pi * wheelDiameter / ticsPerRotation;
+  double SInches = (S.get_value() * -1) * pi * wheelDiameter / ticsPerRotation;
 
   currentL = LInches;
   currentR = RInches;
@@ -85,6 +85,13 @@ void current_position(void* parameter)
   thetaInRadians = thetaInRadians + deltaTheta;
 
   thetaInDegrees = thetaInRadians * 180 / pi;
+
+  thetaInDegrees = thetaInDegrees -  360 * floor(thetaInDegrees / 360);
+
+  if (thetaInDegrees < 0)
+  {
+    thetaInDegrees = 360 + thetaInDegrees;
+  }
 
 //X & Y Calculation
   if (deltaTheta == 0)
@@ -144,6 +151,93 @@ yglobal = yglobal + deltayglobal;
   }
 
 }
+
+void left(int speed)
+{
+  leftFront.move(speed);
+  leftBack.move(speed);
+}
+
+void right(int speed)
+{
+  rightFront.move(speed);
+  rightBack.move(speed);
+}
+
+void turnToAbs(int angle)
+{
+  double kP = 0.17;
+
+  double kI = 0;
+
+  double kD = 0.3; //0.3
+
+  double prevError = 0;
+
+  double targetError = 2.5;
+
+  int distToAngle = thetaInDegrees - angle;
+
+  if (distToAngle <= -180)
+  {
+    while(thetaInDegrees < angle - targetError || thetaInDegrees > angle + targetError)
+    {
+      int error = (angle - thetaInDegrees) * 10;
+
+      int integral = integral + error;
+
+      if (error == 0 || error > angle)
+      {
+        integral = 0;
+      }
+      if (error == 50)
+      {
+        integral = 0;
+      }
+
+      int derivative = error - prevError;
+
+      prevError = error;
+
+      int power = error*kP + integral*kI + derivative*kD;
+
+      pros::delay(50);
+
+      right(power);
+      left(-power);
+    }
+
+    right(0);
+    left(0);
+  }
+  else
+  {
+    while(thetaInDegrees < angle - targetError || thetaInDegrees > angle + targetError)
+    {
+      int error = (angle - thetaInDegrees) * 10;
+
+      int integral = integral + error;
+
+      int derivative = error - prevError;
+
+      prevError = error;
+
+      int power = error*kP + integral*kI + derivative*kD;
+
+      pros::delay(50);
+
+      right(-power);
+      left(power);
+    }
+
+    right(0);
+    left(0);
+  }
+
+
+}
+
+
 
 void driveOP()
 {
