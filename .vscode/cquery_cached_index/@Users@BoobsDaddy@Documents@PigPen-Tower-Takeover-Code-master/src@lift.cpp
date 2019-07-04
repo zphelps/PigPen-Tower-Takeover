@@ -58,8 +58,8 @@ void liftOP()
     }
 
     else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_RIGHT) || (partner.get_digital(pros::E_CONTROLLER_DIGITAL_R1))) {
-      rightLift.move_velocity(100);
-      leftLift.move_velocity(100);
+      rightLift.move_velocity(95);
+      leftLift.move_velocity(95);
     }
     else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_Y))
     {
@@ -81,8 +81,8 @@ void liftOP()
     }
 
     else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_RIGHT) || (partner.get_digital(pros::E_CONTROLLER_DIGITAL_R1))) {
-      rightLift.move_velocity(100);
-      leftLift.move_velocity(100);
+      rightLift.move_velocity(95);
+      leftLift.move_velocity(95);
     }
     else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_Y))
     {
