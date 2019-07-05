@@ -178,6 +178,8 @@ void turnToAbs(int angle)
 
   int distToAngle = thetaInDegrees - angle;
 
+  int minSpeed = 30; //the minimum speed the drive can go during turns
+
   if (distToAngle <= -180)
   {
     while(thetaInDegrees < angle - targetError || thetaInDegrees > angle + targetError)
@@ -199,7 +201,7 @@ void turnToAbs(int angle)
 
       prevError = error;
 
-      int power = error*kP + integral*kI + derivative*kD;
+      int power = (error*kP + integral*kI + derivative*kD) + minSpeed;
 
       pros::delay(50);
 
@@ -222,7 +224,7 @@ void turnToAbs(int angle)
 
       prevError = error;
 
-      int power = error*kP + integral*kI + derivative*kD;
+      int power = (error*kP + integral*kI + derivative*kD) + minSpeed;
 
       pros::delay(50);
 
@@ -246,37 +248,3 @@ void driveOP()
   rightFront.move(master.get_analog(ANALOG_RIGHT_Y));
   rightBack.move(master.get_analog(ANALOG_RIGHT_Y));
 }
-
-
-/*
-void current_position(void* parameter)
-{
-
-  pros::lcd::initialize();
-
-  int R_pos = 0;
-  int L_pos = 0;
-  int S_pos = 0;
-
-  R.reset();
-  L.reset();
-  S.reset();
-
-  //pros::lcd::print(0, "L: %d", L_pos);
-
-  while(true)
-  {
-    //Get Value
-    R_pos = R.get_value();
-    L_pos = L.get_value();
-    S_pos = S.get_value();
-
-    pros::delay(100);
-    //Display to Screen
-    pros::lcd::print(0, "R: %d", R_pos);
-    pros::lcd::print(1, "L: %d", L_pos);
-    pros::lcd::print(2, "S: %d", S_pos);
-
-  }
-}
-*/
