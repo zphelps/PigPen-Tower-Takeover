@@ -166,25 +166,25 @@ void right(int speed)
 
 void turnToAbs(int angle)
 {
-  double kP = 0.17;
+  double kP = 0.2; //0.17;
 
   double kI = 0;
 
-  double kD = 0.3; //0.3
+  double kD = 0; //0.3; //0.3
 
   double prevError = 0;
 
-  double targetError = 2.5;
+  double targetError = 0.5;
 
   int distToAngle = thetaInDegrees - angle;
 
-  int minSpeed = 30; //the minimum speed the drive can go during turns
+  int minSpeed = 25;
 
   if (distToAngle <= -180)
   {
     while(thetaInDegrees < angle - targetError || thetaInDegrees > angle + targetError)
     {
-      int error = (angle - thetaInDegrees) * 10;
+      int error = (angle - thetaInDegrees) * 1;
 
       int integral = integral + error;
 
@@ -203,7 +203,7 @@ void turnToAbs(int angle)
 
       int power = (error*kP + integral*kI + derivative*kD) + minSpeed;
 
-      pros::delay(50);
+      pros::delay(20);
 
       right(power);
       left(-power);
@@ -216,7 +216,7 @@ void turnToAbs(int angle)
   {
     while(thetaInDegrees < angle - targetError || thetaInDegrees > angle + targetError)
     {
-      int error = (angle - thetaInDegrees) * 10;
+      int error = (angle - thetaInDegrees) * 1;
 
       int integral = integral + error;
 
@@ -226,7 +226,7 @@ void turnToAbs(int angle)
 
       int power = (error*kP + integral*kI + derivative*kD) + minSpeed;
 
-      pros::delay(50);
+      pros::delay(20);
 
       right(-power);
       left(power);

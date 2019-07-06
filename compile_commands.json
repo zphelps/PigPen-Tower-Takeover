@@ -185,11 +185,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "bin/drive.cpp.o",
-            "src/drive.cpp"
+            "bin/lift.cpp.o",
+            "src/lift.cpp"
         ],
         "directory": "/Users/BoobsDaddy/Documents/PigPen-Tower-Takeover-Code-master",
-        "file": "src/drive.cpp"
+        "file": "src/lift.cpp"
     },
     {
         "arguments": [
@@ -217,10 +217,10 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "bin/lift.cpp.o",
-            "src/lift.cpp"
+            "bin/drive.cpp.o",
+            "src/drive.cpp"
         ],
         "directory": "/Users/BoobsDaddy/Documents/PigPen-Tower-Takeover-Code-master",
-        "file": "src/lift.cpp"
+        "file": "src/drive.cpp"
     }
 ]
