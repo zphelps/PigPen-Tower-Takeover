@@ -6,6 +6,9 @@
 
 #define PROS_USE_LITERALS
 
+#include "okapi/api.hpp"
+
+using namespace okapi;
 
 //Includes
 #include "api.h"

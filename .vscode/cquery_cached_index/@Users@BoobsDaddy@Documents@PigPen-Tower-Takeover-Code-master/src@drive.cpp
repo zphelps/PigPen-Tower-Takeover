@@ -1,6 +1,5 @@
 #include "main.h"
 
-
 //motors
 pros::Motor leftFront (1, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
 pros::Motor leftBack (2, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
@@ -12,9 +11,11 @@ pros::ADIEncoder R ('G', 'H', false);
 pros::ADIEncoder L ('C', 'D', false);
 pros::ADIEncoder S ('E', 'F', false);
 
-//Position Tracking Constants and Variables
+//Turn and Move Function Variables and Constants
+int targetAngle = 0;
 
-const double pi = 3.14159;
+//Position Tracking Constants and Variables
+//const double pi = 3.14159;
 const double wheelDiameter = 3.1875;
 const double ticsPerRotation = 360;
 const double leftOffset = 4.546875;
@@ -152,6 +153,7 @@ yglobal = yglobal + deltayglobal;
 
 }
 
+//************BASIC FUNCTIONS*******************
 void left(int speed)
 {
   leftFront.move(speed);
@@ -164,35 +166,89 @@ void right(int speed)
   rightBack.move(speed);
 }
 
+//slew control
+const int accel_step = 9;
+const int deccel_step = 256; // no decel slew
+static int leftSpeed = 0;
+static int rightSpeed = 0;
+
+void leftSlew(int leftTarget){
+  int step;
+
+  if(abs(leftSpeed) < abs(leftTarget))
+    step = accel_step;
+  else
+    step = deccel_step;
+
+  if(leftTarget > leftSpeed + step)
+    leftSpeed += step;
+  else if(leftTarget < leftSpeed - step)
+    leftSpeed -= step;
+  else
+    leftSpeed = leftTarget;
+
+  left(leftSpeed);
+}
+
+//slew control
+void rightSlew(int rightTarget){
+  int step;
+
+  if(abs(rightSpeed) < abs(rightTarget))
+    step = accel_step;
+  else
+    step = deccel_step;
+
+  if(rightTarget > rightSpeed + step)
+    rightSpeed += step;
+  else if(rightTarget < rightSpeed - step)
+    rightSpeed -= step;
+  else
+    rightSpeed = rightTarget;
+
+  right(rightSpeed);
+}
+
+void brake()
+{
+  rightFront.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  rightBack.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  leftFront.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  leftBack.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+}
+
+
+
+//****************TURN AND MOVE FUNCTIONS*****************
 void turnToAbs(int angle)
 {
-  double kP = 0.2; //0.17;
+
+  double kP = 0.025; //0.17;
 
   double kI = 0;
 
-  double kD = 0; //0.3; //0.3
+  double kD = 0.06; //0.3; //0.3
 
   double prevError = 0;
 
-  double targetError = 0.5;
+  double targetError = 1;
 
   int distToAngle = thetaInDegrees - angle;
 
-  int minSpeed = 25;
 
   if (distToAngle <= -180)
   {
     while(thetaInDegrees < angle - targetError || thetaInDegrees > angle + targetError)
     {
-      int error = (angle - thetaInDegrees) * 1;
+      int error = (angle - thetaInDegrees) * 100;
 
       int integral = integral + error;
 
-      if (error == 0 || error > angle)
+      if (error == 0 || error < angle)
       {
         integral = 0;
       }
-      if (error == 50)
+      if (error > 50)
       {
         integral = 0;
       }
@@ -201,22 +257,20 @@ void turnToAbs(int angle)
 
       prevError = error;
 
-      int power = (error*kP + integral*kI + derivative*kD) + minSpeed;
+      int power = (error*kP + integral*kI + derivative*kD);
 
-      pros::delay(20);
+      pros::delay(50);
 
-      right(power);
-      left(-power);
+      rightSlew(power);
+      leftSlew(-power);
     }
 
-    right(0);
-    left(0);
   }
   else
   {
     while(thetaInDegrees < angle - targetError || thetaInDegrees > angle + targetError)
     {
-      int error = (angle - thetaInDegrees) * 1;
+      int error = (angle - thetaInDegrees) * 100;
 
       int integral = integral + error;
 
@@ -224,19 +278,15 @@ void turnToAbs(int angle)
 
       prevError = error;
 
-      int power = (error*kP + integral*kI + derivative*kD) + minSpeed;
+      int power = (error*kP + integral*kI + derivative*kD);
 
-      pros::delay(20);
+      pros::delay(50);
 
-      right(-power);
-      left(power);
+      rightSlew(-power);
+      leftSlew(power);
     }
 
-    right(0);
-    left(0);
   }
-
-
 }
 
 
