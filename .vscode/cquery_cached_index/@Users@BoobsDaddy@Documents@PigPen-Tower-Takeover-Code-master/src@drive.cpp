@@ -166,6 +166,11 @@ void right(int speed)
   rightBack.move(speed);
 }
 
+void wait(int duration)
+{
+  pros::delay(duration);
+}
+
 //slew control
 const int accel_step = 9;
 const int deccel_step = 256; // no decel slew
@@ -211,10 +216,18 @@ void rightSlew(int rightTarget){
 
 void brake()
 {
-  rightFront.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-  rightBack.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-  leftFront.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-  leftBack.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  rightFront.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
+  rightBack.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
+  leftFront.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
+  leftBack.set_brake_mode(pros::E_MOTOR_BRAKE_BRAKE);
+}
+
+void coast()
+{
+  rightFront.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+  rightBack.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+  leftFront.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+  leftBack.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 }
 
 
@@ -231,7 +244,7 @@ void turnToAbs(int angle)
 
   double prevError = 0;
 
-  double targetError = 1;
+  double targetError = 1.5;
 
   int distToAngle = thetaInDegrees - angle;
 
@@ -259,11 +272,14 @@ void turnToAbs(int angle)
 
       int power = (error*kP + integral*kI + derivative*kD);
 
-      pros::delay(50);
+      pros::delay(60);
 
       rightSlew(power);
       leftSlew(-power);
     }
+
+    right(0);
+    left(0);
 
   }
   else
@@ -280,16 +296,87 @@ void turnToAbs(int angle)
 
       int power = (error*kP + integral*kI + derivative*kD);
 
-      pros::delay(50);
+      pros::delay(60);
 
       rightSlew(-power);
       leftSlew(power);
     }
 
+    left(0);
+    right(0);
+
   }
+
+  wait(200);
+
 }
 
+void move(int distance, int heading, int speed)
+{
+  double correctionMultiplier = 0.2;
 
+  double minSpeed = 2;
+
+  double target = ticsPerRotation * (distance / (wheelDiameter * pi));
+
+  while(abs(L.get_value()) < target)
+  {
+
+    double error = target - L.get_value();
+
+    double PIDSpeed = minSpeed + speed * error / target;
+
+    if (heading - thetaInDegrees >= 3 || heading - thetaInDegrees <= -3)
+    {
+      if (thetaInDegrees < heading)
+      {
+        rightSlew(correctionMultiplier * PIDSpeed);
+        leftSlew(PIDSpeed);
+      }
+
+      if (thetaInDegrees > heading)
+      {
+        rightSlew(PIDSpeed);
+        leftSlew(correctionMultiplier * PIDSpeed);
+      }
+
+      if (thetaInDegrees == heading)
+      {
+        rightSlew(PIDSpeed);
+        leftSlew(PIDSpeed);
+      }
+    }
+
+    if (thetaInDegrees < heading)
+    {
+      right(PIDSpeed * 0.5);
+      left(PIDSpeed);
+    }
+
+    if (thetaInDegrees > heading)
+    {
+      right(PIDSpeed);
+      left(PIDSpeed * 0.5);
+    }
+
+    if (thetaInDegrees == heading)
+    {
+      right(PIDSpeed);
+      left(PIDSpeed);
+    }
+  }
+
+  right(0);
+  left(0);
+  brake();
+
+  wait(200);
+
+  coast();
+
+
+
+}
 
 void driveOP()
 {

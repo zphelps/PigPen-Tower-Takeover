@@ -5,5 +5,6 @@
 void autonomous() {
 
   turnToAbs(90);
+  move(48, 90, 200);
 
 }
