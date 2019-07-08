@@ -13,8 +13,24 @@ pros::ADIPotentiometer liftPot ('B');
 
 //Constants
 int pickUpPos = 1000;
+int downPos = 1150;
+int fourCubes = 350;
+int allianceTower = 450;
+int towerDeposit = 200;
 
-void pick_up_pos(void* parameter)
+void moveLift(int speed)
+{
+  rightLift.move_velocity(speed);
+  leftLift.move_velocity(speed);
+}
+
+void lift_brake()
+{
+  rightLift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+	leftLift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+}
+
+void pick_up_pos()
 {
   bool done = false;
 
@@ -26,6 +42,109 @@ void pick_up_pos(void* parameter)
       leftLift.move(-100);
     }
     else if (liftPot.get_value() > pickUpPos + 10)
+    {
+      rightLift.move(100);
+      leftLift.move(100);
+    }
+    else
+    {
+      rightLift.move(0);
+      leftLift.move(0);
+      done = true;
+    }
+
+  }
+}
+
+void lift_down()
+{
+  bool done = false;
+
+  while(done == false)
+  {
+    if (liftPot.get_value() < downPos - 10)
+    {
+      rightLift.move(-100);
+      leftLift.move(-100);
+    }
+    else if (liftPot.get_value() > downPos + 10)
+    {
+      rightLift.move(100);
+      leftLift.move(100);
+    }
+    else
+    {
+      rightLift.move(0);
+      leftLift.move(0);
+      done = true;
+    }
+  }
+}
+
+void deposit_four_cubes()
+{
+  bool done = false;
+
+  while(done == false)
+  {
+    if (liftPot.get_value() < fourCubes - 10)
+    {
+      rightLift.move(-100);
+      leftLift.move(-100);
+    }
+    else if (liftPot.get_value() > fourCubes + 10)
+    {
+      rightLift.move(100);
+      leftLift.move(100);
+    }
+    else
+    {
+      rightLift.move(0);
+      leftLift.move(0);
+      done = true;
+    }
+
+  }
+}
+
+void alliance_tower_height()
+{
+  bool done = false;
+
+  while(done == false)
+  {
+    if (liftPot.get_value() < allianceTower - 10)
+    {
+      rightLift.move(-100);
+      leftLift.move(-100);
+    }
+    else if (liftPot.get_value() > allianceTower + 10)
+    {
+      rightLift.move(100);
+      leftLift.move(100);
+    }
+    else
+    {
+      rightLift.move(0);
+      leftLift.move(0);
+      done = true;
+    }
+
+  }
+}
+
+void deposit_cube_in_tower()
+{
+  bool done = false;
+
+  while(done == false)
+  {
+    if (liftPot.get_value() < towerDeposit - 10)
+    {
+      rightLift.move(-100);
+      leftLift.move(-100);
+    }
+    else if (liftPot.get_value() > towerDeposit + 10)
     {
       rightLift.move(100);
       leftLift.move(100);
@@ -61,10 +180,6 @@ void liftOP()
       rightLift.move_velocity(95);
       leftLift.move_velocity(95);
     }
-    else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_Y))
-    {
-        pros::Task lift_pos(pick_up_pos);
-    }
     else {
       leftLift.move(partner.get_analog(ANALOG_LEFT_Y));
       rightLift.move(partner.get_analog(ANALOG_LEFT_Y));
@@ -83,10 +198,6 @@ void liftOP()
     else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_RIGHT) || (partner.get_digital(pros::E_CONTROLLER_DIGITAL_R1))) {
       rightLift.move_velocity(95);
       leftLift.move_velocity(95);
-    }
-    else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_Y))
-    {
-      pros::Task lift_pos(pick_up_pos);
     }
     else {
       leftLift.move(partner.get_analog(ANALOG_LEFT_Y));

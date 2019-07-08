@@ -4,6 +4,23 @@
 pros::Motor rightRoller (6, pros::E_MOTOR_GEARSET_06, true, pros::E_MOTOR_ENCODER_DEGREES);
 pros::Motor leftRoller (3, pros::E_MOTOR_GEARSET_06, false, pros::E_MOTOR_ENCODER_DEGREES);
 
+void moveRollers(int speed)
+{
+  leftRoller.move(-speed);
+  rightRoller.move(-speed);
+}
+
+void brakeRollers()
+{
+  rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+}
+
+void intakeOut()
+{
+  moveRollers(-600);
+}
+
 void rollerOP()
 {
   rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
