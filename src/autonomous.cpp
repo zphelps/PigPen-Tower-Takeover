@@ -9,17 +9,17 @@ void frontRed()
 
   //Pick Up Row of Cubes
   moveRollers(600);
-  move(15, 0, 75);
+  move(15, 0, 100);
   lift_down();
   pick_up_pos();
 
   //Second Cube
-  move(6, 0, 100);
+  move(5, 0, 100);
   lift_down();
   pick_up_pos();
 
   //Third Cube
-  move(6, 0, 100);
+  move(5, 0, 100);
   lift_down();
   pick_up_pos();
 
@@ -28,7 +28,7 @@ void frontRed()
   //Score In Zone
   sweepRightBack(120);
   wait(100);
-  move(30, 120, 200);
+  move(30, 120, 127);
   timedDrive(300, 50);
 
   lift_down();
@@ -37,26 +37,26 @@ void frontRed()
 
   //Get tower cube
   moveBack(18, 120, 50);
-  lift_down();
   turnLeft(0);
-  pick_up_pos();
+  pros::Task pick_up_task(pickUpTask);
   moveRollers(600);
-  move(26, 0, 200);
+  move(25, 0, 100);
   lift_down();
-  pick_up_pos();
+  pros::Task allianceTowerTask(alliance_tower_height_task);
 
   //score in alliance tower
   sweepRightBack(90);
-  alliance_tower_height();
-  move(20, 90, 100);
+  move(20, 90, 200);
   moveRollers(-600);
+  timedDrive(250, 100);
   deposit_cube_in_tower();
 
 }
 
 void autonomous()
 {
-
   frontRed();
+
+  //move(48, 0, 200);
 
 }

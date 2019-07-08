@@ -199,10 +199,52 @@ void wait(int duration)
 }
 
 //slew control
-const int accel_step = 9;
+const int accel_step_turn = 9;
+const int deccel_step_turn = 256; // no decel slew
+
+const int accel_step = 1;
 const int deccel_step = 256; // no decel slew
+
 static int leftSpeed = 0;
 static int rightSpeed = 0;
+
+void leftSlewTurn(int leftTarget)
+{
+  int step;
+
+  if(abs(leftSpeed) < abs(leftTarget))
+    step = accel_step_turn;
+  else
+    step = deccel_step_turn;
+
+  if(leftTarget > leftSpeed + step)
+    leftSpeed += step;
+  else if(leftTarget < leftSpeed - step)
+    leftSpeed -= step;
+  else
+    leftSpeed = leftTarget;
+
+  left(leftSpeed);
+}
+
+void rightSlewTurn(int rightTarget)
+{
+  int step;
+
+  if(abs(rightSpeed) < abs(rightTarget))
+    step = accel_step_turn;
+  else
+    step = deccel_step_turn;
+
+  if(rightTarget > rightSpeed + step)
+    rightSpeed += step;
+  else if(rightTarget < rightSpeed - step)
+    rightSpeed -= step;
+  else
+    rightSpeed = rightTarget;
+
+  right(rightSpeed);
+}
 
 void leftSlew(int leftTarget)
 {
@@ -261,16 +303,12 @@ void turnLeft(int angle)
 
   int minSpeed = 35;
 
+  int error = 0;
 
     while(thetaInDegrees > angle + targetError) //|| thetaInDegrees > angle + targetError)
     {
       int error = (thetaInDegrees - angle) + minSpeed;
 
-/*      if (error < 0)
-      {
-        int error = (angle - thetaInDegrees) - minSpeed;
-      }
-*/
       int integral = integral + error;
 
       if (error == 0 || error < angle)
@@ -290,14 +328,14 @@ void turnLeft(int angle)
 
   //    pros::delay(5);
 
-      rightSlew(power);
-      leftSlew(-power);
+      rightSlewTurn(power);
+      leftSlewTurn(-power);
     }
 
     right(0);
     left(0);
 
-  wait(200);
+  wait(100);
 
 }
 
@@ -337,20 +375,22 @@ void turnRight(int angle)
 
     //pros::delay(5);
 
-    rightSlew(-power);
-    leftSlew(power);
+    rightSlewTurn(-power);
+    leftSlewTurn(power);
   }
 
   left(0);
   right(0);
 
+  wait(100);
 }
+
 void move(int distance, int heading, int speed)
 {
 
   double kP = 0.2;
 
-  double correctionMultiplier = 0.8;
+  double correctionMultiplier = 0.2;
 
   double minSpeed = 35;
 
@@ -363,7 +403,7 @@ void move(int distance, int heading, int speed)
 
     double PIDSpeed = minSpeed + speed * error / target;
 
-    if (heading - thetaInDegreesUncorrected >= 3 || heading - thetaInDegreesUncorrected <= -3)
+    if (heading - thetaInDegreesUncorrected >= 5 || heading - thetaInDegreesUncorrected <= -5)
     {
       if (thetaInDegreesUncorrected < heading)
       {
@@ -409,12 +449,9 @@ void move(int distance, int heading, int speed)
   left(0);
   brake();
 
-  wait(200);
+  wait(50);
 
   coast();
-
-
-
 }
 
 void moveBack(int distance, int heading, int speed)
@@ -642,6 +679,8 @@ void sweepLeft(int angle)
 
 void driveOP()
 {
+  coast();
+
   leftFront.move(master.get_analog(ANALOG_LEFT_Y));
   leftBack.move(master.get_analog(ANALOG_LEFT_Y));
   rightFront.move(master.get_analog(ANALOG_RIGHT_Y));
