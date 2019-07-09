@@ -474,7 +474,7 @@ void moveBack(int distance, int heading, int speed)
 
     double PIDSpeed = minSpeed + speed * error / (target - startingPoint);
 
-    if (heading - thetaInDegreesUncorrected >= 3 || heading - thetaInDegreesUncorrected <= -3)
+    if (heading - thetaInDegreesUncorrected >= 5 || heading - thetaInDegreesUncorrected <= -5)
     {
       if (thetaInDegreesUncorrected < heading)
       {
@@ -628,8 +628,9 @@ void sweepRightBack(int angle)
 
 }
 
-void sweepLeft(int angle)
+void sweepLeftBack(int angle)
 {
+
   double kP = 0.95; //0.025; //0.17;
 
   double kI = 0;
@@ -644,14 +645,53 @@ void sweepLeft(int angle)
 
   int minSpeed = 20;
 
-    while(thetaInDegrees > angle - targetError) //|| thetaInDegrees > angle + targetError)
+    while(thetaInDegreesUncorrected > angle + targetError) //|| thetaInDegrees > angle + targetError)
     {
-      int error = ((angle - thetaInDegrees) * 2) + minSpeed;
+      int error = ((thetaInDegreesUncorrected - angle) * 2) + minSpeed;
 
-      if (error < 0)
+      int integral = integral + error;
+
+      if (error == 0 || error < angle)
       {
-        int error = (angle - thetaInDegrees) - minSpeed;
+        integral = 0;
       }
+      if (error > 50)
+      {
+        integral = 0;
+      }
+
+      int derivative = error - prevError;
+
+      prevError = error;
+
+      int power = (error*kP + integral*kI + derivative*kD);
+
+      leftSlew(-power);
+    }
+
+    left(0);
+
+}
+
+void sweepLeft(int angle)
+{
+  double kP = 0.8; //0.025; //0.17;
+
+  double kI = 0;
+
+  double kD = 0; //0.06; //0.3; //0.3
+
+  double prevError = 0;
+
+  double targetError = 4;
+
+  int distToAngle = thetaInDegrees - angle;
+
+  int minSpeed = 20;
+
+    while(thetaInDegreesUncorrected > angle + targetError) //|| thetaInDegrees > angle + targetError)
+    {
+      int error = (abs(angle) - abs(thetaInDegreesUncorrected)) * 2 + minSpeed;
 
       int integral = integral + error;
 

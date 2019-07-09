@@ -13,10 +13,17 @@ pros::ADIPotentiometer liftPot ('B');
 
 //Constants
 int pickUpPos = 950;
+int pickUpPosLow = 1025;
 int downPos = 1150;
 int fourCubes = 350;
 int allianceTower = 450;
+int shortTower = 450;
+int mediumTower = 200;
 int towerDeposit = 200;
+int mediumTowerDeposit = 50;
+int stackOnFourCubes = 200;
+int depositLastThreeCubes = 50;
+int tallTowerHeight = 25;
 
 void moveLift(int speed)
 {
@@ -42,6 +49,32 @@ void pick_up_pos()
       leftLift.move(-100);
     }
     else if (liftPot.get_value() > pickUpPos + 10)
+    {
+      rightLift.move(100);
+      leftLift.move(100);
+    }
+    else
+    {
+      rightLift.move(0);
+      leftLift.move(0);
+      done = true;
+    }
+
+  }
+}
+
+void pick_up_pos_low()
+{
+  bool done = false;
+
+  while(done == false)
+  {
+    if (liftPot.get_value() < pickUpPosLow - 10)
+    {
+      rightLift.move(-100);
+      leftLift.move(-100);
+    }
+    else if (liftPot.get_value() > pickUpPosLow + 10)
     {
       rightLift.move(100);
       leftLift.move(100);
@@ -107,6 +140,31 @@ void lift_down()
   }
 }
 
+void lift_down_task(void* parameter)
+{
+  bool done = false;
+
+  while(done == false)
+  {
+    if (liftPot.get_value() < downPos - 10)
+    {
+      rightLift.move(-100);
+      leftLift.move(-100);
+    }
+    else if (liftPot.get_value() > downPos + 10)
+    {
+      rightLift.move(100);
+      leftLift.move(100);
+    }
+    else
+    {
+      rightLift.move(0);
+      leftLift.move(0);
+      done = true;
+    }
+  }
+}
+
 void deposit_four_cubes()
 {
   bool done = false;
@@ -119,6 +177,58 @@ void deposit_four_cubes()
       leftLift.move(-100);
     }
     else if (liftPot.get_value() > fourCubes + 10)
+    {
+      rightLift.move(100);
+      leftLift.move(100);
+    }
+    else
+    {
+      rightLift.move(0);
+      leftLift.move(0);
+      done = true;
+    }
+
+  }
+}
+
+void stack_on_four_cubes()
+{
+  bool done = false;
+
+  while(done == false)
+  {
+    if (liftPot.get_value() < stackOnFourCubes - 10)
+    {
+      rightLift.move(-100);
+      leftLift.move(-100);
+    }
+    else if (liftPot.get_value() > stackOnFourCubes + 10)
+    {
+      rightLift.move(100);
+      leftLift.move(100);
+    }
+    else
+    {
+      rightLift.move(0);
+      leftLift.move(0);
+      done = true;
+    }
+
+  }
+}
+
+void deposit_last_three_cubes()
+{
+  bool done = false;
+
+  while(done == false)
+  {
+    if (liftPot.get_value() < depositLastThreeCubes - 10)
+    {
+      rightLift.move(-100);
+      leftLift.move(-100);
+    }
+    else if (liftPot.get_value() > depositLastThreeCubes + 10)
     {
       rightLift.move(100);
       leftLift.move(100);
@@ -171,6 +281,110 @@ void alliance_tower_height_task(void* parameter)
       leftLift.move(-100);
     }
     else if (liftPot.get_value() > allianceTower + 10)
+    {
+      rightLift.move(100);
+      leftLift.move(100);
+    }
+    else
+    {
+      rightLift.move(0);
+      leftLift.move(0);
+      done = true;
+    }
+
+  }
+}
+
+void short_tower_height()
+{
+  bool done = false;
+
+  while(done == false)
+  {
+    if (liftPot.get_value() < shortTower - 10)
+    {
+      rightLift.move(-100);
+      leftLift.move(-100);
+    }
+    else if (liftPot.get_value() > shortTower + 10)
+    {
+      rightLift.move(100);
+      leftLift.move(100);
+    }
+    else
+    {
+      rightLift.move(0);
+      leftLift.move(0);
+      done = true;
+    }
+
+  }
+}
+
+void medium_tower_height()
+{
+  bool done = false;
+
+  while(done == false)
+  {
+    if (liftPot.get_value() < mediumTower - 10)
+    {
+      rightLift.move(-100);
+      leftLift.move(-100);
+    }
+    else if (liftPot.get_value() > mediumTower + 10)
+    {
+      rightLift.move(100);
+      leftLift.move(100);
+    }
+    else
+    {
+      rightLift.move(0);
+      leftLift.move(0);
+      done = true;
+    }
+
+  }
+}
+
+void tall_tower_height()
+{
+  bool done = false;
+
+  while(done == false)
+  {
+    if (liftPot.get_value() < tallTowerHeight - 10)
+    {
+      rightLift.move(-100);
+      leftLift.move(-100);
+    }
+    else if (liftPot.get_value() > tallTowerHeight + 10)
+    {
+      rightLift.move(100);
+      leftLift.move(100);
+    }
+    else
+    {
+      rightLift.move(0);
+      leftLift.move(0);
+      done = true;
+    }
+
+  }
+}
+
+void medium_tower_deposit()
+{
+  bool done = false;
+
+  while(done == false)
+  {
+    if (liftPot.get_value() < mediumTowerDeposit - 10)
+    {
+      rightLift.move(-100);
+      leftLift.move(-100);
+    }
+    else if (liftPot.get_value() > mediumTowerDeposit + 10)
     {
       rightLift.move(100);
       leftLift.move(100);

@@ -6,6 +6,7 @@ void turnLeft(int angle);
 void turnRight(int angle);
 void sweepRight(int angle);
 void sweepRightBack(int angle);
+void sweepLeftBack(int angle);
 void sweepLeft(int angle);
 void brake();
 void wait(int duration);
