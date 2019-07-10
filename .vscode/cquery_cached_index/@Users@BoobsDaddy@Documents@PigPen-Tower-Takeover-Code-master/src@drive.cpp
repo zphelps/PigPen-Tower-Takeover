@@ -146,11 +146,6 @@ yglobal = yglobal + deltayglobal;
 
 
   pros::lcd::print(1, "Theta - Absolute: %f", thetaInDegrees);
-  //pros::lcd::print(2, "deltaS %f", deltaS);
-  pros::lcd::print(2, "R side Value: %d", R.get_value());
-  pros::lcd::print(3, "L side Value: %d", L.get_value());
-  pros::lcd::print(5, "X global %f", xglobal);
-  pros::lcd::print(6, "Y global %f", yglobal);
   }
 
 }
@@ -454,12 +449,153 @@ void move(int distance, int heading, int speed)
   coast();
 }
 
+void moveFast(int distance, int heading, int speed)
+{
+
+  double correctionMultiplier = 0.2;
+
+  double minSpeed = 60;
+
+  double target = abs(L.get_value()) + ticsPerRotation * (distance / (wheelDiameter * pi));
+
+  while(abs(L.get_value()) < target)
+  {
+
+    double error = target - abs(L.get_value());
+
+    double PIDSpeed = minSpeed + speed * error / target;
+
+    if (heading - thetaInDegreesUncorrected >= 5 || heading - thetaInDegreesUncorrected <= -5)
+    {
+      if (thetaInDegreesUncorrected < heading)
+      {
+        rightSlew(correctionMultiplier * PIDSpeed);
+        leftSlew(PIDSpeed);
+      }
+
+      if (thetaInDegreesUncorrected > heading)
+      {
+        rightSlew(PIDSpeed);
+        leftSlew(correctionMultiplier * PIDSpeed);
+      }
+
+      if (thetaInDegreesUncorrected == heading)
+      {
+        rightSlew(PIDSpeed);
+        leftSlew(PIDSpeed);
+      }
+    }
+    else
+    {
+    if (thetaInDegreesUncorrected < heading)
+    {
+      rightSlew(PIDSpeed * 0.9);
+      leftSlew(PIDSpeed);
+    }
+
+    if (thetaInDegreesUncorrected > heading)
+    {
+      rightSlew(PIDSpeed);
+      leftSlew(PIDSpeed * 0.9);
+    }
+
+    if (thetaInDegreesUncorrected == heading)
+    {
+      rightSlew(PIDSpeed);
+      leftSlew(PIDSpeed);
+    }
+  }
+}
+
+  right(0);
+  left(0);
+  brake();
+
+  wait(50);
+
+  coast();
+}
+
 void moveBack(int distance, int heading, int speed)
 {
 
   double correctionMultiplier = 0.8;
 
   double minSpeed = 35;
+
+  double startingPoint = L.get_value();
+
+  double targetTics = ticsPerRotation * (distance / (wheelDiameter * pi));
+
+  double target = L.get_value() + targetTics;
+
+  while(L.get_value() < target)
+  {
+
+    double error = target - L.get_value();
+
+    double PIDSpeed = minSpeed + speed * error / (target - startingPoint);
+
+    if (heading - thetaInDegreesUncorrected >= 5 || heading - thetaInDegreesUncorrected <= -5)
+    {
+      if (thetaInDegreesUncorrected < heading)
+      {
+        rightSlew(-PIDSpeed);
+        leftSlew(-(correctionMultiplier * PIDSpeed));
+      }
+
+      if (thetaInDegreesUncorrected > heading)
+      {
+        rightSlew(-(correctionMultiplier * PIDSpeed));
+        leftSlew(-PIDSpeed);
+      }
+
+      if (thetaInDegreesUncorrected == heading)
+      {
+        rightSlew(-PIDSpeed);
+        leftSlew(-PIDSpeed);
+      }
+    }
+    else
+    {
+    if (thetaInDegreesUncorrected < heading)
+    {
+      rightSlew(-PIDSpeed);
+      leftSlew(-(PIDSpeed * 0.9));
+    }
+
+    if (thetaInDegreesUncorrected > heading)
+    {
+      rightSlew(-(PIDSpeed * 0.9));
+      leftSlew(-PIDSpeed);
+    }
+
+    if (thetaInDegreesUncorrected == heading)
+    {
+      rightSlew(-PIDSpeed);
+      leftSlew(-PIDSpeed);
+    }
+  }
+}
+
+  right(0);
+  left(0);
+  brake();
+
+  wait(200);
+
+  coast();
+
+
+
+}
+
+void moveBackFast(int distance, int heading, int speed)
+{
+
+  double correctionMultiplier = 0.8;
+
+  double minSpeed = 60;
 
   double startingPoint = L.get_value();
 
