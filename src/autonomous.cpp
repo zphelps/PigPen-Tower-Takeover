@@ -216,7 +216,7 @@ void programming_skills_28_fast()
   move(12, -90, 50);
   timedDrive(300, 20);
   lift_down();
-  moveBack(5, 0, 20);
+  moveBack(5, -90, 20);
   pick_up_pos();
   medium_tower_height();
   move(10, -90, 20);
@@ -250,16 +250,16 @@ void programming_skills_28_fast()
   brakeRollers();
 
   //Deposit in Goal Zone
-  turnRight(130);
-  moveFast(40, 130, 127);
+  turnRight(135);
+  moveFast(40, 135, 127);
   stack_on_four_cubes();
-  move(8, 130, 45);
+  move(8, 135, 45);
   timedDrive(500, 45);
 
   moveRollers(-600);
   moveLift(100);
   wait(500);
-  moveBack(15, 130, 35);
+  moveBack(15, 135, 35);
 
 }
 
@@ -425,5 +425,5 @@ void blueFront() //Working as of 7/11/19
 
 void autonomous()
 {
-  blueBack();
+  programming_skills_35();
 }
