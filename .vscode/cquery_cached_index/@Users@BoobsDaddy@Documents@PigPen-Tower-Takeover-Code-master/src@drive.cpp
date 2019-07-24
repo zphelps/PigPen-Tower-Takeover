@@ -58,7 +58,7 @@ double thetaGlobal = 0;
 //************POSITION TRACKING*****************
 void current_position(void* parameter)
 {
-  pros::lcd::initialize();
+  //pros::lcd::initialize();
 
   while(true)
   {
@@ -145,7 +145,7 @@ yglobal = yglobal + deltayglobal;
   //IDENTIFIERS:: d = int, f = float
 
 
-  pros::lcd::print(1, "Theta - Absolute: %f", thetaInDegrees);
+//  pros::lcd::print(1, "Theta - Absolute: %f", thetaInDegrees);
   }
 
 }

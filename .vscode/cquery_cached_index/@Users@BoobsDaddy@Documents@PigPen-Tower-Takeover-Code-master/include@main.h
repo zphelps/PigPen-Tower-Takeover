@@ -19,6 +19,7 @@ using namespace okapi;
 
 extern pros::Controller master;
 extern pros::Controller partner;
+extern int autonIndex;
 
 #ifdef __cplusplus
 extern "C" {

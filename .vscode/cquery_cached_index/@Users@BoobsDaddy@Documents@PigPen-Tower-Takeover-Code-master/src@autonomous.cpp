@@ -253,7 +253,7 @@ void programming_skills_28_fast()
   turnRight(135);
   moveFast(40, 135, 127);
   stack_on_four_cubes();
-  move(8, 135, 45);
+  move(6, 135, 45);
   timedDrive(500, 45);
 
   moveRollers(-600);
@@ -425,5 +425,19 @@ void blueFront() //Working as of 7/11/19
 
 void autonomous()
 {
-  programming_skills_35();
+  switch(autonIndex){
+    case 0:
+      redFront();
+      break;
+    case 1:
+      //redBack();
+      break;
+    case 2:
+      blueFront();
+      break;
+    case 3:
+      blueBack();
+      break;
+  }
+
 }

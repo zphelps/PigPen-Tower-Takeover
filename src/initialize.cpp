@@ -10,13 +10,47 @@ void on_center_button() {
 	}
 }
 
+pros::ADIDigitalIn selector ('A');
+int autonIndex = 0;
+
+void autonSelector(void*parameter)
+{
+
+	const int autoCount = 5;
+  const char *autoNames[autoCount] = {
+    "Red Front",
+    "Red Back",
+    "Blue Front",
+    "Blue Back",
+    "Programming Skills"
+  };
+
+	pros::lcd::initialize();
+	pros::lcd::set_text(0, "Select an Auton");
+	pros::lcd::print(2, "%s", autoNames[autonIndex]);
+
+	if (selector.get_value() == 1)
+	{
+		wait(200);
+		autonIndex++;
+	}
+
+	if (autonIndex == autoCount)
+	{
+		autonIndex = 0;
+	}
+
+	if (autonIndex == 0)
+	{
+		pros::lcd::print(4, "%s", autoNames[autonIndex]);
+	}
+}
 
 void initialize() {
 	//pros::lcd::initialize();
 //	double PIE = 3.14159;
 
-	pros::ADIDigitalIn Selector ('A');
-
+	pros::Task lcd_task(autonSelector);
 	pros::Task drive_pos(current_position);
 
 }

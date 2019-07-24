@@ -3,6 +3,7 @@
 
 void liftOP();
 void moveLift(int speed);
+void set_lift_height(int height);
 void lift_down();
 void lift_down_task(void *parameter);
 void pick_up_pos();

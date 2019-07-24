@@ -7,9 +7,8 @@ pros::Motor leftLift (5, pros::E_MOTOR_GEARSET_36, true, pros::E_MOTOR_ENCODER_D
 //Sensors
 pros::ADIPotentiometer liftPot ('B');
 
-//Github Test Comment
 
-//Constants
+//Lift Constants
 int pickUpPos = 950;
 int pickUpPosLow = 1025;
 int downPos = 1150;
@@ -23,6 +22,7 @@ int stackOnFourCubes = 200;
 int depositLastThreeCubes = 50;
 int tallTowerHeight = 25;
 
+
 void moveLift(int speed)
 {
   rightLift.move_velocity(speed);
@@ -34,6 +34,80 @@ void lift_brake()
   rightLift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 	leftLift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 }
+/*
+void set_lift_height(int height)
+{
+
+  double kP = 0.15; //0.025; //0.17;
+
+  double kI = 0;
+
+  double kD = 0; //0.06; //0.3; //0.3
+
+  double prevError = 0;
+
+  double targetError = 3;
+
+  int minSpeed = 50;
+
+  if (liftPot.get_value() > height)
+  {
+      while(liftPot.get_value() > height + targetError) //|| thetaInDegrees > angle + targetError)
+      {
+        int error = (liftPot.get_value() - height) + minSpeed;
+
+        int integral = integral + error;
+
+        if (error == 0 || error < height)
+        {
+          integral = 0;
+        }
+        if (error > 50)
+        {
+          integral = 0;
+        }
+
+        int derivative = error - prevError;
+
+        prevError = error;
+
+        int power = (error*kP + integral*kI + derivative*kD);
+
+    //    pros::delay(5);
+
+        moveLift(power);
+
+      }
+
+    moveLift(0);
+    wait(100);
+
+  }
+  if (liftPot.get_value() < height)
+  {
+    while(liftPot.get_value() < height - targetError) // || thetaInDegrees > angle + targetError)
+    {
+      int error = (height - liftPot.get_value()) + minSpeed;
+
+      int integral = integral + error;
+
+      int derivative = error - prevError;
+
+      prevError = error;
+
+      int power = (error*kP + integral*kI + derivative*kD);
+
+      //pros::delay(5);
+
+      moveLift(-power);
+    }
+
+    moveLift(0);
+    wait(100);
+
+  }
+}
+*/
 
 void pick_up_pos()
 {
@@ -422,6 +496,8 @@ void deposit_cube_in_tower()
 
   }
 }
+
+
 
 //*************************** - OP Control - ***********************************
 void liftOP()
