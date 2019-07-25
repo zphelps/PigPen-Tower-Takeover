@@ -41,10 +41,6 @@ void autonSelector(void*parameter)
 			pros::lcd::print(4, "%s", autoNames[autonIndex]);
 			wait(300);
 		}
-
-
-
-
 	}
 }
 
