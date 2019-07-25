@@ -16,6 +16,8 @@ int autonIndex = 0;
 void autonSelector(void*parameter)
 {
 
+	wait(200);
+
 	const int autoCount = 5;
   const char *autoNames[autoCount] = {
     "Red Front",
@@ -25,30 +27,32 @@ void autonSelector(void*parameter)
     "Programming Skills"
   };
 
-	pros::lcd::initialize();
-	pros::lcd::set_text(0, "Select an Auton");
-	pros::lcd::print(2, "%s", autoNames[autonIndex]);
+	pros::lcd::print(4, "%s", autoNames[autonIndex]);
 
-	if (selector.get_value() == 1)
+	while(true)
 	{
-		wait(200);
-		autonIndex++;
-	}
 
-	if (autonIndex == autoCount)
-	{
-		autonIndex = 0;
-	}
+		if (selector.get_value())
+		{
+			autonIndex = autonIndex + 1;
+			if (autonIndex == autoCount)
+				autonIndex = 0;
 
-	if (autonIndex == 0)
-	{
-		pros::lcd::print(4, "%s", autoNames[autonIndex]);
+			pros::lcd::print(4, "%s", autoNames[autonIndex]);
+			wait(300);
+		}
+
+
+
+
 	}
 }
 
 void initialize() {
-	//pros::lcd::initialize();
-//	double PIE = 3.14159;
+
+	pros::lcd::initialize();
+
+	pros::lcd::set_text(4, "<Select an Autonomous>");
 
 	pros::Task lcd_task(autonSelector);
 	pros::Task drive_pos(current_position);
