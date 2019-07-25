@@ -25,6 +25,7 @@ void programming_skills_28()
   pick_up_pos();
 
   brakeRollers();
+  moveRollers(0);
 
   //Score In Zone
   sweepRightBack(120);
@@ -156,6 +157,7 @@ void programming_skills_28_fast()
   pick_up_pos();
 
   brakeRollers();
+  moveRollers(0);
 
   //Score In Zone
   sweepRightBack(120);
@@ -226,7 +228,7 @@ void programming_skills_28_fast()
 
   //Get middle three Cubes
   moveBack(11, -90, 20);
-  turnRight(-2);
+  turnRight(-4);
   pick_up_pos();
 
   //Pick Up Row of Cubes
@@ -250,16 +252,16 @@ void programming_skills_28_fast()
   brakeRollers();
 
   //Deposit in Goal Zone
-  turnRight(135);
-  moveFast(40, 135, 127);
+  turnRight(130);
+  moveFast(40, 130, 127);
   stack_on_four_cubes();
-  move(6, 135, 45);
+  move(6, 130, 45);
   timedDrive(500, 45);
 
   moveRollers(-600);
   moveLift(100);
   wait(500);
-  moveBack(15, 135, 35);
+  moveBack(15, 130, 15);
 
 }
 
@@ -270,7 +272,7 @@ void programming_skills_35()
 
   //Score far tower
   pros::Task pick_up_task3(pickUpTask);
-  moveBack(24, 135, 35);
+  moveBack(24, 135, 20);
   sweepLeftBack(90);
   moveBackFast(21, 90, 127);
   turnLeft(0);
@@ -288,10 +290,8 @@ void programming_skills_35()
   wait(300);
   moveLift(0);
   moveRollers(-600);
-  wait(300);
-  moveLift(100);
-  wait(300);
-  timedDrive(750, -35);
+  wait(500);
+
 }
 
 //****************RED AUTONOMOUS*****************************
@@ -437,6 +437,9 @@ void autonomous()
       break;
     case 3:
       blueBack();
+      break;
+    case 4:
+      programming_skills_35();
       break;
   }
 
