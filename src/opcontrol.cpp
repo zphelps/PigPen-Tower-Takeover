@@ -9,7 +9,7 @@ void opcontrol() {
 		driveOP();
 		liftOP();
 		rollerOP();
-    if (master.get_digital(DIGITAL_A))
+    if (master.get_digital(DIGITAL_A) && !pros::competition::is_connected())
     {
       autonomous();
     }

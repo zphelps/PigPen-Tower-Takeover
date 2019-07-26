@@ -10,7 +10,7 @@ pros::ADIPotentiometer liftPot ('B');
 
 //Lift Constants
 int pickUpPos = 950;
-int pickUpPosLow = 1025;
+int pickUpPosLow = 1075;
 int downPos = 1150;
 int fourCubes = 350;
 int allianceTower = 450;
