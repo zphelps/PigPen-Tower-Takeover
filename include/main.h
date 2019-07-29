@@ -20,6 +20,7 @@ using namespace okapi;
 extern pros::Controller master;
 extern pros::Controller partner;
 extern int autonIndex;
+extern pros::ADIPotentiometer liftPot;
 
 #ifdef __cplusplus
 extern "C" {

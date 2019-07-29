@@ -380,6 +380,7 @@ void turnRight(int angle)
   wait(100);
 }
 
+/* Old Move without slew
 void move(int distance, int heading, int speed)
 {
 
@@ -397,6 +398,94 @@ void move(int distance, int heading, int speed)
     double error = target - abs(L.get_value());
 
     double PIDSpeed = minSpeed + speed * error / target;
+
+    if (heading - thetaInDegreesUncorrected >= 5 || heading - thetaInDegreesUncorrected <= -5)
+    {
+      if (thetaInDegreesUncorrected < heading)
+      {
+        rightSlew(correctionMultiplier * PIDSpeed);
+        leftSlew(PIDSpeed);
+      }
+
+      if (thetaInDegreesUncorrected > heading)
+      {
+        rightSlew(PIDSpeed);
+        leftSlew(correctionMultiplier * PIDSpeed);
+      }
+
+      if (thetaInDegreesUncorrected == heading)
+      {
+        rightSlew(PIDSpeed);
+        leftSlew(PIDSpeed);
+      }
+    }
+    else
+    {
+    if (thetaInDegreesUncorrected < heading)
+    {
+      rightSlew(PIDSpeed * 0.9);
+      leftSlew(PIDSpeed);
+    }
+
+    if (thetaInDegreesUncorrected > heading)
+    {
+      rightSlew(PIDSpeed);
+      leftSlew(PIDSpeed * 0.9);
+    }
+
+    if (thetaInDegreesUncorrected == heading)
+    {
+      rightSlew(PIDSpeed);
+      leftSlew(PIDSpeed);
+    }
+  }
+}
+
+  right(0);
+  left(0);
+  brake();
+
+  wait(50);
+
+  coast();
+}
+*/
+
+void move(int distance, int heading, int speed)
+{
+
+  double kP = 0.2;
+
+  double correctionMultiplier = 0.2;
+
+  double startUpIncrement = 0.01;
+
+  if (liftPot.get_value() < 600)
+  {
+    startUpIncrement = 0.006;
+  }
+
+  double startSpeed = speed;
+
+  double minSpeed = 35;
+
+  double target = abs(L.get_value()) + ticsPerRotation * (distance / (wheelDiameter * pi));
+
+  while(abs(L.get_value()) < target)
+  {
+
+    double error = target - abs(L.get_value());
+
+    double PIDSpeed = minSpeed + speed * error / target;
+
+    if (startSpeed < 0)
+    {
+      startSpeed = 0;
+    }
+
+    PIDSpeed = PIDSpeed - startSpeed;
+
+    startSpeed = startSpeed - startUpIncrement;
 
     if (heading - thetaInDegreesUncorrected >= 5 || heading - thetaInDegreesUncorrected <= -5)
     {
@@ -523,6 +612,25 @@ void moveBack(int distance, int heading, int speed)
 
   double minSpeed = 35;
 
+  double startUpIncrement = 0.01;
+
+  if (liftPot.get_value() < 500)
+  {
+    startUpIncrement = 0.005;
+  }
+  else if (liftPot.get_value() < 400)
+  {
+    startUpIncrement = 0.00075;
+  }
+  else if (liftPot.get_value() < 250)
+  {
+    startUpIncrement = 0.000005;
+
+    speed = 35;
+  }
+
+  double startSpeed = speed;
+
   double startingPoint = L.get_value();
 
   double targetTics = ticsPerRotation * (distance / (wheelDiameter * pi));
@@ -535,6 +643,15 @@ void moveBack(int distance, int heading, int speed)
     double error = target - L.get_value();
 
     double PIDSpeed = minSpeed + speed * error / (target - startingPoint);
+
+    if (startSpeed < 0)
+    {
+      startSpeed = 0;
+    }
+
+    PIDSpeed = PIDSpeed - startSpeed;
+
+    startSpeed = startSpeed - startUpIncrement;
 
     if (heading - thetaInDegreesUncorrected >= 5 || heading - thetaInDegreesUncorrected <= -5)
     {

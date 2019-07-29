@@ -425,6 +425,7 @@ void blueFront() //Working as of 7/11/19
 
 void autonomous()
 {
+  /*
   switch(autonIndex){
     case 0:
       redFront();
@@ -442,5 +443,9 @@ void autonomous()
       programming_skills_35();
       break;
   }
+  */
+
+  moveBack(48, 0, 127);
+  //move(48, 0, 127);
 
 }

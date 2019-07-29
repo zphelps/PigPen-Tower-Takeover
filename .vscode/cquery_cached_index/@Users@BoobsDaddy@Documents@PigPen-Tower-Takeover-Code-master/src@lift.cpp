@@ -7,7 +7,6 @@ pros::Motor leftLift (5, pros::E_MOTOR_GEARSET_36, true, pros::E_MOTOR_ENCODER_D
 //Sensors
 pros::ADIPotentiometer liftPot ('B');
 
-
 //Lift Constants
 int pickUpPos = 950;
 int pickUpPosLow = 1075;

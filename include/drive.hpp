@@ -11,6 +11,7 @@ void sweepLeft(int angle);
 void brake();
 void wait(int duration);
 void move(int distance, int heading, int speed);
+//void moveSlew(int distance, int heading, int speed);
 void moveFast(int distance, int heading, int speed);
 void moveBack(int distance, int heading, int speed);
 void moveBackFast(int distance, int heading, int speed);
