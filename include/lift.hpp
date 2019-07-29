@@ -10,6 +10,7 @@ void pick_up_pos();
 void pick_up_pos_low();
 void pickUpTask(void* parameter);
 void deposit_four_cubes();
+void deposit_five_cubes();
 void stack_on_four_cubes();
 void deposit_last_three_cubes();
 void alliance_tower_height();

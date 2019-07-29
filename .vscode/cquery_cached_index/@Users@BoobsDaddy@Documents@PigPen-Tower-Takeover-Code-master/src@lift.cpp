@@ -12,6 +12,7 @@ int pickUpPos = 950;
 int pickUpPosLow = 1075;
 int downPos = 1150;
 int fourCubes = 350;
+int fiveCubes = 150;
 int allianceTower = 450;
 int shortTower = 450;
 int mediumTower = 200;
@@ -128,6 +129,9 @@ void pick_up_pos()
     {
       rightLift.move(0);
       leftLift.move(0);
+
+      lift_brake();
+
       done = true;
     }
 
@@ -154,6 +158,8 @@ void pick_up_pos_low()
     {
       rightLift.move(0);
       leftLift.move(0);
+      lift_brake();
+
       done = true;
     }
 
@@ -180,6 +186,9 @@ void pickUpTask(void* parameter)
     {
       rightLift.move(0);
       leftLift.move(0);
+
+      lift_brake();
+
       done = true;
     }
 
@@ -206,6 +215,8 @@ void lift_down()
     {
       rightLift.move(0);
       leftLift.move(0);
+      lift_brake();
+
       done = true;
     }
   }
@@ -231,6 +242,9 @@ void lift_down_task(void* parameter)
     {
       rightLift.move(0);
       leftLift.move(0);
+
+      lift_brake();
+
       done = true;
     }
   }
@@ -256,6 +270,38 @@ void deposit_four_cubes()
     {
       rightLift.move(0);
       leftLift.move(0);
+
+      lift_brake();
+
+      done = true;
+    }
+
+  }
+}
+
+void deposit_five_cubes()
+{
+  bool done = false;
+
+  while(done == false)
+  {
+    if (liftPot.get_value() < fiveCubes - 10)
+    {
+      rightLift.move(-100);
+      leftLift.move(-100);
+    }
+    else if (liftPot.get_value() > fiveCubes + 10)
+    {
+      rightLift.move(100);
+      leftLift.move(100);
+    }
+    else
+    {
+      rightLift.move(0);
+      leftLift.move(0);
+
+      lift_brake();
+
       done = true;
     }
 
@@ -282,6 +328,9 @@ void stack_on_four_cubes()
     {
       rightLift.move(0);
       leftLift.move(0);
+
+      lift_brake();
+
       done = true;
     }
 
@@ -308,6 +357,9 @@ void deposit_last_three_cubes()
     {
       rightLift.move(0);
       leftLift.move(0);
+
+      lift_brake();
+
       done = true;
     }
 
@@ -334,6 +386,9 @@ void alliance_tower_height()
     {
       rightLift.move(0);
       leftLift.move(0);
+
+      lift_brake();
+
       done = true;
     }
 
@@ -360,6 +415,9 @@ void alliance_tower_height_task(void* parameter)
     {
       rightLift.move(0);
       leftLift.move(0);
+
+      lift_brake();
+
       done = true;
     }
 
@@ -386,6 +444,9 @@ void short_tower_height()
     {
       rightLift.move(0);
       leftLift.move(0);
+
+      lift_brake();
+
       done = true;
     }
 
@@ -412,6 +473,9 @@ void medium_tower_height()
     {
       rightLift.move(0);
       leftLift.move(0);
+
+      lift_brake();
+
       done = true;
     }
 
@@ -438,6 +502,9 @@ void tall_tower_height()
     {
       rightLift.move(0);
       leftLift.move(0);
+
+      lift_brake();
+
       done = true;
     }
 
@@ -464,6 +531,9 @@ void medium_tower_deposit()
     {
       rightLift.move(0);
       leftLift.move(0);
+
+      lift_brake();
+
       done = true;
     }
 
@@ -490,6 +560,9 @@ void deposit_cube_in_tower()
     {
       rightLift.move(0);
       leftLift.move(0);
+
+      lift_brake();
+
       done = true;
     }
 
