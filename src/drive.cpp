@@ -896,7 +896,7 @@ void sweepLeftBack(int angle)
 
   int distToAngle = thetaInDegrees - angle;
 
-  int minSpeed = 20;
+  int minSpeed = 35;
 
     while(thetaInDegreesUncorrected > angle + targetError) //|| thetaInDegrees > angle + targetError)
     {

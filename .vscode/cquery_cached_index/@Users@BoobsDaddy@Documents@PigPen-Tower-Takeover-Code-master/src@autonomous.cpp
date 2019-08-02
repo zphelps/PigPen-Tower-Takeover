@@ -297,24 +297,25 @@ void programming_skills_35()
 //****************RED AUTONOMOUS*****************************
 void redFront() //Working as of 7/9/19
 {
-  move(2, 0, 127);
+  wait(75); //fixes bug where lift moves before drive
+  move(3, 0, 127);
   pick_up_pos_low();
 
   //Pick Up Row of Cubes
   moveRollers(600);
-  move(15, 0, 127);
+  move(12, 0, 127);
   lift_down();
   pick_up_pos_low();
 
   //Second Cube
-  move(4, 0, 127);
+  moveFast(3, 0, 127);
   lift_down();
   pick_up_pos_low();
 
   //Third Cube
-  move(4, 0, 127);
+  moveFast(3, 0, 127);
   lift_down();
-  pick_up_pos_low();
+  pick_up_pos();
 
   brakeRollers();
 
@@ -328,7 +329,7 @@ void redFront() //Working as of 7/9/19
   deposit_five_cubes();
 
   //Get tower cube
-  moveBack(31, 130, 127);
+  moveBack(31, 135, 127);
   pros::Task pick_up_task(pickUpTask);
   turnLeft(0);
   moveRollers(600);
@@ -457,6 +458,64 @@ void blueFront() //Working as of 7/11/19
 
 }
 
+void blueFront_Five_Cubes() //Working as of 7/11/19
+{
+  wait(75); //fixes bug where lift moves before drive
+  move(3, 0, 127);
+  pick_up_pos_low();
+
+  //Pick Up Row of Cubes
+  moveRollers(600);
+  move(12, 0, 127);
+  lift_down();
+  pick_up_pos_low();
+
+  //Second Cube
+  moveFast(3, 0, 127);
+  lift_down();
+  pick_up_pos_low();
+
+  //Third Cube
+  moveFast(3, 0, 127);
+  lift_down();
+  pick_up_pos();
+
+  //Fourth Cube
+  moveFast(4, 0, 127);
+  lift_down();
+  pick_up_pos_low();
+
+  brakeRollers();
+
+  //Score In Zone
+  sweepLeftBack(-125);
+  moveFast(39, -125, 127);
+  timedDrive(350, 30);
+
+  lift_down();
+  intakeOut();
+  wait(25);
+  deposit_five_cubes();
+
+  //Get tower cube
+  moveBack(33, -135, 127);
+  pros::Task pick_up_task(pickUpTask);
+  turnRight(0);
+  moveRollers(600);
+  moveFast(14, 0, 127);
+  timedDrive(250, 50);
+  lift_down();
+  wait(25);
+  pros::Task shortTower(alliance_tower_height_task);
+  moveBack(4, 0, 127);
+  timedDrive(300, 80);
+  moveRollers(-600);
+  moveLift(-35);
+  wait(275);
+  timedDrive(300, -50);
+  wait(10000);
+}
+
 void blueBack()
 {
   move(2, 0, 50);
@@ -497,7 +556,7 @@ void autonomous()
       //redBack();
       break;
     case 2:
-      blueFront();
+      blueFront_Five_Cubes();
       break;
     case 3:
       blueBack();
