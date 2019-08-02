@@ -347,6 +347,7 @@ void redFront() //Working as of 7/9/19
 
 void redFront_Five_Cubes() //Working as of 7/9/19
 {
+  wait(75); //fixes bug where lift moves before drive
   move(3, 0, 127);
   pick_up_pos_low();
 
@@ -374,8 +375,8 @@ void redFront_Five_Cubes() //Working as of 7/9/19
   brakeRollers();
 
   //Score In Zone
-  sweepRightBack(137);
-  moveFast(39, 137, 127);
+  sweepRightBack(135);
+  moveFast(39, 135, 127);
   timedDrive(350, 30);
 
   lift_down();
@@ -391,12 +392,14 @@ void redFront_Five_Cubes() //Working as of 7/9/19
   moveFast(14, 0, 127);
   timedDrive(250, 50);
   lift_down();
-  moveBack(5, 0, 127);
+  wait(25);
   pros::Task shortTower(alliance_tower_height_task);
-  wait(200);
-  timedDrive(500, 75);
+  moveBack(4, 0, 127);
+  timedDrive(300, 80);
   moveRollers(-600);
-  moveLift(-100);
+  moveLift(-35);
+  wait(275);
+  timedDrive(300, -50);
   wait(10000);
   //deposit_cube_in_tower();
   //moveBack(10, 0, 127);
