@@ -295,7 +295,7 @@ void programming_skills_35()
 }
 
 //****************RED AUTONOMOUS*****************************
-void redFront() //Working as of 7/9/19
+void redFront_Four_Cubes() //Working as of 7/9/19
 {
   wait(75); //fixes bug where lift moves before drive
   move(3, 0, 127);
@@ -320,8 +320,8 @@ void redFront() //Working as of 7/9/19
   brakeRollers();
 
   //Score In Zone
-  sweepRightBack(130);
-  moveFast(30, 130, 127);
+  sweepRightBack(120);
+  moveFast(30, 120, 127);
   timedDrive(375, 50);
 
   lift_down();
@@ -329,20 +329,21 @@ void redFront() //Working as of 7/9/19
   deposit_five_cubes();
 
   //Get tower cube
-  moveBack(31, 135, 127);
+  moveBack(33, 135, 127);
   pros::Task pick_up_task(pickUpTask);
   turnLeft(0);
   moveRollers(600);
-  move(20, 0, 127);
-  timedDrive(200, 35);
+  moveFast(15, 0, 127);
+  timedDrive(300, 50);
   lift_down();
-  moveBack(5, 0, 127);
+  wait(25);
   pros::Task shortTower(alliance_tower_height_task);
-  wait(100);
+  moveBack(4, 0, 127);
   move(10, 0, 127);
   moveRollers(-600);
-  deposit_cube_in_tower();
-  moveBack(10, 0, 127);
+  wait(300);
+  moveBack(15, 0, 127);
+  pros::Task prepareForMatchPos(pickUpTask);
 
 }
 
@@ -408,53 +409,55 @@ void redFront_Five_Cubes() //Working as of 7/9/19
 }
 
 //***************BLUE AUTONOMOUS*****************************
-void blueFront() //Working as of 7/11/19
+void blueFront_Four_Cubes() //Working as of 7/11/19
 {
-  move(2, 0, 50);
-  pick_up_pos();
+  wait(75); //fixes bug where lift moves before drive
+  move(3, 0, 127);
+  pick_up_pos_low();
 
   //Pick Up Row of Cubes
   moveRollers(600);
-  move(15, 0, 100);
+  move(12, 0, 127);
   lift_down();
   pick_up_pos_low();
 
   //Second Cube
-  move(5, 0, 100);
+  moveFast(3, 0, 127);
   lift_down();
   pick_up_pos_low();
 
   //Third Cube
-  move(5, 0, 100);
+  moveFast(3, 0, 127);
   lift_down();
-  pick_up_pos_low();
+  pick_up_pos();
 
   brakeRollers();
 
   //Score In Zone
-  sweepLeftBack(-120);
-  moveFast(30, -120, 127);
-  timedDrive(300, 50);
+  sweepLeftBack(-115);
+  moveFast(30, -115, 127);
+  timedDrive(375, 50);
 
   lift_down();
   intakeOut();
-  deposit_four_cubes();
+  deposit_five_cubes();
 
   //Get tower cube
-  moveBackFast(29, -120, 35);
+  moveBack(33, -135, 127);
   pros::Task pick_up_task(pickUpTask);
   turnRight(0);
   moveRollers(600);
-  moveFast(20, 0, 127);
-  timedDrive(200, 35);
+  moveFast(15, 0, 127);
+  timedDrive(300, 50);
   lift_down();
-  moveBack(5, 0, 35);
+  wait(25);
   pros::Task shortTower(alliance_tower_height_task);
-  wait(100);
-  move(10, 0, 50);
+  moveBack(4, 0, 127);
+  move(10, 0, 127);
   moveRollers(-600);
-  deposit_cube_in_tower();
-  moveBack(10, 0, 50);
+  wait(300);
+  moveBack(15, 0, 127);
+  pros::Task prepareForMatchPos(pickUpTask);
 
 }
 
@@ -544,30 +547,31 @@ void blueBack()
   sweepLeftBack(0);
 }
 
+//**************AUTONOMOUS SELECTION*************************
+
 void autonomous()
 {
-
   switch(autonIndex){
     case 0:
-      //redFront();
-      redFront_Five_Cubes();
+      redFront_Four_Cubes();
       break;
     case 1:
-      //redBack();
+      redFront_Five_Cubes();
       break;
     case 2:
-      blueFront_Five_Cubes();
+      //redBack();
       break;
     case 3:
-      blueBack();
+      blueFront_Four_Cubes();
       break;
     case 4:
+      blueFront_Five_Cubes();
+      break;
+    case 5:
+      blueBack();
+      break;
+    case 6:
       programming_skills_35();
       break;
   }
-
-
-//  moveBack(48, 0, 127);
-  //move(48, 0, 127);
-
 }

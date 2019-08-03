@@ -16,12 +16,14 @@ int autonIndex = 0;
 void autonSelector(void*parameter)
 {
 
-	wait(200);
+	wait(500);
 
-	const int autoCount = 5;
+	const int autoCount = 7;
   const char *autoNames[autoCount] = {
-    "Red Front - Five Cubes",
+		"Red Front - FourCubes",
+		"Red Front - Five Cubes",
     "Red Back",
+		"Blue Front - Four Cubes",
     "Blue Front - Five Cubes",
     "Blue Back",
     "Programming Skills"
