@@ -98,6 +98,7 @@ void current_position(void* parameter)
   }
 
 //X & Y Calculation
+/*
   if (deltaTheta == 0)
   {
     deltaxlocal = deltaS;
@@ -109,7 +110,10 @@ void current_position(void* parameter)
 
     deltaylocal = 2 * sin(deltaTheta / 2) * ((deltaR / deltaTheta) + rightOffset);
   }
+*/
 
+deltaxlocal = deltaS;
+deltaylocal = deltaR;
 
 //  coordinateSystemOffset = thetaInRadians - 0.5 * deltaTheta;
 
@@ -145,7 +149,9 @@ yglobal = yglobal + deltayglobal;
   //IDENTIFIERS:: d = int, f = float
 
 
-//  pros::lcd::print(1, "Theta - Absolute: %f", thetaInDegrees);
+  pros::lcd::print(1, "Theta - Absolute: %f", thetaInDegrees);
+  pros::lcd::print(2, "X Global: %f", xglobal);
+  pros::lcd::print(3, "Y Global: %f", yglobal);
   }
 
 }
