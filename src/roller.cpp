@@ -21,6 +21,8 @@ void intakeOut()
   moveRollers(-600);
 }
 
+bool btnYPressed = false;
+
 void rollerOP()
 {
   rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
@@ -36,8 +38,17 @@ void rollerOP()
   }
 
   else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_RIGHT) || (partner.get_digital(pros::E_CONTROLLER_DIGITAL_R2))){
+    btnYPressed = false;
     leftRoller.move_velocity(600);
     rightRoller.move_velocity(600);
+  }
+  else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_Y) || btnYPressed == true){
+    moveRollers(50);
+    
+    if(btnYPressed == false)
+    {
+      btnYPressed = true;
+    }
   }
 
   else {
