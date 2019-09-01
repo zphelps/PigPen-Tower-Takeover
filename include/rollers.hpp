@@ -1,7 +1,7 @@
-#ifndef _ROLLER_H_
-#define _ROLLER_H_
+#ifndef _ROLLERS_H_
+#define _ROLLERS_H_
 
-void rollerOP();
+void rollersOP();
 void intakeOut();
 void moveRollers(int speed);
 void brakeRollers();
