@@ -7,9 +7,9 @@ pros::Motor rightFront(19, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODE
 pros::Motor rightBack (20, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
 
 //Tracking Encoders
-pros::ADIEncoder R ('G', 'H', false);
-pros::ADIEncoder L ('C', 'D', false);
-pros::ADIEncoder S ('E', 'F', false);
+pros::ADIEncoder R ('B', 'C', false);
+pros::ADIEncoder L ('D', 'E', false);
+//pros::ADIEncoder S ('E', 'F', false);
 
 //Turn and Move Function Variables and Constants
 int targetAngle = 0;
@@ -65,11 +65,11 @@ void current_position(void* parameter)
 
   double LInches = (L.get_value() * -1) * pi * wheelDiameter / ticsPerRotation;
   double RInches = (R.get_value() * -1) * pi * wheelDiameter / ticsPerRotation;
-  double SInches = (S.get_value() * -1) * pi * wheelDiameter / ticsPerRotation;
+//  double SInches = (S.get_value() * -1) * pi * wheelDiameter / ticsPerRotation;
 
   currentL = LInches;
   currentR = RInches;
-  currentS = SInches;
+//  currentS = SInches;
 
   deltaL = currentL - prevL;
   deltaR = currentR - prevR;

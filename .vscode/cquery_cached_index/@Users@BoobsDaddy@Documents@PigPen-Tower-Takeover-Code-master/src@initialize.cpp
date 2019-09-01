@@ -50,11 +50,11 @@ void initialize() {
 
 	pros::lcd::initialize();
 
-	pros::lcd::set_text(4, "<Select an Autonomous>");
+	//pros::lcd::set_text(4, "<Select an Autonomous>");
 
-	pros::Task lcd_task(autonSelector);
+	//pros::Task lcd_task(autonSelector);
 
-	pros::Task drive_pos(current_position);
+	//pros::Task drive_pos(current_position);
 
 }
 

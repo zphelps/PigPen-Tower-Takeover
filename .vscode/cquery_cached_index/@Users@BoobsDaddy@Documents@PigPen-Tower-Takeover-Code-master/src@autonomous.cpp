@@ -754,6 +754,8 @@ void blueBack()
 
 void autonomous()
 {
+
+  /*
   switch(autonIndex){
     case 0:
       redFront_Four_Cubes();
@@ -777,4 +779,5 @@ void autonomous()
       programming_skills_35();
       break;
   }
+  */
 }

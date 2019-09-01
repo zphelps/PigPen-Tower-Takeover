@@ -15,12 +15,14 @@ using namespace okapi;
 #include "drive.hpp"
 #include "lift.hpp"
 #include "rollers.hpp"
+#include "tilter.hpp"
 #include "macros.hpp"
 
 extern pros::Controller master;
 extern pros::Controller partner;
 extern int autonIndex;
 extern pros::ADIPotentiometer liftPot;
+extern pros::ADIPotentiometer tilterPot;
 
 #ifdef __cplusplus
 extern "C" {

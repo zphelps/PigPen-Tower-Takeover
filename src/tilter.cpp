@@ -3,6 +3,33 @@
 //motors
 pros::Motor tilter (17, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
 
+//Sensors
+pros::ADIPotentiometer tilterPot ('H');
+
+//Autonomous FUNCTIONS
+
+void score()
+{
+  bool done = false;
+
+  while(done == false)
+  {
+    if (tilterPot.get_value() < 500)
+    {
+      tilter.move(-100);
+    }
+    else if (tilterPot.get_value() > 500)
+    {
+      tilter.move(100);
+    }
+    else
+    {
+      tilter.move(0);
+      done = true;
+    }
+
+  }
+}
 
 void tilterOP()
 {
@@ -17,11 +44,8 @@ void tilterOP()
   else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN) || (partner.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN))) {
     tilter.move_velocity(200);
   }
-  else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
-    tilter.move_velocity(-165);
-  }
-  else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
-    tilter.move_velocity(165);
+  else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT)) {
+    score();
   }
   else {
     tilter.move_velocity(0);
