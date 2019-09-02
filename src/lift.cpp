@@ -1,8 +1,7 @@
 #include "main.h"
 
 //motors
-pros::Motor rightLift(7, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_DEGREES);
-pros::Motor leftLift (5, pros::E_MOTOR_GEARSET_36, true, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor lift(15, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_DEGREES);
 
 //Sensors
 pros::ADIPotentiometer liftPot ('B');
@@ -25,14 +24,12 @@ int tallTowerHeight = 25;
 
 void moveLift(int speed)
 {
-  rightLift.move_velocity(speed);
-  leftLift.move_velocity(speed);
+  lift.move_velocity(speed);
 }
 
 void lift_brake()
 {
-  rightLift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-	leftLift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  lift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 }
 /*
 void set_lift_height(int height)
@@ -117,18 +114,15 @@ void pick_up_pos()
   {
     if (liftPot.get_value() < pickUpPos - 10)
     {
-      rightLift.move(-100);
-      leftLift.move(-100);
+      lift.move(-100);
     }
     else if (liftPot.get_value() > pickUpPos + 10)
     {
-      rightLift.move(100);
-      leftLift.move(100);
+      lift.move(100);
     }
     else
     {
-      rightLift.move(0);
-      leftLift.move(0);
+      lift.move(0);
 
       lift_brake();
 
@@ -146,18 +140,15 @@ void pick_up_pos_low()
   {
     if (liftPot.get_value() < pickUpPosLow - 10)
     {
-      rightLift.move(-100);
-      leftLift.move(-100);
+      lift.move(-100);
     }
     else if (liftPot.get_value() > pickUpPosLow + 10)
     {
-      rightLift.move(100);
-      leftLift.move(100);
+      lift.move(100);
     }
     else
     {
-      rightLift.move(0);
-      leftLift.move(0);
+      lift.move(0);
       lift_brake();
 
       done = true;
@@ -174,18 +165,15 @@ void pickUpTask(void* parameter)
   {
     if (liftPot.get_value() < pickUpPos - 10)
     {
-      rightLift.move(-100);
-      leftLift.move(-100);
+      lift.move(-100);
     }
     else if (liftPot.get_value() > pickUpPos + 10)
     {
-      rightLift.move(100);
-      leftLift.move(100);
+      lift.move(100);
     }
     else
     {
-      rightLift.move(0);
-      leftLift.move(0);
+      lift.move(0);
 
       lift_brake();
 
@@ -203,18 +191,15 @@ void lift_down()
   {
     if (liftPot.get_value() < downPos - 10)
     {
-      rightLift.move(-100);
-      leftLift.move(-100);
+      lift.move(-100);
     }
     else if (liftPot.get_value() > downPos + 10)
     {
-      rightLift.move(100);
-      leftLift.move(100);
+      lift.move(100);
     }
     else
     {
-      rightLift.move(0);
-      leftLift.move(0);
+      lift.move(0);
       lift_brake();
 
       done = true;
@@ -230,18 +215,15 @@ void lift_down_task(void* parameter)
   {
     if (liftPot.get_value() < downPos - 10)
     {
-      rightLift.move(-100);
-      leftLift.move(-100);
+      lift.move(-100);
     }
     else if (liftPot.get_value() > downPos + 10)
     {
-      rightLift.move(100);
-      leftLift.move(100);
+      lift.move(100);
     }
     else
     {
-      rightLift.move(0);
-      leftLift.move(0);
+      lift.move(0);
 
       lift_brake();
 
@@ -258,18 +240,15 @@ void deposit_four_cubes()
   {
     if (liftPot.get_value() < fourCubes - 10)
     {
-      rightLift.move(-100);
-      leftLift.move(-100);
+      lift.move(-100);
     }
     else if (liftPot.get_value() > fourCubes + 10)
     {
-      rightLift.move(100);
-      leftLift.move(100);
+      lift.move(100);
     }
     else
     {
-      rightLift.move(0);
-      leftLift.move(0);
+      lift.move(0);
 
       lift_brake();
 
@@ -287,18 +266,15 @@ void deposit_five_cubes()
   {
     if (liftPot.get_value() < fiveCubes - 10)
     {
-      rightLift.move(-100);
-      leftLift.move(-100);
+      lift.move(-100);
     }
     else if (liftPot.get_value() > fiveCubes + 10)
     {
-      rightLift.move(100);
-      leftLift.move(100);
+      lift.move(100);
     }
     else
     {
-      rightLift.move(0);
-      leftLift.move(0);
+      lift.move(0);
 
       lift_brake();
 
@@ -316,18 +292,15 @@ void stack_on_four_cubes()
   {
     if (liftPot.get_value() < stackOnFourCubes - 10)
     {
-      rightLift.move(-100);
-      leftLift.move(-100);
+      lift.move(-100);
     }
     else if (liftPot.get_value() > stackOnFourCubes + 10)
     {
-      rightLift.move(100);
-      leftLift.move(100);
+      lift.move(100);
     }
     else
     {
-      rightLift.move(0);
-      leftLift.move(0);
+      lift.move(0);
 
       lift_brake();
 
@@ -345,18 +318,16 @@ void deposit_last_three_cubes()
   {
     if (liftPot.get_value() < depositLastThreeCubes - 10)
     {
-      rightLift.move(-100);
-      leftLift.move(-100);
+      lift.move(-100);
+      lift.move(-100);
     }
     else if (liftPot.get_value() > depositLastThreeCubes + 10)
     {
-      rightLift.move(100);
-      leftLift.move(100);
+      lift.move(100);
     }
     else
     {
-      rightLift.move(0);
-      leftLift.move(0);
+      lift.move(0);
 
       lift_brake();
 
@@ -374,18 +345,15 @@ void alliance_tower_height()
   {
     if (liftPot.get_value() < allianceTower - 10)
     {
-      rightLift.move(-100);
-      leftLift.move(-100);
+      lift.move(-100);
     }
     else if (liftPot.get_value() > allianceTower + 10)
     {
-      rightLift.move(100);
-      leftLift.move(100);
+      lift.move(100);
     }
     else
     {
-      rightLift.move(0);
-      leftLift.move(0);
+      lift.move(0);
 
       lift_brake();
 
@@ -403,18 +371,15 @@ void alliance_tower_height_task(void* parameter)
   {
     if (liftPot.get_value() < allianceTower - 10)
     {
-      rightLift.move(-100);
-      leftLift.move(-100);
+      lift.move(-100);
     }
     else if (liftPot.get_value() > allianceTower + 10)
     {
-      rightLift.move(100);
-      leftLift.move(100);
+      lift.move(100);
     }
     else
     {
-      rightLift.move(0);
-      leftLift.move(0);
+      lift.move(0);
 
       lift_brake();
 
@@ -432,18 +397,15 @@ void short_tower_height()
   {
     if (liftPot.get_value() < shortTower - 10)
     {
-      rightLift.move(-100);
-      leftLift.move(-100);
+      lift.move(-100);
     }
     else if (liftPot.get_value() > shortTower + 10)
     {
-      rightLift.move(100);
-      leftLift.move(100);
+      lift.move(100);
     }
     else
     {
-      rightLift.move(0);
-      leftLift.move(0);
+      lift.move(0);
 
       lift_brake();
 
@@ -461,18 +423,15 @@ void medium_tower_height()
   {
     if (liftPot.get_value() < mediumTower - 10)
     {
-      rightLift.move(-100);
-      leftLift.move(-100);
+      lift.move(-100);
     }
     else if (liftPot.get_value() > mediumTower + 10)
     {
-      rightLift.move(100);
-      leftLift.move(100);
+      lift.move(100);
     }
     else
     {
-      rightLift.move(0);
-      leftLift.move(0);
+      lift.move(0);
 
       lift_brake();
 
@@ -490,18 +449,15 @@ void tall_tower_height()
   {
     if (liftPot.get_value() < tallTowerHeight - 10)
     {
-      rightLift.move(-100);
-      leftLift.move(-100);
+      lift.move(-100);
     }
     else if (liftPot.get_value() > tallTowerHeight + 10)
     {
-      rightLift.move(100);
-      leftLift.move(100);
+      lift.move(100);
     }
     else
     {
-      rightLift.move(0);
-      leftLift.move(0);
+      lift.move(0);
 
       lift_brake();
 
@@ -519,18 +475,15 @@ void medium_tower_deposit()
   {
     if (liftPot.get_value() < mediumTowerDeposit - 10)
     {
-      rightLift.move(-100);
-      leftLift.move(-100);
+      lift.move(-100);
     }
     else if (liftPot.get_value() > mediumTowerDeposit + 10)
     {
-      rightLift.move(100);
-      leftLift.move(100);
+      lift.move(100);
     }
     else
     {
-      rightLift.move(0);
-      leftLift.move(0);
+      lift.move(0);
 
       lift_brake();
 
@@ -548,18 +501,15 @@ void deposit_cube_in_tower()
   {
     if (liftPot.get_value() < towerDeposit - 10)
     {
-      rightLift.move(-100);
-      leftLift.move(-100);
+      lift.move(-100);
     }
     else if (liftPot.get_value() > towerDeposit + 10)
     {
-      rightLift.move(100);
-      leftLift.move(100);
+      lift.move(100);
     }
     else
     {
-      rightLift.move(0);
-      leftLift.move(0);
+      lift.move(0);
 
       lift_brake();
 
@@ -574,24 +524,15 @@ void deposit_cube_in_tower()
 //*************************** - OP Control - ***********************************
 void liftOP()
 {
-  rightLift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-	leftLift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+  lift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 
     if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
-      rightLift.move_velocity(100);
-      leftLift.move_velocity(100);
+      lift.move_velocity(-100);
     }
     else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
-      rightLift.move_velocity(-100);
-      leftLift.move_velocity(-100);
-    }
-
-    else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_RIGHT) || (partner.get_digital(pros::E_CONTROLLER_DIGITAL_R1))) {
-      rightLift.move_velocity(95);
-      leftLift.move_velocity(95);
+      lift.move_velocity(100);
     }
     else {
-      leftLift.move(partner.get_analog(ANALOG_LEFT_Y));
-      rightLift.move(partner.get_analog(ANALOG_LEFT_Y));
+      lift.move(partner.get_analog(ANALOG_LEFT_Y));
     }
   }

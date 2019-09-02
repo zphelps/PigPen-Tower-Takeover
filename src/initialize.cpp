@@ -50,6 +50,8 @@ void initialize() {
 
 	pros::lcd::initialize();
 
+	
+
 	//pros::lcd::set_text(4, "<Select an Autonomous>");
 
 	//pros::Task lcd_task(autonSelector);

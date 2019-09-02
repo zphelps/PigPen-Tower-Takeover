@@ -24,6 +24,11 @@ extern int autonIndex;
 extern pros::ADIPotentiometer liftPot;
 extern pros::ADIPotentiometer tilterPot;
 
+extern pros::Motor rightRoller;
+extern pros::Motor leftRoller;
+
+extern pros::Motor tilter;
+
 #ifdef __cplusplus
 extern "C" {
 #endif
