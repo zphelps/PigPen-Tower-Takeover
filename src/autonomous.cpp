@@ -754,7 +754,7 @@ void blueBack()
 
 void autonomous()
 {
-
+  turnRight(90);
   /*
   switch(autonIndex){
     case 0:

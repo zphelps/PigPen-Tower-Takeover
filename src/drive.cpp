@@ -16,10 +16,10 @@ int targetAngle = 0;
 
 //Position Tracking Constants and Variables
 //const double pi = 3.14159;
-const double wheelDiameter = 3.1875;
+const double wheelDiameter = 4.125;
 const double ticsPerRotation = 360;
-const double leftOffset = 4.546875;
-const double rightOffset = 4.609375;
+const double leftOffset = 3.5; //4.546875;
+const double rightOffset = 3.5; //4.609375;
 const double rearOffset = 4.5; //Likely going to need re-measurement
 
 double prevL = 0;
@@ -149,9 +149,9 @@ yglobal = yglobal + deltayglobal;
   //IDENTIFIERS:: d = int, f = float
 
 
-  pros::lcd::print(1, "Theta - Absolute: %f", thetaInDegrees);
-  pros::lcd::print(2, "X Global: %f", xglobal);
-  pros::lcd::print(3, "Y Global: %f", yglobal);
+  pros::lcd::print(2, "Theta - Absolute: %f", thetaInDegrees);
+  pros::lcd::print(3, "L %f", RInches);
+  pros::lcd::print(4, "R %d", R.get_value());
   }
 
 }
@@ -1119,6 +1119,7 @@ void driveOP()
 {
   coast();
 
+  pros::lcd::print(5, "%d", L.get_value());
   leftFront.move(master.get_analog(ANALOG_LEFT_Y));
   leftBack.move(master.get_analog(ANALOG_LEFT_Y));
   rightFront.move(master.get_analog(ANALOG_RIGHT_Y));
