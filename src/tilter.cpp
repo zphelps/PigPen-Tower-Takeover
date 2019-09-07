@@ -80,7 +80,7 @@ void tilterTowerPos()
   wait(100);
 }
 
-void tilterBack()
+void tilterBack(void* parameter)
 {
   double kP = 0.3;
 
@@ -103,6 +103,9 @@ void tilterBack()
     int power = (error*kP + derivative*kD);
 
     moveTilter(power);
+    rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+    leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+    moveRollers(-20);
   }
   moveTilter(0);
   wait(100);
@@ -118,6 +121,9 @@ void tilterOP()
   }
   else if(master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN)) {
     tilter.move(127);
+  }
+  else if(master.get_digital(pros::E_CONTROLLER_DIGITAL_RIGHT)) {
+    pros::Task tilter_back(tilterBack);
   }
   else if(master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
     if(tilterPot.get_value() < 750)
