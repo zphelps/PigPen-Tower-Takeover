@@ -15,7 +15,7 @@ void moveTilter(int speed)
 
 void score()
 {
-  double kP = 0.2;
+  double kP = 0.4;
 
   double kD = 0;
 
@@ -23,7 +23,7 @@ void score()
 
   double targetError = 20;
 
-  int minSpeed = 65;
+  int minSpeed = 90;
 
   while(tilterPot.get_value() < 1400 - targetError) //|| thetaInDegrees > angle + targetError)
   {
@@ -35,7 +35,7 @@ void score()
 
     int power = (error*kP + derivative*kD);
 
-    if(error > 550)
+    if(error > 650)
     {
       rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
       leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);

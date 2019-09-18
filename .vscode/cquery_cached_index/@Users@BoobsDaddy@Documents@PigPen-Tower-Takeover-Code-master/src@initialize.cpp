@@ -48,7 +48,7 @@ void autonSelector(void*parameter)
 
 void initialize() {
 
-	pros::lcd::initialize();
+	//pros::lcd::initialize();
 
 
 

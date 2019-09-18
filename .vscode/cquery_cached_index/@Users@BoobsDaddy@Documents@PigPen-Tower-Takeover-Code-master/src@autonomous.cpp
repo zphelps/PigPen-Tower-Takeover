@@ -3,6 +3,28 @@
 //#include "pros/api_legacy.h"
 
 //*****************PROGRAMMING SKILLS************************
+
+void programming_skills()
+{
+    //Pick up first 5 cubes
+    moveRollers(-200);
+    wait(75);
+    moveRollers(200);
+    wait(100);
+    moveRollers(0);
+    wait(250);
+    moveRollers(-200);
+    move(48, 0, 50);
+
+    moveFast(20, 15, 127);
+    turnLeftLoaded(-30);
+    moveRollers(-200);
+    move(50, 0, 75);
+
+    turnRight(45);
+
+}
+/*
 void programming_skills_28()
 {
   move(2, 0, 50);
@@ -134,7 +156,7 @@ void programming_skills_28()
   moveBack(15, 130, 35);
 
 }
-
+*/
 /* Before I sped it up even more
 void programming_skills_28_fast()
 {
@@ -266,7 +288,7 @@ void programming_skills_28_fast()
 
 }
 */
-
+/*
 void programming_skills_28_fast()
 {
   move(2, 0, 127);
@@ -431,7 +453,42 @@ void programming_skills_35()
 
 }
 
+*/
+
 //****************RED AUTONOMOUS*****************************
+
+void redFront()
+{
+
+  //Pick up first 5 cubes
+  moveRollers(-200);
+  wait(75);
+  moveRollers(200);
+  wait(100);
+  moveRollers(0);
+  wait(250);
+  moveRollers(-200);
+  move(50, 0, 75);
+
+  //S-Turn to other Cubes
+  STurn_RedFront();
+  moveRollers(-200);
+  moveHalfLoaded(40, 0, 75);
+
+  //Turn to the corner
+  turnRight(135);
+  moveLoaded(48, 135, 200);
+  moveRollers(0);
+  timedDrive(350, 30);
+  moveRollers(150);
+  wait(75);
+  moveRollers(0);
+  score();
+  //timedDrive(250, 30);
+  moveBack(48, 140, 100);
+
+}
+/*
 void redFront_Four_Cubes() //Working as of 7/9/19
 {
   wait(75); //fixes bug where lift moves before drive
@@ -591,7 +648,7 @@ void redBack()
   pros::Task prepareForMatchPos(pickUpTask);
   moveBack(20, 0, 127);
 }
-
+*/
 //***************BLUE AUTONOMOUS*****************************
 void blueFront_Four_Cubes() //Working as of 7/11/19
 {
@@ -754,7 +811,9 @@ void blueBack()
 
 void autonomous()
 {
-  turnRight(90);
+  //programming_skills();
+  redFront();
+  //move(48, 90, 127);
   /*
   switch(autonIndex){
     case 0:
