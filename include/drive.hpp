@@ -5,6 +5,7 @@ void current_position(void* parameter);
 void turnLeft(int angle);
 void turnLeftLoaded(int angle);
 void turnRight(int angle);
+void turnRightSmooth(int angle);
 void turnRightLoaded(int angle);
 void sweepRight(int angle);
 void sweepRightBack(int angle);

@@ -13,7 +13,85 @@ void moveTilter(int speed)
   tilter.move(speed);
 }
 
-void score()
+void scoreRedFront()
+{
+  double kP = 0.4;
+
+  double kD = 0;
+
+  double prevError = 0;
+
+  double targetError = 20;
+
+  int minSpeed = 90;
+
+  while(tilterPot.get_value() < 1400 - targetError) //|| thetaInDegrees > angle + targetError)
+  {
+    int error = (1400 - tilterPot.get_value()) + minSpeed;
+
+    int derivative = error - prevError;
+
+    prevError = error;
+
+    int power = (error*kP + derivative*kD);
+
+    if(error > 650)
+    {
+      rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+      leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+    }
+    else
+    {
+      rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+      leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+      moveRollers(25);
+    }
+    moveTilter(-power);
+  }
+  moveTilter(0);
+  wait(100);
+}
+
+void scoreProgramming()
+{
+  double kP = 0.35;
+
+  double kD = 0;
+
+  double prevError = 0;
+
+  double targetError = 20;
+
+  int minSpeed = 80;
+
+  while(tilterPot.get_value() < 1400 - targetError) //|| thetaInDegrees > angle + targetError)
+  {
+    int error = (1400 - tilterPot.get_value()) + minSpeed;
+
+    int derivative = error - prevError;
+
+    prevError = error;
+
+    int power = (error*kP + derivative*kD);
+
+    if(error > 650)
+    {
+      rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+      leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+    }
+    else
+    {
+      rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+      leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+      moveRollers(25);
+    }
+    moveTilter(-power);
+  }
+  moveTilter(0);
+  wait(100);
+}
+
+void scoreOP()
 {
   double kP = 0.4;
 
@@ -117,7 +195,7 @@ void tilterOP()
   //pros::lcd::print(1, "%d", tilterPot.get_value());
 
   if (master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT)) {
-    score();
+    scoreOP();
   }
   else if(master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN)) {
     tilter.move(127);
