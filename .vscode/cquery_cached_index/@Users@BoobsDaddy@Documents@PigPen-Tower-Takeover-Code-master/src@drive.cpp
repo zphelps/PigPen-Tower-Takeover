@@ -18,8 +18,8 @@ int targetAngle = 0;
 //const double pi = 3.14159;
 const double wheelDiameter = 3.25;
 const double ticsPerRotation = 360;
-const double leftOffset = 3.605; //4.546875;
-const double rightOffset = 3.5; //4.609375;
+const double leftOffset = 3.375; //4.546875;
+const double rightOffset = 3.875; //4.609375;
 const double rearOffset = 4.5; //Likely going to need re-measurement
 
 double prevL = 0;
@@ -410,7 +410,7 @@ void turnRight(int angle)
 
   int minSpeed = 30; //35;
 
-  while(thetaInDegreesUncorrected < angle - targetError) // || thetaInDegrees > angle + targetError)
+  while(thetaInDegreesUncorrected < angle - targetError || thetaInDegreesUncorrected > angle + targetError) // || thetaInDegrees > angle + targetError)
   {
     int error = (angle - thetaInDegreesUncorrected) + minSpeed;
 
@@ -442,21 +442,21 @@ void turnRight(int angle)
 void turnRightSmooth(int angle)
 {
 
-  double kP = 0.5; //0.025; //0.17;
+  double kP = 0.4; //0.025; //0.17;
 
   double kI = 0;
 
-  double kD = 0.1; //0.06; //0.3; //0.3
+  double kD = 0; //0.06; //0.3; //0.3
 
   double prevError = 0;
 
-  double targetError = 0.5;
+  double targetError = 3;
 
   int distToAngle = thetaInDegrees - angle;
 
-  int minSpeed = 20; //35;
+  int minSpeed = 35; //35;
 
-  while(thetaInDegreesUncorrected < angle - targetError) // || thetaInDegrees > angle + targetError)
+  while(thetaInDegreesUncorrected < angle - targetError || thetaInDegreesUncorrected > angle + targetError) // || thetaInDegrees > angle + targetError)
   {
     int error = (angle - thetaInDegreesUncorrected) + minSpeed;
 
@@ -1410,7 +1410,7 @@ void sweepLeftBackQuick(int angle)
 
 void STurn_RedFront()
 {
-  sweepRightBackQuick(25);
+  sweepRightBackQuick(20);
   moveRollers(0);
   moveBackFast(40, 25, 127);
   sweepLeftBack(2);

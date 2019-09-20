@@ -2,6 +2,7 @@
 #define _LIFT_H_
 
 void liftOP();
+void lift_brake();
 void moveLift(int speed);
 void set_lift_height(int height);
 void lift_down();

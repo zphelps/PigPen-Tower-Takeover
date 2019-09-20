@@ -6,6 +6,7 @@
 
 void programming_skills()
 {
+    lift_brake();
     //Pick up first 5 cubes
     moveRollers(-200);
     wait(75);
@@ -469,6 +470,7 @@ void programming_skills_35()
 void redFront()
 {
 
+  lift_brake();
   //Pick up first 5 cubes
   moveRollers(-200);
   wait(75);
@@ -820,9 +822,9 @@ void blueBack()
 
 void autonomous()
 {
-  programming_skills();
-  //redFront();
-  //move(48, 90, 127);
+  //programming_skills();
+  //turnLeft(-90);
+  move(48, 0, 127);
   /*
   switch(autonIndex){
     case 0:
