@@ -93,7 +93,7 @@ void scoreProgramming()
 
 void scoreOP()
 {
-  double kP = 0.4;
+  double kP = 0.25;
 
   double kD = 0;
 
@@ -101,7 +101,7 @@ void scoreOP()
 
   double targetError = 20;
 
-  int minSpeed = 90;
+  int minSpeed = 65;
 
   while(tilterPot.get_value() < 1400 - targetError) //|| thetaInDegrees > angle + targetError)
   {
@@ -113,7 +113,7 @@ void scoreOP()
 
     int power = (error*kP + derivative*kD);
 
-    if(error > 650)
+    if(error > 725)
     {
       rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
       leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);

@@ -823,8 +823,9 @@ void blueBack()
 void autonomous()
 {
   //programming_skills();
-  //turnLeft(-90);
-  move(48, 0, 127);
+  turnRightLoaded(90);
+  //move(48, 0, 127);
+  //redFront();
   /*
   switch(autonIndex){
     case 0:

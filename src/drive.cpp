@@ -18,8 +18,8 @@ int targetAngle = 0;
 //const double pi = 3.14159;
 const double wheelDiameter = 3.25;
 const double ticsPerRotation = 360;
-const double leftOffset = 3.375; //4.546875;
-const double rightOffset = 3.875; //4.609375;
+const double leftOffset = 3.625; //3.375; //4.546875;
+const double rightOffset = 3.63; //3.875; //4.609375;
 const double rearOffset = 4.5; //Likely going to need re-measurement
 
 double prevL = 0;
@@ -488,11 +488,11 @@ void turnRightSmooth(int angle)
 void turnRightLoaded(int angle)
 {
 
-  double kP = 0.6; //0.025; //0.17;
+  double kP = 0.425; //0.025; //0.17;
 
   double kI = 0;
 
-  double kD = 0.1; //0.06; //0.3; //0.3
+  double kD = 0; //0.06; //0.3; //0.3
 
   double prevError = 0;
 
@@ -500,7 +500,7 @@ void turnRightLoaded(int angle)
 
   int distToAngle = thetaInDegrees - angle;
 
-  int minSpeed = 50; //35;
+  int minSpeed = 45; //35;
 
   while(thetaInDegreesUncorrected < angle - targetError) // || thetaInDegrees > angle + targetError)
   {
