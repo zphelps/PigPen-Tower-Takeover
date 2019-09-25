@@ -442,7 +442,7 @@ void turnRight(int angle)
 void turnRightSmooth(int angle)
 {
 
-  double kP = 0.4; //0.025; //0.17;
+  double kP = 0.475; //0.025; //0.17;
 
   double kI = 0;
 
@@ -450,13 +450,13 @@ void turnRightSmooth(int angle)
 
   double prevError = 0;
 
-  double targetError = 3;
+  double targetError = 0.5;
 
   int distToAngle = thetaInDegrees - angle;
 
-  int minSpeed = 35; //35;
+  int minSpeed = 45; //35;
 
-  while(thetaInDegreesUncorrected < angle - targetError || thetaInDegreesUncorrected > angle + targetError) // || thetaInDegrees > angle + targetError)
+  while(thetaInDegreesUncorrected < angle - targetError) // || thetaInDegrees > angle + targetError)
   {
     int error = (angle - thetaInDegreesUncorrected) + minSpeed;
 
@@ -691,7 +691,7 @@ void moveHalfLoaded(int distance, int heading, int speed)
 
   double correctionMultiplier = 0.2;
 
-  double startUpIncrement = 0.0025;
+  double startUpIncrement = 0.0015;
 
   double startSpeed = speed;
 
@@ -769,15 +769,15 @@ void moveHalfLoaded(int distance, int heading, int speed)
 void moveLoaded(int distance, int heading, int speed)
 {
 
-  double kP = 0.2;
+  double kP = 0.35;
 
   double correctionMultiplier = 0.2;
 
-  double startUpIncrement = 0.0025;
+  double startUpIncrement = 0.00175;
 
   double startSpeed = speed;
 
-  double minSpeed = 55;
+  double minSpeed = 70;
 
   double target = abs(L.get_value()) + ticsPerRotation * (distance / (wheelDiameter * pi));
 
@@ -1221,7 +1221,7 @@ void sweepRight(int angle)
 void sweepRightBack(int angle)
 {
 
-  double kP = 0.675; //0.025; //0.17;
+  double kP = 0.7; //0.025; //0.17;
 
   double kI = 0;
 
@@ -1268,10 +1268,60 @@ void sweepRightBack(int angle)
 
 }
 
+void sweepRightBackLoaded(int angle)
+{
+
+  double kP = 0.55; //0.025; //0.17;
+
+  double kI = 0;
+
+  double kD = 0; //0.06; //0.3; //0.3
+
+  double prevError = 0;
+
+  double targetError = 0.5;
+
+  int distToAngle = thetaInDegrees - angle;
+
+  int minSpeed = 45;
+
+    while(thetaInDegreesUncorrected < angle - targetError) //|| thetaInDegrees > angle + targetError)
+    {
+      int error = ((angle - thetaInDegreesUncorrected) * 2) + minSpeed;
+
+      if (error < 0)
+      {
+        int error = (angle - thetaInDegreesUncorrected) - minSpeed;
+      }
+
+      int integral = integral + error;
+
+      if (error == 0 || error < angle)
+      {
+        integral = 0;
+      }
+      if (error > 50)
+      {
+        integral = 0;
+      }
+
+      int derivative = error - prevError;
+
+      prevError = error;
+
+      int power = (error*kP + integral*kI + derivative*kD);
+
+      rightSlew(-power);
+    }
+
+    left(0);
+
+}
+
 void sweepLeftBack(int angle)
 {
 
-  double kP = 0.7; //0.025; //0.17;
+  double kP = 0.725; //0.025; //0.17;
 
   double kI = 0;
 
@@ -1410,9 +1460,9 @@ void sweepLeftBackQuick(int angle)
 
 void STurn_RedFront()
 {
-  sweepRightBackQuick(20);
+  sweepRightBackQuick(25);
   moveRollers(0);
-  moveBackFast(40, 25, 127);
+  moveBackFast(39, 25, 127);
   sweepLeftBack(2);
 }
 

@@ -93,7 +93,7 @@ void scoreProgramming()
 
 void scoreOP()
 {
-  double kP = 0.25;
+  double kP = 0.225;
 
   double kD = 0;
 
@@ -101,7 +101,7 @@ void scoreOP()
 
   double targetError = 20;
 
-  int minSpeed = 65;
+  int minSpeed = 60;
 
   while(tilterPot.get_value() < 1400 - targetError) //|| thetaInDegrees > angle + targetError)
   {

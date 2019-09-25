@@ -9,6 +9,7 @@ void turnRightSmooth(int angle);
 void turnRightLoaded(int angle);
 void sweepRight(int angle);
 void sweepRightBack(int angle);
+void sweepRightBackLoaded(int angle);
 void sweepLeftBack(int angle);
 void sweepRightBack_Programming(int angle);
 void sweepLeftBack_Programming(int angle);
