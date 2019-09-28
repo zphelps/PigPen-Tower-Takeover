@@ -130,6 +130,37 @@ void scoreOP()
   wait(100);
 }
 
+void halfwayPos(void* parameter) {
+
+  double kP = 0.3;
+
+  double kD = 0;
+
+  double prevError = 0;
+
+  double targetError = 20;
+
+  int minSpeed = 100;
+
+  while(tilterPot.get_value() < 750 - targetError) //|| thetaInDegrees > angle + targetError)
+  {
+    int error = (750 - tilterPot.get_value()) + minSpeed;
+
+    int derivative = error - prevError;
+
+    prevError = error;
+
+    int power = (error*kP + derivative*kD);
+
+    moveTilter(power);
+    rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+    leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+    moveRollers(-20);
+  }
+  moveTilter(0);
+  wait(100);
+}
+
 void tilterTowerPos()
 {
   double kP = 0.4;

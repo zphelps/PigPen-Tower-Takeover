@@ -8,49 +8,46 @@ void programming_skills()
 {
 
     //Pick up first 5 cubes
-    moveLift(50);
+    moveLift(100, 50);
     moveRollers(-200);
     wait(75);
-    moveLift(0);
-    lift_brake();
     moveRollers(200);
     wait(100);
     moveRollers(0);
     wait(250);
     moveRollers(-200);
-    move(47, 0, 60);
-    wait(200);
+    move(44, 0, 60);
+    wait(350);
 
     //S-Turn to other Cubes
     STurn_RedFront();
     moveRollers(-200);
-    moveHalfLoaded(38, 0, 60);
-    wait(200);
+    moveHalfLoaded(33, 0, 60);
+    wait(350);
 
     //Turn to the corner
     turnRightSmooth(135);
     moveLoaded(44, 135, 127);
     moveRollers(0);
-    timedDrive(400, 20);
-    moveRollers(150);
-    wait(110);
+    timedDrive(600, 50);
+    moveRollers(125);
+    wait(75);
     moveRollers(0);
     scoreOP();
-    moveBack(20, 135, 100);
+    moveBack(32, 137, 50);
 
     pros::Task tilter_back(tilterBack);
 
     turnLeft(0); //******************************Consider Changing direction
     moveRollers(-200);
-    move(36, 0, 127);
+    move(32, 0, 127);
     wait(100);
     moveBack(8, 0, 127);
     moveRollers(200);
     wait(150);
     moveRollers(0);
-    moveLift(-100);
-    wait(1000);
-    moveLift(0);
+    moveLift(1000, 127);
+    moveLift(0, 0);
     move(8, 0, 127);
     moveRollers(100);
 
@@ -62,11 +59,9 @@ void redFront()
 {
 
   //Pick up first 5 cubes
-  moveLift(50);
+  moveLift(100, 50);
   moveRollers(-200);
   wait(75);
-  moveLift(0);
-  lift_brake();
   moveRollers(200);
   wait(100);
   moveRollers(0);

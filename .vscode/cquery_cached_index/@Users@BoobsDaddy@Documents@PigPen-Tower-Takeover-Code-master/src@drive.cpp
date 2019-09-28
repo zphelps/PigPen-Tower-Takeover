@@ -25,16 +25,16 @@ const double rearOffset = 4.5; //Likely going to need re-measurement
 double prevL = 0;
 double currentL = 0;
 double deltaL = 0;
-
 double prevR = 0;
+
 double currentR = 0;
 double deltaR = 0;
-
 double prevS = 0;
+
 double currentS = 0;
 double deltaS = 0;
-
 double deltaTheta = 0;
+
 double thetaInRadians = 0;
 double thetaInDegrees = 0;
 double thetaInDegreesUncorrected = 0;
@@ -43,15 +43,11 @@ double deltaxglobal = 0;
 double deltayglobal = 0;
 double deltaxlocal = 0;
 double deltaylocal = 0;
-
 double xglobal = 0;
 double yglobal = 0;
-
 double coordinateSystemOffset = 0;
-
 double rlocal = 0;
 double thetaLocal = 0;
-
 double rGlobal = 0;
 double thetaGlobal = 0;
 
@@ -1460,9 +1456,9 @@ void sweepLeftBackQuick(int angle)
 
 void STurn_RedFront()
 {
-  sweepRightBackQuick(25);
+  sweepRightBackQuick(30);
   moveRollers(0);
-  moveBackFast(39, 25, 127);
+  moveBackFast(32, 35, 127);
   sweepLeftBack(2);
 }
 
