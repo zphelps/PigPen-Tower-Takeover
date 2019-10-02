@@ -152,10 +152,9 @@ void halfwayPos(void* parameter) {
 
     int power = (error*kP + derivative*kD);
 
-    moveTilter(power);
+    moveTilter(-power);
     rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
     leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-    moveRollers(-20);
   }
   moveTilter(0);
   wait(100);
@@ -217,6 +216,7 @@ void tilterBack(void* parameter)
     moveRollers(-20);
   }
   moveTilter(0);
+  moveRollers(0);
   wait(100);
 }
 

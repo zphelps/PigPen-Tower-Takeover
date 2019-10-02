@@ -3,6 +3,7 @@
 
 void current_position(void* parameter);
 void turnLeft(int angle);
+void turnLeftSmooth(int angle);
 void turnLeftLoaded(int angle);
 void turnRight(int angle);
 void turnRightSmooth(int angle);

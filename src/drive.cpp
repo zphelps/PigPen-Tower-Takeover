@@ -336,6 +336,59 @@ void turnLeft(int angle)
 
 }
 
+void turnLeftSmooth(int angle)
+{
+
+  double kP = 0.475; //0.025; //0.17;
+
+  double kI = 0;
+
+  double kD = 0; //0.06; //0.3; //0.3
+
+  double prevError = 0;
+
+  double targetError = 0.5;
+
+  int distToAngle = thetaInDegrees - angle;
+
+  int minSpeed = 45;
+
+  int error = 0;
+
+    while(thetaInDegreesUncorrected > angle + targetError) //|| thetaInDegrees > angle + targetError)
+    {
+      int error = (thetaInDegreesUncorrected - angle) + minSpeed;
+
+      int integral = integral + error;
+
+      if (error == 0 || error < angle)
+      {
+        integral = 0;
+      }
+      if (error > 50)
+      {
+        integral = 0;
+      }
+
+      int derivative = error - prevError;
+
+      prevError = error;
+
+      int power = (error*kP + integral*kI + derivative*kD);
+
+  //    pros::delay(5);
+
+      rightSlewTurn(power);
+      leftSlewTurn(-power);
+    }
+
+    right(0);
+    left(0);
+
+  wait(100);
+
+}
+
 void turnLeftLoaded(int angle)
 {
 
