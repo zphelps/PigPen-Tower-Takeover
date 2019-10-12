@@ -51,6 +51,9 @@ void moveLift(int time, int speed)
 
 }
 
+void short_tower(void*paramameter) {
+  moveLift(1250, -127);
+}
 
 //*************************** - OP Control - ***********************************
 void liftOP()

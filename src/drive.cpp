@@ -146,8 +146,8 @@ yglobal = yglobal + deltayglobal;
 
 
   pros::lcd::print(2, "Theta - Absolute: %f", thetaInDegrees);
-  pros::lcd::print(3, "L %d", L.get_value());
-  pros::lcd::print(4, "R %d", R.get_value());
+  //pros::lcd::print(3, "L %d", L.get_value());
+  //pros::lcd::print(4, "R %d", R.get_value());
   }
 
 }
@@ -1511,7 +1511,7 @@ void STurn_RedFront()
 {
   sweepRightBackQuick(30);
   moveRollers(0);
-  moveBackFast(32, 35, 127);
+  moveBackFast(32, 34, 127);
   sweepLeftBack(2);
 }
 
@@ -1702,7 +1702,7 @@ void driveOP()
 {
   coast();
 
-  pros::lcd::print(5, "%d", L.get_value());
+  //pros::lcd::print(5, "%d", L.get_value());
   leftFront.move(master.get_analog(ANALOG_LEFT_Y));
   leftBack.move(master.get_analog(ANALOG_LEFT_Y));
   rightFront.move(master.get_analog(ANALOG_RIGHT_Y));

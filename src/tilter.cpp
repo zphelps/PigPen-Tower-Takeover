@@ -213,7 +213,10 @@ void tilterBack(void* parameter)
     moveTilter(power);
     rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
     leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-    moveRollers(-20);
+    if(error > 500) {
+      moveRollers(-20);
+    }
+
   }
   moveTilter(0);
   moveRollers(0);

@@ -18,13 +18,15 @@ void autonSelector(void*parameter)
 
 	wait(500);
 
-	const int autoCount = 7;
+	const int autoCount = 9;
   const char *autoNames[autoCount] = {
-		"Red Front - FourCubes",
-		"Red Front - Five Cubes",
-    "Red Back",
-		"Blue Front - Four Cubes",
-    "Blue Front - Five Cubes",
+		"Red Front - 8 Cubes",
+		"Red Front - 5 Cubes, 1 tower",
+    "Red Front - 5 Cubes, no tower",
+		"Red Back",
+		"Blue Front - 8 Cubes",
+    "Blue Front - 5 Cubes, 1 tower",
+		"Blue Front - 5 Cubes, no tower",
     "Blue Back",
     "Programming Skills"
   };
@@ -48,13 +50,13 @@ void autonSelector(void*parameter)
 
 void initialize() {
 
-	//pros::lcd::initialize();
+	pros::lcd::initialize();
 
 
 
-	//pros::lcd::set_text(4, "<Select an Autonomous>");
+	pros::lcd::set_text(4, "<Select an Autonomous>");
 
-	//pros::Task lcd_task(autonSelector);
+	pros::Task lcd_task(autonSelector);
 
 	pros::Task drive_pos(current_position);
 
