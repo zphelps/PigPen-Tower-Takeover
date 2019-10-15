@@ -54,7 +54,7 @@ void scoreRedFront()
 
 void scoreProgramming()
 {
-  double kP = 0.35;
+  double kP = 0.17;
 
   double kD = 0;
 
@@ -62,7 +62,7 @@ void scoreProgramming()
 
   double targetError = 20;
 
-  int minSpeed = 80;
+  int minSpeed = 60;
 
   while(tilterPot.get_value() < 1400 - targetError) //|| thetaInDegrees > angle + targetError)
   {
@@ -74,16 +74,16 @@ void scoreProgramming()
 
     int power = (error*kP + derivative*kD);
 
-    if(error > 650)
+    if(error > 600)
     {
       rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
       leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
     }
     else
     {
-      rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-      leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-      moveRollers(25);
+      //rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+      //leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+      moveRollers(20);
     }
     moveTilter(-power);
   }

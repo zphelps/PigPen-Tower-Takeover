@@ -658,7 +658,7 @@ void move(int distance, int heading, int speed)
 
   double correctionMultiplier = 0.2;
 
-  double startUpIncrement = 0.01;
+  double startUpIncrement = 0.0075;
 
   double startSpeed = speed;
 
@@ -822,7 +822,7 @@ void moveLoaded(int distance, int heading, int speed)
 
   double correctionMultiplier = 0.2;
 
-  double startUpIncrement = 0.00175;
+  double startUpIncrement = 0.00195;
 
   double startSpeed = speed;
 
@@ -1511,7 +1511,7 @@ void STurn_RedFront()
 {
   sweepRightBackQuick(30);
   moveRollers(0);
-  moveBackFast(32, 34, 127);
+  moveBackFast(32, 30, 127);
   sweepLeftBack(2);
 }
 
