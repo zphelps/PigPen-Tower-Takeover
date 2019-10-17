@@ -1,7 +1,7 @@
 #include "main.h"
 
 //motors
-pros::Motor tilter (17, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor tilter (17, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
 
 //Sensors
 pros::ADIPotentiometer tilterPot ('H');
@@ -91,11 +91,12 @@ void scoreProgramming()
   wait(100);
 }
 
+
 void scoreOP()
 {
-  double kP = 0.225;
+  double kP = 0.23;
 
-  double kD = 0;
+  double kD = 0.1;
 
   double prevError = 0;
 
@@ -129,6 +130,7 @@ void scoreOP()
   moveTilter(0);
   wait(100);
 }
+
 
 void halfwayPos(void* parameter) {
 
@@ -188,6 +190,7 @@ void tilterTowerPos()
   wait(100);
 }
 
+/*
 void tilterBack(void* parameter)
 {
   double kP = 0.3;
@@ -200,9 +203,11 @@ void tilterBack(void* parameter)
 
   int minSpeed = 100;
 
-  while(tilterPot.get_value() > 175 + targetError) //|| thetaInDegrees > angle + targetError)
+  rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+  leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+  while(tilterPot.get_value() > 200 + targetError) //|| thetaInDegrees > angle + targetError)
   {
-    int error = (tilterPot.get_value()) - 175 + minSpeed;
+    int error = (tilterPot.get_value()) - 200 + minSpeed;
 
     int derivative = error - prevError;
 
@@ -220,6 +225,19 @@ void tilterBack(void* parameter)
   }
   moveTilter(0);
   moveRollers(0);
+  wait(100);
+}
+*/
+
+void tilterBack(void* parameter)
+{
+  while(tilterPot.get_value() > 200) //|| thetaInDegrees > angle + targetError)
+  {
+    moveTilter(200);
+    rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+    leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+  }
+  moveTilter(0);
   wait(100);
 }
 
@@ -248,7 +266,7 @@ void tilterOP()
     }
   }
   else if(master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
-    if(tilterPot.get_value() > 190)
+    if(tilterPot.get_value() > 200)
     {
       tilter.move(75);
     }
@@ -257,6 +275,7 @@ void tilterOP()
       tilter.move(0);
     }
   }
+
   else {
     tilter.move_velocity(0);
   }

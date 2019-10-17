@@ -58,7 +58,8 @@ void short_tower(void*paramameter) {
 //*************************** - OP Control - ***********************************
 void liftOP()
 {
-  lift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+    lift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+
 
     if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
       lift.move_velocity(-100);

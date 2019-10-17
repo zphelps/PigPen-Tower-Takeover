@@ -52,12 +52,6 @@ void initialize() {
 
 	pros::lcd::initialize();
 
-
-
-	pros::lcd::set_text(4, "<Select an Autonomous>");
-
-	pros::Task lcd_task(autonSelector);
-
 	pros::Task drive_pos(current_position);
 
 }
@@ -78,4 +72,8 @@ void disabled() {}
  * This task will exit when the robot is enabled and autonomous or opcontrol
  * starts.
  */
-void competition_initialize() {}
+void competition_initialize() {
+	pros::lcd::set_text(4, "<Select an Autonomous>");
+
+	pros::Task lcd_task(autonSelector);
+}

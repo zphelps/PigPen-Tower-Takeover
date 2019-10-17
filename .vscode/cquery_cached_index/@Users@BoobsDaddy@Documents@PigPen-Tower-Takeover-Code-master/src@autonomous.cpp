@@ -230,7 +230,8 @@ void autonomous()
   //red_front_8_cubes();
   //red_front_5_cubes_tower();
   //red_front_5_cubes_no_tower();
-
+  turnRight(90);
+/*
   switch(autonIndex){
     case 0:
       red_front_8_cubes();
@@ -260,5 +261,5 @@ void autonomous()
       programming_skills();
       break;
   }
-
+*/
 }
