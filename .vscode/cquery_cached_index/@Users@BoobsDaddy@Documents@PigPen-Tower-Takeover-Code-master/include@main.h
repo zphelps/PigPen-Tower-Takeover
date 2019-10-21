@@ -8,8 +8,6 @@
 
 #include "okapi/api.hpp"
 
-using namespace okapi;
-
 //Includes
 #include "api.h"
 #include "drive.hpp"
@@ -17,6 +15,8 @@ using namespace okapi;
 #include "rollers.hpp"
 #include "tilter.hpp"
 #include "macros.hpp"
+
+using namespace okapi;
 
 extern pros::Controller master;
 extern pros::Controller partner;

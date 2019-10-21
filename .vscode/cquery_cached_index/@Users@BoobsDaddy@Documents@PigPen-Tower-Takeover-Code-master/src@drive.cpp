@@ -145,7 +145,7 @@ yglobal = yglobal + deltayglobal;
   //IDENTIFIERS:: d = int, f = float
 
 
-  pros::lcd::print(2, "Theta - Absolute: %f", thetaInDegrees);
+  //pros::lcd::print(2, "Theta - Absolute: %f", thetaInDegrees);
   //pros::lcd::print(3, "L %d", L.get_value());
   //pros::lcd::print(4, "R %d", R.get_value());
   }
@@ -1096,7 +1096,96 @@ void moveBack(int distance, int heading, int speed)
 
   double minSpeed = 35;
 
-  double startUpIncrement = 0.005; //0.01;
+  double startUpIncrement = 0.003; //0.01;
+
+  double startSpeed = speed;
+
+  double startingPoint = L.get_value();
+
+  double targetTics = ticsPerRotation * (distance / (wheelDiameter * pi));
+
+  double target = L.get_value() - targetTics;
+
+  while(L.get_value() > target)
+  {
+
+    double error = target - L.get_value();
+
+    //double error = L.get_value() - target;
+
+    double PIDSpeed = minSpeed + speed * error / (target - startingPoint);
+
+    if (startSpeed < 0)
+    {
+      startSpeed = 0;
+    }
+
+    PIDSpeed = (PIDSpeed - startSpeed);
+
+    startSpeed = startSpeed - startUpIncrement;
+
+    if (heading - thetaInDegreesUncorrected >= 5 || heading - thetaInDegreesUncorrected <= -5)
+    {
+      if (thetaInDegreesUncorrected < heading)
+      {
+        rightSlew(-PIDSpeed);
+        leftSlew(-(correctionMultiplier * PIDSpeed));
+      }
+
+      if (thetaInDegreesUncorrected > heading)
+      {
+        rightSlew(-(correctionMultiplier * PIDSpeed));
+        leftSlew(-PIDSpeed);
+      }
+
+      if (thetaInDegreesUncorrected == heading)
+      {
+        rightSlew(-PIDSpeed);
+        leftSlew(-PIDSpeed);
+      }
+    }
+    else
+    {
+    if (thetaInDegreesUncorrected < heading)
+    {
+      rightSlew(-PIDSpeed);
+      leftSlew(-(PIDSpeed * 0.9));
+    }
+
+    if (thetaInDegreesUncorrected > heading)
+    {
+      rightSlew(-(PIDSpeed * 0.9));
+      leftSlew(-PIDSpeed);
+    }
+
+    if (thetaInDegreesUncorrected == heading)
+    {
+      rightSlew(-PIDSpeed);
+      leftSlew(-PIDSpeed);
+    }
+  }
+}
+
+  right(0);
+  left(0);
+  brake();
+
+  wait(200);
+
+  coast();
+
+
+
+}
+
+void moveBackLoaded(int distance, int heading, int speed)
+{
+
+  double correctionMultiplier = 0.8;
+
+  double minSpeed = 30;
+
+  double startUpIncrement = 0.00275; //0.01;
 
   double startSpeed = speed;
 
@@ -1353,19 +1442,19 @@ void sweepRight(int angle)
 
   double prevError = 0;
 
-  double targetError = 3;
+  double targetError = 0.5;
 
   int distToAngle = thetaInDegrees - angle;
 
-  int minSpeed = 40;
+  int minSpeed = 45;
 
-    while(thetaInDegrees < angle - targetError) //|| thetaInDegrees > angle + targetError)
+    while(thetaInDegreesUncorrected < angle - targetError) //|| thetaInDegrees > angle + targetError)
     {
-      int error = ((angle - thetaInDegrees) * 2) + minSpeed;
+      int error = ((angle - thetaInDegreesUncorrected) * 2) + minSpeed;
 
       if (error < 0)
       {
-        int error = (angle - thetaInDegrees) - minSpeed;
+        int error = (angle - thetaInDegreesUncorrected) - minSpeed;
       }
 
       int integral = integral + error;
@@ -1495,7 +1584,7 @@ void sweepRightBackLoaded(int angle)
 void sweepLeftBack(int angle)
 {
 
-  double kP = 0.6; //0.025; //0.17;
+  double kP = 0.675; //0.025; //0.17;
 
   double kI = 0;
 
@@ -1507,7 +1596,7 @@ void sweepLeftBack(int angle)
 
   int distToAngle = thetaInDegrees - angle;
 
-  int minSpeed = 35;
+  int minSpeed = 40;
 
     while(thetaInDegreesUncorrected > angle + targetError) //|| thetaInDegrees > angle + targetError)
     {
@@ -1831,6 +1920,8 @@ void sweepLeft_Programming(int angle)
     right(0);
 
 }
+
+
 
 void driveOP()
 {

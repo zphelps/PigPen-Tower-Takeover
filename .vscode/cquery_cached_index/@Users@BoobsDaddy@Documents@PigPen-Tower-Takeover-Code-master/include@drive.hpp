@@ -28,6 +28,7 @@ void moveHalfLoaded(int distance, int heading, int speed);
 //void moveSlew(int distance, int heading, int speed);
 void moveFast(int distance, int heading, int speed);
 void moveBack(int distance, int heading, int speed);
+void moveBackLoaded(int distance, int heading, int speed);
 void moveBackFast(int distance, int heading, int speed);
 void timedDrive(int time, int speed);
 void right(int speed);

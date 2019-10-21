@@ -2,8 +2,8 @@
 
 void deploy() {
 
-  moveLift(650, -127);
+  moveLift(500, -127);
 
-  moveLift(800, 127);
+  moveLift(650, 127);
 
 }

@@ -10,8 +10,10 @@ void on_center_button() {
 	}
 }
 
+
 pros::ADIDigitalIn selector ('A');
 int autonIndex = 0;
+bool autonSelected = false;
 
 void autonSelector(void*parameter)
 {
@@ -21,12 +23,12 @@ void autonSelector(void*parameter)
 	const int autoCount = 9;
   const char *autoNames[autoCount] = {
 		"Red Front - 8 Cubes",
-		"Red Front - 5 Cubes, 1 tower",
-    "Red Front - 5 Cubes, no tower",
+		"Red Front - 6 Cubes",
+    "Red Front - 5 Cubes",
 		"Red Back",
 		"Blue Front - 8 Cubes",
-    "Blue Front - 5 Cubes, 1 tower",
-		"Blue Front - 5 Cubes, no tower",
+    "Blue Front - 6 Cubes",
+		"Blue Front - 5 Cubes",
     "Blue Back",
     "Programming Skills"
   };
@@ -48,11 +50,19 @@ void autonSelector(void*parameter)
 	}
 }
 
+
 void initialize() {
 
 	pros::lcd::initialize();
 
+	pros::lcd::set_text(4, "Red Front - 8 Cubes");
+
+	//Tasks
 	pros::Task drive_pos(current_position);
+
+	pros::Task lcd_task(autonSelector);
+
+  lcd_task.set_priority(LV_TASK_PRIO_LOWEST);
 
 }
 
@@ -61,7 +71,8 @@ void initialize() {
  * the VEX Competition Switch, following either autonomous or opcontrol. When
  * the robot is enabled, this task will exit.
  */
-void disabled() {}
+void disabled() {
+}
 
 /**
  * Runs after initialize(), and before autonomous when connected to the Field
@@ -73,7 +84,5 @@ void disabled() {}
  * starts.
  */
 void competition_initialize() {
-	pros::lcd::set_text(4, "<Select an Autonomous>");
-
-	pros::Task lcd_task(autonSelector);
+	//autonSelector();
 }
