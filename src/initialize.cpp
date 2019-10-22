@@ -10,10 +10,8 @@ void on_center_button() {
 	}
 }
 
-
 pros::ADIDigitalIn selector ('A');
 int autonIndex = 0;
-bool autonSelected = false;
 
 void autonSelector(void*parameter)
 {
@@ -50,7 +48,6 @@ void autonSelector(void*parameter)
 	}
 }
 
-
 void initialize() {
 
 	pros::lcd::initialize();
@@ -60,9 +57,8 @@ void initialize() {
 	//Tasks
 	pros::Task drive_pos(current_position);
 
-	pros::Task lcd_task(autonSelector);
-
-  lcd_task.set_priority(LV_TASK_PRIO_LOWEST);
+	//pros::Task lcd_task(autonSelector);
+  //lcd_task.set_priority(LV_TASK_PRIO_LOWEST);
 
 }
 
@@ -72,6 +68,7 @@ void initialize() {
  * the robot is enabled, this task will exit.
  */
 void disabled() {
+
 }
 
 /**

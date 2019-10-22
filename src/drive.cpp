@@ -145,7 +145,7 @@ yglobal = yglobal + deltayglobal;
   //IDENTIFIERS:: d = int, f = float
 
 
-  //pros::lcd::print(2, "Theta - Absolute: %f", thetaInDegrees);
+  pros::lcd::print(1, "Theta - Absolute: %f", thetaInDegrees);
   //pros::lcd::print(3, "L %d", L.get_value());
   //pros::lcd::print(4, "R %d", R.get_value());
   }

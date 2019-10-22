@@ -113,11 +113,14 @@ void programming_skills()
     move(12, 48, 50);
     timedDrive(200, 40);
     moveRollers(0);
+    moveRollers(125);
+    wait(20);
+    moveRollers(0);
     scoreProgramming();
-    timedDrive(200, 40);
-    wait(250);
     pros::Task task6(tilterBack);
-    moveBack(48, 48, 50);
+    timedDrive(250, 40);
+    wait(200);
+    moveBack(25, 132, 127);
     task1.remove();
     task2.remove();
     task3.remove();
@@ -329,13 +332,9 @@ void blue_front_6_cubes()
 
 //**************AUTONOMOUS SELECTION*************************
 
-pros::ADIPort toggle(1);
-pros::ADIPort slot1(2);
-pros::ADIPort slot2(3);
-
 void autonomous()
 {
-  //programming_skills();
+  programming_skills();
 
   //Red side
   //red_front_8_cubes();
@@ -359,33 +358,6 @@ void autonomous()
   wait(500);
 */
 /*
-  if(toggle.get_value() == 1) {
-    if(slot1.get_value() == 1) {
-      blue_front_8_cubes();
-    }
-    else if(slot2.get_value() == 1) {
-      blue_front_5_cubes();
-    }
-    else {
-      blue_front_6_cubes();
-    }
-  }
-  else if(toggle.get_value() == 0) {
-    if(slot1.get_value() == 1 && slot2.get_value() == 1){
-      programming_skills();
-    }
-    else if(slot1.get_value() == 1) {
-      red_front_8_cubes();
-    }
-    else if(slot2.get_value() == 1) {
-      red_front_5_cubes();
-    }
-    else {
-      red_front_6_cubes();
-    }
-  }
-*/
-
   switch(autonIndex){
     case 0:
       red_front_8_cubes();
@@ -415,5 +387,5 @@ void autonomous()
       programming_skills();
       break;
   }
-  
+  */
 }
