@@ -241,6 +241,20 @@ void tilterBack(void* parameter)
     wait(100);
   }
 
+void tilterBack2()
+  {
+    while(tilterPot.get_value() > 200) //|| thetaInDegrees > angle + targetError)
+    {
+      driveOP();
+      rollersOP();
+      moveTilter(200);
+      rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+      leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+    }
+    moveTilter(0);
+    wait(100);
+}
+
 void tilterOP()
 {
   tilter.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
@@ -252,7 +266,8 @@ void tilterOP()
     tilter.move(127);
   }
   else if(master.get_digital(pros::E_CONTROLLER_DIGITAL_Y)) {
-    pros::Task tilter_back(tilterBack);
+    //pros::Task tilter_back(tilterBack);
+    tilterBack2();
   }
   else if(master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
     if(tilterPot.get_value() < 750)

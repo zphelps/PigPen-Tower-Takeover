@@ -54,11 +54,12 @@ void initialize() {
 
 	pros::lcd::set_text(4, "Red Front - 8 Cubes");
 
+
+	pros::Task lcd_task(autonSelector);
+	lcd_task.set_priority(LV_TASK_PRIO_LOW);
 	//Tasks
 	pros::Task drive_pos(current_position);
-
-	//pros::Task lcd_task(autonSelector);
-  //lcd_task.set_priority(LV_TASK_PRIO_LOWEST);
+	//drive_pos.set_priority(LV_TASK_PRIO_HIGH);
 
 }
 
@@ -80,6 +81,4 @@ void disabled() {
  * This task will exit when the robot is enabled and autonomous or opcontrol
  * starts.
  */
-void competition_initialize() {
-	//autonSelector();
-}
+void competition_initialize() {}

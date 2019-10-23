@@ -145,7 +145,7 @@ yglobal = yglobal + deltayglobal;
   //IDENTIFIERS:: d = int, f = float
 
 
-  pros::lcd::print(1, "Theta - Absolute: %f", thetaInDegrees);
+  //pros::lcd::print(1, "Theta - Absolute: %f", thetaInDegrees);
   //pros::lcd::print(3, "L %d", L.get_value());
   //pros::lcd::print(4, "R %d", R.get_value());
   }
@@ -783,7 +783,7 @@ void move(int distance, int heading, int speed)
 
   double correctionMultiplier = 0.2;
 
-  double startUpIncrement = 0.0075;
+  double startUpIncrement = 0.009;
 
   double startSpeed = speed;
 
@@ -1096,7 +1096,7 @@ void moveBack(int distance, int heading, int speed)
 
   double minSpeed = 35;
 
-  double startUpIncrement = 0.003; //0.01;
+  double startUpIncrement = 0.004; //0.01;
 
   double startSpeed = speed;
 
@@ -1274,7 +1274,7 @@ void moveBackFast(int distance, int heading, int speed)
 
   double minSpeed = 50;
 
-  double startUpIncrement = 0.005; //0.01;
+  double startUpIncrement = 0.0065; //0.01;
 
   double startSpeed = speed;
 

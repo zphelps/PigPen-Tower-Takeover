@@ -271,11 +271,11 @@ void blue_front_8_cubes()
   wait(100);
 
   //Turn to the corner
-  turnLeftLoaded(-135);
-  moveLoaded(42, -135, 127);
+  turnLeftLoaded(-133);
+  moveLoaded(42, -133, 127);
   moveRollers(0);
   moveRollers(125);
-  wait(20);
+  wait(12);
   moveRollers(0);
   scoreAuton();
   pros::Task task1(tilterBack);
@@ -334,8 +334,6 @@ void blue_front_6_cubes()
 
 void autonomous()
 {
-  programming_skills();
-
   //Red side
   //red_front_8_cubes();
   //red_front_5_cubes();
@@ -346,18 +344,37 @@ void autonomous()
   //blue_front_8_cubes();
   //blue_front_5_cubes();
   //blue_front_6_cubes();
-
   /*
-  turnLeftLoaded(-90);
-  wait(500);
-  turnLeftLoaded(-180);
-  wait(500);
-  turnLeftLoaded(-270);
-  wait(500);
-  turnLeftLoaded(-360);
-  wait(500);
+  if(toggle.get_value()) {
+    if(slot1.get_value()) {
+      blue_front_8_cubes();
+    }
+    if(slot2.get_value()) {
+      //blue back
+    }
+    else {
+      blue_front_6_cubes();
+    }
+  }
+  else {
+
+    if(slot1.get_value() && slot2.get_value()) {
+      programming_skills();
+    }
+    if(slot1.get_value()) {
+      pros::Task drive_pos(current_position);
+      red_front_8_cubes();
+    }
+    if(slot2.get_value()) {
+      //red back
+    }
+    else {
+      pros::Task drive_pos(current_position);
+      red_front_6_cubes();
+    }
+  }
 */
-/*
+
   switch(autonIndex){
     case 0:
       red_front_8_cubes();
@@ -387,5 +404,4 @@ void autonomous()
       programming_skills();
       break;
   }
-  */
 }
