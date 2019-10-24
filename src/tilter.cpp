@@ -81,8 +81,8 @@ void scoreProgramming()
     }
     else
     {
-      //rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-      //leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+      rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+      leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
       moveRollers(20);
     }
     moveTilter(-power);
@@ -104,7 +104,7 @@ void scoreOP()
 
   int minSpeed = 70;
 
-  while(tilterPot.get_value() < 1380 - targetError) //|| thetaInDegrees > angle + targetError)
+  while(tilterPot.get_value() < 1425 - targetError) //|| thetaInDegrees > angle + targetError)
   {
     int error = (1380 - tilterPot.get_value()) + minSpeed;
 
@@ -260,7 +260,7 @@ void tilterOP()
   tilter.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
   //pros::lcd::print(1, "%d", tilterPot.get_value());
   if (master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT)) {
-    scoreOP();
+    scoreAuton();
   }
   else if(master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN)) {
     tilter.move(127);

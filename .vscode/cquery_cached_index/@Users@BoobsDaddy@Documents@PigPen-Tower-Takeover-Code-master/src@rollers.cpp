@@ -16,6 +16,12 @@ void brakeRollers()
   leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 }
 
+void coastRollers()
+{
+  rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+  leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+}
+
 void intakeOut()
 {
   moveRollers(-100);

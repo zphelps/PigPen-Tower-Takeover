@@ -783,7 +783,7 @@ void move(int distance, int heading, int speed)
 
   double correctionMultiplier = 0.2;
 
-  double startUpIncrement = 0.009;
+  double startUpIncrement = 0.008;
 
   double startSpeed = speed;
 
@@ -1274,7 +1274,7 @@ void moveBackFast(int distance, int heading, int speed)
 
   double minSpeed = 50;
 
-  double startUpIncrement = 0.0065; //0.01;
+  double startUpIncrement = 0.0055; //0.01;
 
   double startSpeed = speed;
 

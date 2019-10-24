@@ -5,5 +5,6 @@ void rollersOP();
 void intakeOut();
 void moveRollers(int speed);
 void brakeRollers();
+void coastRollers();
 
 #endif

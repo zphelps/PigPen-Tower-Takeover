@@ -30,6 +30,7 @@ void programming_skills()
     scoreOP();
 }*/
     deploy();
+    wait(250);
     moveRollers(-200);
     move(44, 0, 75);
 
@@ -42,14 +43,16 @@ void programming_skills()
     //Turn to the corner
     turnRightLoaded(135);
     moveLoaded(42, 135, 127);
+    moveRollers(40);
     moveRollers(0);
     moveRollers(125);
     wait(20);
     moveRollers(0);
-    scoreProgramming();
+    brakeRollers();
+    scoreAuton();
     pros::Task task1(tilterBack);
     timedDrive(250, 40);
-    wait(200);
+    wait(250);
     moveBack(25, 132, 127);
 
     turnLeft(0); //******************************Consider Changing direction
@@ -60,7 +63,7 @@ void programming_skills()
     timedDrive(300, 40);
     moveRollers(-200);
     wait(200);
-    moveBack(10, 0, 127);
+    moveBackLoaded(10, 0, 40);
     moveRollers(200);
     wait(200);
     moveRollers(0);
@@ -81,7 +84,7 @@ void programming_skills()
     move(12, -90, 100);
     timedDrive(250, 40);
     wait(200);
-    moveBack(10, -90, 40);
+    moveBackLoaded(10, -90, 40);
     moveRollers(200);
     wait(200);
     moveRollers(0);
@@ -93,13 +96,13 @@ void programming_skills()
     moveRollers(70);
     wait(300);
 
-    moveBack(3, -90, 40);
+    moveBackLoaded(3, -90, 40);
     pros::Task task5(tilterBack);
     moveLift(1500, 100);
     turnRight(-3);
 
     moveRollers(-200);
-    move(101, 0, 127);
+    move(101, -2, 127);
 
     turnRightHalfLoaded(90);
     move(4, 90, 50);
@@ -108,25 +111,26 @@ void programming_skills()
     move(24, 180, 100);
     wait(250);
 
-    moveBack(20, 180, 100);
-    turnLeftLoaded(48);
-    move(12, 48, 50);
-    timedDrive(200, 40);
+    moveBack(18, 180, 80);
     moveRollers(0);
+    brakeRollers();
+    turnLeftLoaded(48);
+    move(13, 48, 50);
+    coastRollers();
     moveRollers(125);
     wait(20);
     moveRollers(0);
-    scoreProgramming();
+    brakeRollers();
+    scoreAuton();
     pros::Task task6(tilterBack);
-    timedDrive(250, 40);
-    wait(200);
-    moveBack(25, 132, 127);
+    timedDrive(300, 40);
+    moveBack(25, 48, 75);
     task1.remove();
     task2.remove();
     task3.remove();
     task4.remove();
     task5.remove();
-    task6.remove();
+    //task6.remove();
 }
 
 //****************RED AUTONOMOUS*****************************
