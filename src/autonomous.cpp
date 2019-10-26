@@ -41,8 +41,8 @@ void programming_skills()
     wait(350);
 
     //Turn to the corner
-    turnRightLoaded(135);
-    moveLoaded(42, 135, 127);
+    turnRightLoaded(133);
+    moveLoaded(42, 133, 127);
     moveRollers(40);
     moveRollers(0);
     moveRollers(125);
@@ -118,13 +118,14 @@ void programming_skills()
     move(13, 48, 50);
     coastRollers();
     moveRollers(125);
-    wait(20);
+    wait(45);
     moveRollers(0);
     brakeRollers();
     scoreAuton();
     pros::Task task6(tilterBack);
-    timedDrive(300, 40);
-    moveBack(25, 48, 75);
+    timedDrive(400, 40);
+    timedDrive(10000, -75);
+    //moveBack(25, 48, 75);
     task1.remove();
     task2.remove();
     task3.remove();
@@ -238,8 +239,12 @@ void red_front_6_cubes()
 
 void red_back()
 {
+  moveRollers(-200);
+  wait(200);
+  moveRollers(0);
   pros::Task task1(halfwayPos);
-  moveLift(1400, -127);
+  moveLift(1500, -127);
+  wait(350);
   sweepRight(65);
   moveRollers(75);
   wait(550);
@@ -334,6 +339,34 @@ void blue_front_6_cubes()
   task1.remove();
 }
 
+void blue_back()
+{
+  moveRollers(-200);
+  wait(200);
+  moveRollers(0);
+  pros::Task task1(halfwayPos);
+  moveLift(1600, -127);
+  wait(200);
+  sweepLeft(-62);
+  moveRollers(50);
+  wait(600);
+  sweepRightBack(0);
+  pros::Task task2(tilterBack);
+  moveLift(1500, 100);
+  moveRollers(-200);
+  //move(1, 0, 40);
+  sweepRight(90);
+  move(12, 90, 100);
+  sweepRight(135);
+  timedDrive(300, 40);
+  moveRollers(200);
+  wait(2000);
+
+  moveBack(20, 135, 127);
+  task1.remove();
+  task2.remove();
+}
+
 //**************AUTONOMOUS SELECTION*************************
 
 void autonomous()
@@ -348,36 +381,8 @@ void autonomous()
   //blue_front_8_cubes();
   //blue_front_5_cubes();
   //blue_front_6_cubes();
-  /*
-  if(toggle.get_value()) {
-    if(slot1.get_value()) {
-      blue_front_8_cubes();
-    }
-    if(slot2.get_value()) {
-      //blue back
-    }
-    else {
-      blue_front_6_cubes();
-    }
-  }
-  else {
+  //blue_back();
 
-    if(slot1.get_value() && slot2.get_value()) {
-      programming_skills();
-    }
-    if(slot1.get_value()) {
-      pros::Task drive_pos(current_position);
-      red_front_8_cubes();
-    }
-    if(slot2.get_value()) {
-      //red back
-    }
-    else {
-      pros::Task drive_pos(current_position);
-      red_front_6_cubes();
-    }
-  }
-*/
 
   switch(autonIndex){
     case 0:
@@ -408,4 +413,5 @@ void autonomous()
       programming_skills();
       break;
   }
+
 }
