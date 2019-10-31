@@ -775,7 +775,6 @@ void move(int distance, int heading, int speed)
   coast();
 }
 */
-
 void move(int distance, int heading, int speed)
 {
 
@@ -1176,6 +1175,54 @@ void moveBack(int distance, int heading, int speed)
 
 
 
+}
+
+void moveBackNoPos(int distance, int speed)
+{
+
+  double correctionMultiplier = 0.8;
+
+  double minSpeed = 35;
+
+  double startUpIncrement = 0.004; //0.01;
+
+  double startSpeed = speed;
+
+  double startingPoint = L.get_value();
+
+  double targetTics = ticsPerRotation * (distance / (wheelDiameter * pi));
+
+  double target = L.get_value() - targetTics;
+
+  while(L.get_value() > target)
+  {
+
+    double error = target - L.get_value();
+
+    //double error = L.get_value() - target;
+
+    double PIDSpeed = minSpeed + speed * error / (target - startingPoint);
+
+    if (startSpeed < 0)
+    {
+      startSpeed = 0;
+    }
+
+    PIDSpeed = (PIDSpeed - startSpeed);
+
+    startSpeed = startSpeed - startUpIncrement;
+
+    rightSlew(-PIDSpeed);
+    leftSlew(-PIDSpeed);
+}
+
+  right(0);
+  left(0);
+  brake();
+
+  wait(200);
+
+  coast();
 }
 
 void moveBackLoaded(int distance, int heading, int speed)

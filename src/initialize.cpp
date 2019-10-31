@@ -59,7 +59,6 @@ void initialize() {
 	lcd_task.set_priority(LV_TASK_PRIO_LOW);
 	//Tasks
 	pros::Task drive_pos(current_position);
-	//drive_pos.set_priority(LV_TASK_PRIO_HIGH);
 
 }
 
