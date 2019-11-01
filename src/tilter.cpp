@@ -143,9 +143,9 @@ void scoreAuton()
 
   int minSpeed = 70;
 
-  while(tilterPot.get_value() < 1425 - targetError) //|| thetaInDegrees > angle + targetError)
+  while(tilterPot.get_value() < 1440 - targetError) //|| thetaInDegrees > angle + targetError)
   {
-    int error = (1425 - tilterPot.get_value()) + minSpeed;
+    int error = (1440 - tilterPot.get_value()) + minSpeed;
 
     int derivative = error - prevError;
 

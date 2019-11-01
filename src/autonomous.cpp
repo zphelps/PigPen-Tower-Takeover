@@ -192,8 +192,8 @@ void red_front_8_cubes()
   brakeRollers();
   scoreAuton2();
   //pros::Task task1(tilterBack);
-  timedDrive(250, 40);
-  wait(200);
+  timedDrive(300, 50);
+  wait(250);
   moveBackNoPos(25, 127);
   //task1.remove();
   moveTilter(0);
@@ -204,10 +204,10 @@ void red_front_5_cubes()
   //Pick up first 5 cubes
   deploy();
   moveRollers(-200);
-  move(45, 0, 75);
+  move(46, 0, 75);
   moveRollers(-200);
-  sweepRightBack(135);
-  moveLoaded(31, 135, 127);
+  sweepRightBack(134);
+  moveLoaded(31, 134, 127);
   moveRollers(0);
   moveRollers(125);
   wait(100);
@@ -215,10 +215,13 @@ void red_front_5_cubes()
   brakeRollers();
   timedDrive(300, 40);
   scoreAuton2();
+  pros::Task task1(tilterBack);
   timedDrive(300, 40);
-  wait(300);
-  moveBackNoPos(48, 40);
+  wait(250);
+  moveRollers(200);
+  moveBackNoPos(24, 100);
   moveTilter(0);
+  task1.remove();
 }
 
 void red_front_6_cubes()
@@ -294,7 +297,7 @@ void blue_front_8_cubes()
 
   //Turn to the corner
   turnLeftLoaded(-133);
-  move(41, -133, 127);
+  moveLoaded(41, -133, 127);
   timedDrive(250, 40);
   moveRollers(0);
   moveRollers(125);
@@ -304,8 +307,8 @@ void blue_front_8_cubes()
   scoreAuton2();
   //wait(100);
   //pros::Task task1(tilterBack);
-  timedDrive(250, 40);
-  wait(250);
+  timedDrive(300, 50);
+  wait(300);
   moveBackNoPos(25, 127);
   //task1.remove();
   moveTilter(0);
@@ -327,10 +330,13 @@ void blue_front_5_cubes()
   brakeRollers();
   timedDrive(300, 40);
   scoreAuton2();
+  pros::Task task1(tilterBack);
   timedDrive(300, 40);
-  wait(300);
-  moveBackNoPos(48, 40);
+  wait(250);
+  moveRollers(200);
+  moveBackNoPos(24, 100);
   moveTilter(0);
+  task1.remove();
 }
 
 void blue_front_6_cubes()
@@ -339,7 +345,7 @@ void blue_front_6_cubes()
   deploy();
   moveRollers(-200);
   move(44, 0, 75);
-  sweepRight(20);
+  sweepRight(23);
   wait(200);
   sweepLeftBack(0);
   moveRollers(-200);
@@ -406,10 +412,8 @@ void autonomous()
   //blue_front_6_cubes();
   //blue_back();
 
-  programming_skills();
+  //programming_skills();
 
-
-/*
   switch(autonIndex){
     case 0:
       red_front_8_cubes();
@@ -439,5 +443,5 @@ void autonomous()
       programming_skills();
       break;
   }
-  */
+
 }
