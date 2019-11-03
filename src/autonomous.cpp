@@ -115,36 +115,6 @@ void programming_skills()
 
 
 //****************RED AUTONOMOUS*****************************
-/*
-void red_front_8_cubes()
-{
-
-  //Pick up first 5 cubes
-  deploy();
-  moveRollers(-200);
-  move(44, 0, 75);
-
-  //S-Turn to other Cubes
-  STurn_RedFront();
-  moveRollers(-200);
-  moveHalfLoaded(38, 0, 127);
-  wait(100);
-
-  //Turn to the corner
-  turnRightLoaded(135);
-  moveLoaded(44, 135, 127);
-  moveRollers(0);
-  moveRollers(125);
-  wait(40);
-  moveRollers(0);
-  scoreAuton();
-  pros::Task tilter_back_red_front_8_cubes(tilterBack);
-  timedDrive(100, 30);
-  moveBack(32, 135, 127);
-
-}
-*/
-
 void red_front_8_cubes()
 {
   deploy();
@@ -369,6 +339,7 @@ void blue_back()
   sweepRight(135);
   timedDrive(300, 40);
   moveRollers(200);
+
   wait(2000);
 
   moveBack(20, 135, 127);
