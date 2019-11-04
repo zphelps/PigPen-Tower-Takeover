@@ -432,7 +432,7 @@ void turnLeftHalfLoaded(int angle)
 void turnLeftLoaded(int angle)
 {
 
-  double kP = 0.4175; //0.025; //0.17;
+  double kP = 0.418; //0.025; //0.17;
 
   double kI = 0;
 
@@ -662,7 +662,7 @@ void turnRightHalfLoaded(int angle)
 void turnRightLoaded(int angle)
 {
 
-  double kP = 0.43; //0.025; //0.17;
+  double kP = 0.435; //0.025; //0.17;
 
   double kI = 0;
 

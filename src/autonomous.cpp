@@ -119,29 +119,26 @@ void red_front_8_cubes()
 {
   deploy();
   moveRollers(-200);
-  move(44, 0, 85);
+  move(45, 0, 75);
 
   //S-Turn to other Cubes
   STurn_RedFront();
   moveRollers(-200);
-  moveHalfLoaded(36, 0, 100);
-  wait(50);
+  moveHalfLoaded(36, 0, 90);
+  wait(150);
 
   //Turn to the corner
-  turnRightLoaded(135);
-  moveLoaded(41, 135, 127);
+  turnRightLoaded(136);
+  moveLoaded(41, 136, 127);
   timedDrive(250, 40);
   moveRollers(0);
-  moveRollers(125);
-  wait(55);
-  moveRollers(0);
-  brakeRollers();
-  scoreAuton2();
-  //pros::Task task1(tilterBack);
-  timedDrive(300, 50);
-  wait(250);
+  moveRollers(30);
+  wait(25);
+  scoreAuton();
+  pros::Task task1(tilterBack);
+  moveRollers(80);
   moveBackNoPos(25, 127);
-  //task1.remove();
+  task1.remove();
   moveTilter(0);
 }
 
@@ -352,7 +349,7 @@ void blue_back()
 void autonomous()
 {
   //Red side
-  //red_front_8_cubes();
+  red_front_8_cubes();
   //red_front_5_cubes();
   //red_front_6_cubes();
   //red_back();
@@ -364,7 +361,7 @@ void autonomous()
   //blue_back();
 
   //programming_skills();
-
+/*
   switch(autonIndex){
     case 0:
       red_front_8_cubes();
@@ -394,5 +391,5 @@ void autonomous()
       programming_skills();
       break;
   }
-
+*/
 }
