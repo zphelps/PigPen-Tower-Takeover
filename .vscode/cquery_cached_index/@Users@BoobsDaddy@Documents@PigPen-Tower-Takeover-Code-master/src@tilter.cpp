@@ -158,6 +158,9 @@ void scoreAuton()
       rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
       leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
     }
+    else if(error < 150) {
+      moveRollers(80);
+    }
     else
     {
       rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
@@ -281,7 +284,7 @@ void tilterBack(void* parameter)
   }
 
 void tilterBack2()
-  {
+{
     while(tilterPot.get_value() > 200) //|| thetaInDegrees > angle + targetError)
     {
       driveOP();

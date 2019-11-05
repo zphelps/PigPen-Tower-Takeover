@@ -4,31 +4,6 @@
 
 void programming_skills()
 {
-/*{
-    //Pick up first 5 cubes
-    moveRollers(-200);
-    wait(200);
-    moveRollers(200);
-    moveLift(300, 20);
-    moveRollers(-200);
-    move(44, 0, 75);
-
-    //S-Turn to other Cubes
-    STurn_RedFront();
-    moveRollers(-200);
-    moveHalfLoaded(33, 0, 60);
-    wait(350);
-
-    //Turn to the corner
-    turnRightSmooth(132);
-    moveLoaded(42, 132, 127);
-    moveRollers(0);
-    timedDrive(600, 30);
-    moveRollers(125);
-    wait(40);
-    moveRollers(0);
-    scoreOP();
-}*/
     deploy();
     wait(250);
     moveRollers(-200);
@@ -138,64 +113,32 @@ void programming_skills()
     //task6.remove();
 }
 
+
 //****************RED AUTONOMOUS*****************************
-/*
-void red_front_8_cubes()
-{
-
-  //Pick up first 5 cubes
-  deploy();
-  moveRollers(-200);
-  move(44, 0, 75);
-
-  //S-Turn to other Cubes
-  STurn_RedFront();
-  moveRollers(-200);
-  moveHalfLoaded(38, 0, 127);
-  wait(100);
-
-  //Turn to the corner
-  turnRightLoaded(135);
-  moveLoaded(44, 135, 127);
-  moveRollers(0);
-  moveRollers(125);
-  wait(40);
-  moveRollers(0);
-  scoreAuton();
-  pros::Task tilter_back_red_front_8_cubes(tilterBack);
-  timedDrive(100, 30);
-  moveBack(32, 135, 127);
-
-}
-*/
-
 void red_front_8_cubes()
 {
   deploy();
   moveRollers(-200);
-  move(44, 0, 85);
+  move(45, 0, 75);
 
   //S-Turn to other Cubes
   STurn_RedFront();
   moveRollers(-200);
-  moveHalfLoaded(36, 0, 100);
-  wait(50);
+  moveHalfLoaded(36, 0, 90);
+  wait(150);
 
   //Turn to the corner
-  turnRightLoaded(135);
-  moveLoaded(41, 135, 127);
+  turnRightLoaded(136);
+  moveLoaded(41, 136, 127);
   timedDrive(250, 40);
   moveRollers(0);
-  moveRollers(125);
-  wait(55);
-  moveRollers(0);
-  brakeRollers();
-  scoreAuton2();
-  //pros::Task task1(tilterBack);
-  timedDrive(300, 50);
-  wait(250);
+  moveRollers(30);
+  wait(25);
+  scoreAuton();
+  pros::Task task1(tilterBack);
+  moveRollers(80);
   moveBackNoPos(25, 127);
-  //task1.remove();
+  task1.remove();
   moveTilter(0);
 }
 
@@ -229,14 +172,14 @@ void red_front_6_cubes()
   //Pick up first 5 cubes
   deploy();
   moveRollers(-200);
-  move(43, 0, 75);
+  move(44, 0, 80);
   sweepLeft(-20);
   wait(200);
   sweepRightBack(0);
   moveRollers(-200);
   moveBack(1, 0, 30);
-  sweepRightBack(135);
-  moveLoaded(25, 135, 127);
+  sweepRightBack(134);
+  moveLoaded(25, 134, 127);
   timedDrive(300, 40);
   moveRollers(0);
   moveRollers(125);
@@ -330,6 +273,8 @@ void blue_front_5_cubes()
   brakeRollers();
   timedDrive(300, 40);
   scoreAuton2();
+  timedDrive(200, 50);
+  wait(300);
   pros::Task task1(tilterBack);
   timedDrive(300, 40);
   wait(250);
@@ -345,11 +290,11 @@ void blue_front_6_cubes()
   deploy();
   moveRollers(-200);
   move(44, 0, 75);
-  sweepRight(23);
+  sweepRight(20);
   wait(200);
   sweepLeftBack(0);
   moveRollers(-200);
-  moveBack(1, 0, 30);
+  moveBack(3, 0, 30);
   sweepLeftBack(-135);
   moveLoaded(25, -135, 127);
   timedDrive(300, 40);
@@ -359,6 +304,8 @@ void blue_front_6_cubes()
   moveRollers(0);
   brakeRollers();
   scoreAuton2();
+  timedDrive(250, 45);
+  wait(250);
   pros::Task task1(tilterBack);
   timedDrive(300, 40);
   wait(250);
@@ -389,6 +336,7 @@ void blue_back()
   sweepRight(135);
   timedDrive(300, 40);
   moveRollers(200);
+
   wait(2000);
 
   moveBack(20, 135, 127);
@@ -401,7 +349,7 @@ void blue_back()
 void autonomous()
 {
   //Red side
-  //red_front_8_cubes();
+  red_front_8_cubes();
   //red_front_5_cubes();
   //red_front_6_cubes();
   //red_back();
@@ -413,7 +361,7 @@ void autonomous()
   //blue_back();
 
   //programming_skills();
-
+/*
   switch(autonIndex){
     case 0:
       red_front_8_cubes();
@@ -443,5 +391,5 @@ void autonomous()
       programming_skills();
       break;
   }
-
+*/
 }

@@ -432,7 +432,7 @@ void turnLeftHalfLoaded(int angle)
 void turnLeftLoaded(int angle)
 {
 
-  double kP = 0.4175; //0.025; //0.17;
+  double kP = 0.418; //0.025; //0.17;
 
   double kI = 0;
 
@@ -662,7 +662,7 @@ void turnRightHalfLoaded(int angle)
 void turnRightLoaded(int angle)
 {
 
-  double kP = 0.43; //0.025; //0.17;
+  double kP = 0.435; //0.025; //0.17;
 
   double kI = 0;
 
@@ -1403,81 +1403,6 @@ void moveBackFast(int distance, int heading, int speed)
 
 }
 
-/* Not tuned for new robot
-void moveBackFast(int distance, int heading, int speed)
-{
-
-  double correctionMultiplier = 0.8;
-
-  double minSpeed = 60;
-
-  double startingPoint = L.get_value();
-
-  double targetTics = ticsPerRotation * (distance / (wheelDiameter * pi));
-
-  double target = L.get_value() + targetTics;
-
-  while(L.get_value() < target)
-  {
-
-    double error = target - L.get_value();
-
-    double PIDSpeed = minSpeed + speed * error / (target - startingPoint);
-
-    if (heading - thetaInDegreesUncorrected >= 5 || heading - thetaInDegreesUncorrected <= -5)
-    {
-      if (thetaInDegreesUncorrected < heading)
-      {
-        rightSlew(-PIDSpeed);
-        leftSlew(-(correctionMultiplier * PIDSpeed));
-      }
-
-      if (thetaInDegreesUncorrected > heading)
-      {
-        rightSlew(-(correctionMultiplier * PIDSpeed));
-        leftSlew(-PIDSpeed);
-      }
-
-      if (thetaInDegreesUncorrected == heading)
-      {
-        rightSlew(-PIDSpeed);
-        leftSlew(-PIDSpeed);
-      }
-    }
-    else
-    {
-    if (thetaInDegreesUncorrected < heading)
-    {
-      rightSlew(-PIDSpeed);
-      leftSlew(-(PIDSpeed * 0.9));
-    }
-
-    if (thetaInDegreesUncorrected > heading)
-    {
-      rightSlew(-(PIDSpeed * 0.9));
-      leftSlew(-PIDSpeed);
-    }
-
-    if (thetaInDegreesUncorrected == heading)
-    {
-      rightSlew(-PIDSpeed);
-      leftSlew(-PIDSpeed);
-    }
-  }
-}
-
-  right(0);
-  left(0);
-  brake();
-
-  wait(200);
-
-  coast();
-
-
-
-}
-*/
 void sweepRight(int angle)
 {
 
@@ -1783,7 +1708,6 @@ void STurn_BlueFront()
   moveBackFast(39, -30, 127);
   //sweepRightBack(2);
 }
-
 
 void sweepRightBack_Programming(int angle)
 {
