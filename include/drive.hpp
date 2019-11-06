@@ -2,13 +2,21 @@
 #define _DRIVE_H_
 
 void current_position(void* parameter);
+void rightSweep(int angle);
+void leftSweep(int angle);
+void rightSweepBack(int angle);
+void leftSweepBack(int angle);
+
 void turnLeft(int angle);
+void turnLeftProgramming(int angle);
 void turnLeftSmooth(int angle);
 void turnLeftLoaded(int angle);
 void turnLeftHalfLoaded(int angle);
 void turnRight(int angle);
+void turnRightProgramming(int angle);
 void turnRightSmooth(int angle);
 void turnRightLoaded(int angle);
+void turnRightLoadedProgramming(int angle);
 void turnRightHalfLoaded(int angle);
 void sweepRight(int angle);
 void sweepRightBack(int angle);
