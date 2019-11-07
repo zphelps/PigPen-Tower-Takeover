@@ -106,7 +106,7 @@ void scoreOP()
 
   while(tilterPot.get_value() < 1425 - targetError) //|| thetaInDegrees > angle + targetError)
   {
-    int error = (1380 - tilterPot.get_value()) + minSpeed;
+    int error = (1425 - tilterPot.get_value()) + minSpeed;
 
     int derivative = error - prevError;
 
@@ -118,6 +118,9 @@ void scoreOP()
     {
       rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
       leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+    }
+    else if(error < 150) {
+      moveRollers(80);
     }
     else
     {
@@ -302,7 +305,8 @@ void tilterOP()
   tilter.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
   //pros::lcd::print(1, "%d", tilterPot.get_value());
   if (master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT)) {
-    scoreAuton();
+    //scoreAuton();
+    scoreOP();
   }
   else if(master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN)) {
     tilter.move(127);
