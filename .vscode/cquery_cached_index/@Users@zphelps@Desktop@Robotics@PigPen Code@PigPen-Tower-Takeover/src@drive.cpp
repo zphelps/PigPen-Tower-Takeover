@@ -472,7 +472,7 @@ void turnLeftHalfLoaded(int angle)
 void turnLeftLoaded(int angle)
 {
 
-  double kP = 0.4475; //0.025; //0.17;
+  double kP = 0.44; //0.025; //0.17;
 
   double kI = 0;
 
@@ -771,7 +771,7 @@ void turnRightHalfLoaded(int angle)
 void turnRightLoaded(int angle)
 {
 
-  double kP = 0.465; //0.025; //0.17;
+  double kP = 0.45;  //465//0.025; //0.17;
 
   double kI = 0;
 
@@ -1871,6 +1871,13 @@ void STurn_RedFront()
   sweepRightBackQuick(21);
   moveRollers(0);
   moveBackFast(41, 30, 127);
+}
+
+void STurn_RedFrontProgramming()
+{
+  sweepRightBackQuick(21);
+  moveRollers(0);
+  moveBackFast(40, 30, 127);
 }
 
 void STurn_BlueFront()

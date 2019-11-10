@@ -114,12 +114,12 @@ void scoreOP()
 
     int power = (error*kP + derivative*kD);
 
-    if(error > 725)
+    if(error > 750)
     {
       rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
       leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
     }
-    else if(error < 150) {
+    else if(error < 125) {
       moveRollers(80);
     }
     else

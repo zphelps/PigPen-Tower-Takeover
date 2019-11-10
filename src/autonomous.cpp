@@ -7,10 +7,10 @@ void programming_skills()
     deploy();
     wait(250);
     moveRollers(-200);
-    move(45, 0, 75);
+    move(43, 0, 75);
 
     //S-Turn to other Cubes
-    STurn_RedFront();
+    STurn_RedFrontProgramming();
     moveRollers(-200);
     moveHalfLoaded(36, 0, 75);
     wait(350);
@@ -26,7 +26,7 @@ void programming_skills()
     scoreAuton();
     pros::Task task1(tilterBack);
     moveRollers(90);
-    moveBackLoaded(26, 135, 80);
+    moveBackLoaded(25, 135, 80);
 
     turnLeftProgramming(0); //******************************Consider Changing direction
     wait(250);
@@ -72,10 +72,10 @@ void programming_skills()
     moveBackLoaded(3, -90, 40);
     pros::Task task5(tilterBack);
     moveLift(1500, 100);
-    turnRightProgramming(-1);
+    turnRightProgramming(0);
 
     moveRollers(-200);
-    move(101, -2, 127);
+    move(101, -1, 127);
 
     turnRightHalfLoaded(90);
     move(4, 90, 50);
@@ -93,8 +93,8 @@ void programming_skills()
     move(13, 48, 50);
     timedDrive(350, 40);
     moveRollers(0);
-    moveRollers(25);
-    wait(25);
+    moveRollers(20);
+    wait(20);
     scoreAuton();
     pros::Task task6(tilterBack);
     moveRollers(90);
@@ -187,9 +187,9 @@ void red_front_6_cubes()
   wait(200);
   sweepRightBack(0);
   moveRollers(-200);
-  moveBack(1, 0, 30);
-  sweepRightBack(134);
-  moveLoaded(25, 134, 127);
+  //moveBack(1, 0, 30);
+  sweepRightBack(133);
+  moveLoaded(25, 133, 127);
   timedDrive(250, 40);
   moveRollers(0);
   moveRollers(30);
@@ -245,8 +245,8 @@ void blue_front_8_cubes()
   wait(100);
 
   //Turn to the corner
-  turnLeftLoaded(-133);
-  moveLoaded(41, -133, 127);
+  turnLeftLoaded(-135);
+  moveLoaded(41, -135, 127);
   timedDrive(250, 40);
   moveRollers(0);
   moveRollers(25);
@@ -350,6 +350,7 @@ void autonomous()
   //blue_front_6_cubes();
   //blue_back();
   //programming_skills();
+
   switch(autonIndex){
     case 0:
       red_front_8_cubes();
@@ -379,4 +380,5 @@ void autonomous()
       programming_skills();
       break;
   }
+
 }

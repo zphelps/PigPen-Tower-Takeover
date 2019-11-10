@@ -6,7 +6,7 @@ void rightSweep(int angle);
 void leftSweep(int angle);
 void rightSweepBack(int angle);
 void leftSweepBack(int angle);
-
+void STurn_RedFrontProgramming();
 void turnLeft(int angle);
 void turnLeftProgramming(int angle);
 void turnLeftSmooth(int angle);
