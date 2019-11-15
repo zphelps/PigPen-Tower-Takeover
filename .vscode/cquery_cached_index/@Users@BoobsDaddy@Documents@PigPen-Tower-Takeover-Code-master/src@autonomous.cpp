@@ -143,8 +143,8 @@ void red_front_8_cubes()
   wait(150);
 
   //Turn to the corner
-  turnRightLoaded(136);
-  moveLoaded(41, 136, 127);
+  turnRightLoaded(135);
+  moveLoaded(41, 135, 127);
   timedDrive(250, 40);
   moveRollers(0);
   moveRollers(20);
@@ -350,6 +350,8 @@ void autonomous()
   //blue_front_6_cubes();
   //blue_back();
   //programming_skills();
+  //turnRight(90);
+
   switch(autonIndex){
     case 0:
       red_front_8_cubes();
@@ -379,4 +381,5 @@ void autonomous()
       programming_skills();
       break;
   }
+
 }

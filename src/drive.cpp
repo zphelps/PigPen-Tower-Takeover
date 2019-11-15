@@ -18,8 +18,8 @@ int targetAngle = 0;
 //const double pi = 3.14159;
 const double wheelDiameter = 3.25;
 const double ticsPerRotation = 360;
-const double leftOffset = 3.69;//3.6; //3.625; //3.625; //3.375; //4.546875;
-const double rightOffset = 3.725;//3.71; //3.675; //3.5625; //3.63; //3.875; //4.609375;
+const double leftOffset = 3.45; //3.69;
+const double rightOffset = 3.5; //3.725;
 const double rearOffset = 4.5; //Likely going to need re-measurement
 
 double prevL = 0;
@@ -1868,9 +1868,9 @@ void STurn_BlueFront()
 
 void STurn_RedFront()
 {
-  sweepRightBackQuick(21);
+  sweepRightBackQuick(20);
   moveRollers(0);
-  moveBackFast(41, 30, 127);
+  moveBackFast(41, 28, 127);
 }
 
 void STurn_BlueFront()
