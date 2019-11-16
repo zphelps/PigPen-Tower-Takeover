@@ -18,8 +18,8 @@ int targetAngle = 0;
 //const double pi = 3.14159;
 const double wheelDiameter = 3.25;
 const double ticsPerRotation = 360;
-const double leftOffset = 3.45; //3.69;
-const double rightOffset = 3.5; //3.725;
+const double leftOffset = 3.455; //3.69;
+const double rightOffset = 3.455; //3.725;
 const double rearOffset = 4.5; //Likely going to need re-measurement
 
 double prevL = 0;
@@ -336,7 +336,7 @@ void turnLeftProgramming(int angle)
 
   int distToAngle = thetaInDegrees - angle;
 
-  int minSpeed = 40;
+  int minSpeed = 45;
 
   int error = 0;
 
@@ -652,7 +652,7 @@ void turnRightProgramming(int angle)
 
   int distToAngle = thetaInDegrees - angle;
 
-  int minSpeed = 40; //35;
+  int minSpeed = 45; //35;
 
   while(thetaInDegreesUncorrected < angle - targetError || thetaInDegreesUncorrected > angle + targetError) // || thetaInDegrees > angle + targetError)
   {
