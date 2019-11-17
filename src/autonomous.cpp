@@ -349,9 +349,9 @@ void autonomous()
   //blue_front_5_cubes();
   //blue_front_6_cubes();
   //blue_back();
-  programming_skills();
+  //programming_skills();
   //turnRight(90);
-/*
+
   switch(autonIndex){
     case 0:
       red_front_8_cubes();
@@ -381,5 +381,5 @@ void autonomous()
       programming_skills();
       break;
   }
-*/
+
 }
