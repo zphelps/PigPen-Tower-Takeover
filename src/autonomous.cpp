@@ -21,14 +21,14 @@ void programming_skills()
     moveLoaded(41, 135, 127);
     timedDrive(250, 40);
     moveRollers(0);
-    moveRollers(25);
-    wait(25);
+    moveRollers(15);
+    wait(15);
     scoreAuton();
     pros::Task task1(tilterBack);
     moveRollers(90);
     moveBackLoaded(27, 135, 80);
 
-    turnLeftProgramming(0); //******************************Consider Changing direction
+    turnLeftProgramming(-1); //******************************Consider Changing direction
     wait(250);
     moveRollers(-200);
     move(21, 0, 127);
@@ -43,9 +43,9 @@ void programming_skills()
     brakeRollers();
     pros::Task task2(halfwayPos);
     moveLift(1250, -127);
-    move(4, 0, 127);
+    move(3, 0, 127);
     timedDrive(250, 30);
-    moveLift(450, 100);
+    moveLift(400, 100);
     wait(200);
     moveRollers(75);
     moveBack(33, 0, 127);
@@ -81,16 +81,16 @@ void programming_skills()
     move(4, 90, 50);
 
     sweepRight(176);
-    move(23, 180, 100);
+    move(21, 180, 100);
     wait(250);
 
     moveRollers(0);
     brakeRollers();
-    moveBack(21, 180, 80);
+    moveBack(22, 180, 80);
     moveRollers(0);
     brakeRollers();
     turnLeftLoaded(45);
-    move(13, 45, 50);
+    move(13, 43, 50);
     timedDrive(350, 40);
     moveRollers(0);
     moveRollers(15);
@@ -147,11 +147,12 @@ void red_front_8_cubes()
   moveLoaded(41, 135, 127);
   timedDrive(250, 40);
   moveRollers(0);
-  moveRollers(20);
-  wait(20);
-  scoreAuton();
+  moveRollers(10);
+  wait(15);
+  scoreAuton2();
   pros::Task task1(tilterBack);
   moveRollers(90);
+  wait(200);
   moveBackNoPos(25, 127);
   task1.remove();
   moveTilter(0);
@@ -241,7 +242,7 @@ void blue_front_8_cubes()
   //S-Turn to other Cubes
   STurn_BlueFront();
   moveRollers(-200);
-  moveHalfLoaded(36, 0, 90);
+  moveHalfLoaded(38, 0, 90);
   wait(100);
 
   //Turn to the corner
@@ -249,11 +250,12 @@ void blue_front_8_cubes()
   moveLoaded(41, -135, 127);
   timedDrive(250, 40);
   moveRollers(0);
-  moveRollers(25);
-  wait(25);
-  scoreAuton();
+  moveRollers(10);
+  wait(15);
+  scoreAuton2();
   pros::Task task1(tilterBack);
   moveRollers(90);
+  wait(200);
   moveBackNoPos(25, 127);
   task1.remove();
   moveTilter(0);
@@ -349,9 +351,17 @@ void autonomous()
   //blue_front_5_cubes();
   //blue_front_6_cubes();
   //blue_back();
-  //programming_skills();
-  //turnRight(90);
-
+  programming_skills();
+  /*
+  turnRightProgramming(90);
+  wait(500);
+  turnRightProgramming(180);
+  wait(500);
+  turnRightProgramming(270);
+  wait(500);
+  turnRightProgramming(360);
+  */
+/*
   switch(autonIndex){
     case 0:
       red_front_8_cubes();
@@ -381,5 +391,5 @@ void autonomous()
       programming_skills();
       break;
   }
-
+*/
 }

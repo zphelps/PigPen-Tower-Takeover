@@ -18,8 +18,8 @@ int targetAngle = 0;
 //const double pi = 3.14159;
 const double wheelDiameter = 3.25;
 const double ticsPerRotation = 360;
-const double leftOffset = 3.455; //3.69;
-const double rightOffset = 3.455; //3.725;
+const double leftOffset = 3.45; //3.455; //3.69;
+const double rightOffset = 3.4;//3.455; //3.725;
 const double rearOffset = 4.5; //Likely going to need re-measurement
 
 double prevL = 0;
@@ -326,9 +326,9 @@ void turnLeft(int angle)
 void turnLeftProgramming(int angle)
 {
 
-  double kP = 0.48; //0.025; //0.17;
+  double kP = 0.485; //0.025; //0.17;
 
-  double kD = 0.2; //0.06; //0.3; //0.3
+  double kD = 0.25; //0.06; //0.3; //0.3
 
   double prevError = 0;
 
@@ -644,7 +644,7 @@ void turnRightProgramming(int angle)
 
   double kP = 0.485; //0.025; //0.17;
 
-  double kD = 0.2; //0.06; //0.3; //0.3
+  double kD = 0.25; //0.06; //0.3; //0.3
 
   double prevError = 0;
 
