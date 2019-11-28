@@ -148,7 +148,7 @@ void scoreAuton()
 
   while(tilterPot.get_value() < 1440 - targetError) //|| thetaInDegrees > angle + targetError)
   {
-    int error = (1440 - tilterPot.get_value()) + minSpeed;
+    int error = (1420 - tilterPot.get_value()) + minSpeed;
 
     int derivative = error - prevError;
 
@@ -190,7 +190,7 @@ void scoreAuton2()
 
   while(tilterPot.get_value() < 1485 - targetError) //|| thetaInDegrees > angle + targetError)
   {
-    int error = (1485 - tilterPot.get_value()) + minSpeed;
+    int error = (1425 - tilterPot.get_value()) + minSpeed;
 
     int derivative = error - prevError;
 
@@ -291,7 +291,7 @@ void tilterBack(void* parameter)
 
 void tilterBack2()
 {
-    while(tilterPot.get_value() > 200) //|| thetaInDegrees > angle + targetError)
+    while(tilterPot.get_value() > 245) //|| thetaInDegrees > angle + targetError)
     {
       driveOP();
       rollersOP();
