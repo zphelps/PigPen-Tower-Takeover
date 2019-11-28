@@ -18,6 +18,8 @@
 
 using namespace okapi;
 
+extern pros::ADIEncoder R;
+extern pros::ADIEncoder L;
 extern pros::Controller master;
 extern pros::Controller partner;
 extern int autonIndex;

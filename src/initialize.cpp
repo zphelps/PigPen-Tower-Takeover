@@ -57,6 +57,11 @@ void initialize() {
 
 	pros::Task lcd_task(autonSelector);
 	lcd_task.set_priority(LV_TASK_PRIO_LOW);
+
+	if(pros::competition::is_autonomous() || pros::competition::is_connected()) {
+		lcd_task.remove();
+	}
+
 	//Tasks
 	pros::Task drive_pos(current_position);
 

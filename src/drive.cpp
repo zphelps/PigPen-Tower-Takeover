@@ -140,16 +140,20 @@ xglobal = xglobal + deltaxglobal;
 yglobal = yglobal + deltayglobal;
 
 
-  pros::delay(20);
+  pros::delay(5); //20
   //Display to Screen
   //IDENTIFIERS:: d = int, f = float
-
-
   pros::lcd::print(1, "Theta - Absolute: %f", thetaInDegrees);
+
   //pros::lcd::print(3, "L %d", L.get_value());
   //pros::lcd::print(4, "R %d", R.get_value());
   }
 
+}
+
+void resetTheta(int degrees) {
+
+  thetaInRadians = degrees * PI /180;
 }
 
 //************BASIC FUNCTIONS*******************

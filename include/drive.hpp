@@ -2,6 +2,7 @@
 #define _DRIVE_H_
 
 void current_position(void* parameter);
+void resetTheta(int degrees);
 void rightSweep(int angle);
 void leftSweep(int angle);
 void rightSweepBack(int angle);
