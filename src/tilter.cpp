@@ -291,7 +291,7 @@ void tilterBack(void* parameter)
 
 void tilterBack2()
 {
-    while(tilterPot.get_value() > 245) //|| thetaInDegrees > angle + targetError)
+    while(tilterPot.get_value() > 300) //|| thetaInDegrees > angle + targetError)
     {
       driveOP();
       rollersOP();

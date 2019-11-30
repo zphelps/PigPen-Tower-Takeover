@@ -127,12 +127,13 @@ void red_front_8_cubes()
 {
   deploy();
   moveRollers(-200);
-  move(45, 0, 80);
+  wait(100);
+  move(44, 0, 80);
 
   //S-Turn to other Cubes
   STurn_RedFront();
   moveRollers(-200);
-  moveHalfLoaded(36, 0, 90);
+  moveHalfLoaded(38, 0, 90);
   wait(150);
 
   //Turn to the corner
@@ -145,7 +146,7 @@ void red_front_8_cubes()
   scoreAuton2();
   pros::Task task1(tilterBack);
   moveRollers(90);
-  wait(200);
+  //wait(200);
   moveBackNoPos(25, 127);
   task1.remove();
   moveTilter(0);
@@ -344,7 +345,7 @@ void autonomous()
   //blue_front_5_cubes();
   //blue_front_6_cubes();
   //blue_back();
-  programming_skills();
+  //programming_skills();
   /*
   turnRightProgramming(90);
   wait(500);
@@ -355,7 +356,7 @@ void autonomous()
   turnRightProgramming(360);
   */
 
-/*
+
   switch(autonIndex){
     case 0:
       red_front_8_cubes();
@@ -385,5 +386,5 @@ void autonomous()
       programming_skills();
       break;
   }
-*/
+
 }

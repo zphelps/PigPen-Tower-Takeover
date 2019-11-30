@@ -1874,14 +1874,14 @@ void STurn_RedFront()
 {
   sweepRightBackQuick(20);
   moveRollers(0);
-  moveBackFast(41, 28, 127);
+  moveBackFast(41, 25, 127);
 }
 
 void STurn_BlueFront()
 {
-  sweepLeftBackQuick(-21);
+  sweepLeftBackQuick(-20);
   moveRollers(0);
-  moveBackFast(41, -30, 127);
+  moveBackFast(41, -25, 127);
   //sweepRightBack(2);
 }
 
