@@ -146,7 +146,7 @@ void red_front_8_cubes()
   scoreAuton2();
   pros::Task task1(tilterBack);
   moveRollers(90);
-  //wait(200);
+  wait(100);
   moveBackNoPos(25, 127);
   task1.remove();
   moveTilter(0);
@@ -231,7 +231,8 @@ void blue_front_8_cubes()
   //Pick up first 5 cubes
   deploy();
   moveRollers(-200);
-  move(44, 0, 75);
+  wait(100);
+  move(44, 0, 80);
 
   //S-Turn to other Cubes
   STurn_BlueFront();
@@ -244,12 +245,12 @@ void blue_front_8_cubes()
   moveLoaded(41, -135, 127);
   timedDrive(250, 40);
   moveRollers(0);
-  moveRollers(20);
+  moveRollers(15);
   wait(15);
   scoreAuton2();
   pros::Task task1(tilterBack);
   moveRollers(90);
-  wait(200);
+  wait(100);
   moveBackNoPos(25, 127);
   task1.remove();
   moveTilter(0);
