@@ -18,11 +18,13 @@ void turnRightProgramming(int angle);
 void turnRightSmooth(int angle);
 void turnRightLoaded(int angle);
 void turnRightLoadedProgramming(int angle);
+void turnLeftLoadedProgramming(int angle);
 void turnRightHalfLoaded(int angle);
 void sweepRight(int angle);
 void sweepRightBack(int angle);
 void sweepRightBackLoaded(int angle);
 void sweepLeftBack(int angle);
+void sweepLeftBackProgramming1(int angle);
 void sweepRightBack_Programming(int angle);
 void sweepLeftBack_Programming(int angle);
 void sweepLeft(int angle);
@@ -32,6 +34,7 @@ void sweepLeft_Programming(int angle);
 void brake();
 void wait(int duration);
 void move(int distance, int heading, int speed);
+void moveFastProgramming(int distance, int heading, int speed);
 void moveLoaded(int distance, int heading, int speed);
 void moveHalfLoaded(int distance, int heading, int speed);
 //void moveSlew(int distance, int heading, int speed);
@@ -43,6 +46,7 @@ void moveBackFast(int distance, int heading, int speed);
 void timedDrive(int time, int speed);
 void right(int speed);
 void left(int speed);
+
 void driveOP();
 
 #endif

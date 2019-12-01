@@ -64,7 +64,6 @@ void initialize() {
 */
 	//Tasks
 	pros::Task drive_pos(current_position);
-
 }
 
 /**

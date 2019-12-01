@@ -1,9 +1,8 @@
 #include "main.h"
 
 //*****************PROGRAMMING SKILLS************************
-
-void programming_skills()
-{
+/*
+void programming_skills() {
     deploy();
     timedDrive(300, -40);
     wait(300);
@@ -103,6 +102,130 @@ void programming_skills()
 
     moveRollers(-200);
     move(14, -90, 100);
+    timedDrive(250, 40);
+    wait(200);
+    moveBackLoaded(10, -90, 40);
+    moveRollers(200);
+    wait(200);
+    moveRollers(0);
+    brakeRollers();
+    pros::Task task7(halfwayPos);
+    moveLift(1400, -127);
+    move(6, -90, 40);
+    timedDrive(250, 30);
+    moveRollers(70);
+    wait(300);
+
+    moveBackLoaded(3, -90, 40);
+}
+*/
+
+void programming_skills()
+{
+    deploy();
+    timedDrive(300, -40);
+    wait(300);
+    moveRollers(-200);
+    move(43, 0, 75);
+
+    //S-Turn to other Cubes
+    STurn_RedFront();
+    moveRollers(-200);
+    moveHalfLoaded(36, 0, 75);
+    wait(350);
+
+    //Turn to the corner
+    turnRightLoadedProgramming(135);
+    wait(250);
+    moveLoaded(41, 135, 127);
+    timedDrive(250, 40);
+    wait(100);
+    moveRollers(0);
+    moveRollers(20);
+    wait(15);
+    scoreAuton2();
+    pros::Task task1(tilterBack);
+    moveRollers(90);
+    wait(200);
+    moveBack(7, 135, 100);
+    sweepLeftBackProgramming1(0);
+
+    pros::Task cube_collect1(collectCube);
+    moveFastProgramming(35, 0, 127);
+    timedDrive(300, 40);
+    wait(200);
+    moveBackLoaded(10, 0, 40);
+    pros::Task task2(halfwayPos);
+    moveLift(1250, -127);
+    move(4, 0, 127);
+    timedDrive(250, 30);
+    moveLift(400, 100);
+    wait(200);
+    moveRollers(75);
+    //moveBack(31, 0, 127);
+    moveBack(42, 0, 127);
+    timedDrive(250, -40);
+    pros::Task task3(tilterBack);
+    moveLift(1000, 100);
+    resetTheta(0);
+    move(1, 0, 50);
+    sweepLeft(-90);
+    //turnLeftProgramming(-90);
+
+    pros::Task cube_collect2(collectCube);
+    //move(12, -90, 100);
+    moveFastProgramming(8, -90, 100);
+    timedDrive(250, 40);
+    wait(200);
+    moveBackLoaded(10, -90, 40);
+    pros::Task task4(halfwayPos);
+    moveLift(1400, -127);
+    move(5, -90, 40);
+    timedDrive(250, 30);
+    moveRollers(70);
+    wait(300);
+
+    moveBackLoaded(1, -90, 10);
+    pros::Task task5(tilterBack);
+    moveLift(1500, 100);
+    turnRightProgramming(0);
+
+    moveRollers(-200);
+    move(101, 0, 127);
+
+    turnRightProgramming(90);
+    move(5, 90, 50);
+
+    sweepRight(180);
+    move(25, 180, 100);
+    wait(250);
+
+    brakeRollers();
+    moveBack(18, 180, 80);
+    moveRollers(0);
+    brakeRollers();
+    turnLeftLoadedProgramming(45);
+    move(5, 45, 50);
+    timedDrive(750, 50);
+    wait(400);
+    moveRollers(0);
+    moveRollers(15);
+    wait(15);
+    scoreAuton();
+    pros::Task task6(tilterBack);
+    moveRollers(90);
+    moveBackNoPos(7, 127);
+    moveTilter(0);
+    task1.remove();
+    task2.remove();
+    task3.remove();
+    task4.remove();
+    task5.remove();
+    task6.remove();
+    sweepLeftBackProgramming1(-90);
+
+    moveRollers(-200);
+    move(25, -90, 100);
     timedDrive(250, 40);
     wait(200);
     moveBackLoaded(10, -90, 40);
@@ -346,7 +469,7 @@ void autonomous()
   //blue_front_5_cubes();
   //blue_front_6_cubes();
   //blue_back();
-  //programming_skills();
+  programming_skills();
   /*
   turnRightProgramming(90);
   wait(500);
@@ -357,7 +480,7 @@ void autonomous()
   turnRightProgramming(360);
   */
 
-
+/*
   switch(autonIndex){
     case 0:
       red_front_8_cubes();
@@ -387,5 +510,6 @@ void autonomous()
       programming_skills();
       break;
   }
+*/
 
 }

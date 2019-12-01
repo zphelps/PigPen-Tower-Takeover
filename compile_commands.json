@@ -26,7 +26,7 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "/var/folders/l6/67np8h912l509glxh8v79ml00000gn/T/tmpp62uz3zs/opcontrol.cpp.o",
+            "/var/folders/l6/67np8h912l509glxh8v79ml00000gn/T/tmpmdpx5y6d/opcontrol.cpp.o",
             "src/opcontrol.cpp"
         ],
         "directory": "/Users/BoobsDaddy/Documents/PigPen-Tower-Takeover-Code-master",
@@ -59,40 +59,7 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "/var/folders/l6/67np8h912l509glxh8v79ml00000gn/T/tmpp62uz3zs/lift.cpp.o",
-            "src/lift.cpp"
-        ],
-        "directory": "/Users/BoobsDaddy/Documents/PigPen-Tower-Takeover-Code-master",
-        "file": "src/lift.cpp"
-    },
-    {
-        "arguments": [
-            "clang++",
-            "-c",
-            "-target",
-            "armv7ar-none-none-eabi",
-            "-isystem/usr/local/Cellar/arm-gcc-bin/8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/include/c++/8.2.1",
-            "-isystem/usr/local/Cellar/arm-gcc-bin/8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/include/c++/8.2.1/arm-none-eabi/thumb/v7+fp/softfp",
-            "-isystem/usr/local/Cellar/arm-gcc-bin/8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/include/c++/8.2.1/backward",
-            "-isystem/usr/local/Cellar/arm-gcc-bin/8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/include",
-            "-isystem/usr/local/Cellar/arm-gcc-bin/8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/include-fixed",
-            "-isystem/usr/local/Cellar/arm-gcc-bin/8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/include",
-            "-iquote./include",
-            "-iquote./include/./",
-            "-mcpu=cortex-a9",
-            "-mfpu=neon-fp16",
-            "-mfloat-abi=softfp",
-            "-D_POSIX_THREADS",
-            "-D_UNIX98_THREAD_MUTEX_ATTRIBUTES",
-            "-Os",
-            "-Wno-psabi",
-            "-funwind-tables",
-            "-ffunction-sections",
-            "-fdata-sections",
-            "-fdiagnostics-color",
-            "--std=gnu++17",
-            "-o",
-            "bin/rollers.cpp.o",
+            "/var/folders/l6/67np8h912l509glxh8v79ml00000gn/T/tmpmdpx5y6d/rollers.cpp.o",
             "src/rollers.cpp"
         ],
         "directory": "/Users/BoobsDaddy/Documents/PigPen-Tower-Takeover-Code-master",
@@ -125,11 +92,44 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "bin/macros.cpp.o",
+            "/var/folders/l6/67np8h912l509glxh8v79ml00000gn/T/tmpmdpx5y6d/macros.cpp.o",
             "src/macros.cpp"
         ],
         "directory": "/Users/BoobsDaddy/Documents/PigPen-Tower-Takeover-Code-master",
         "file": "src/macros.cpp"
+    },
+    {
+        "arguments": [
+            "clang++",
+            "-c",
+            "-target",
+            "armv7ar-none-none-eabi",
+            "-isystem/usr/local/Cellar/arm-gcc-bin/8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/include/c++/8.2.1",
+            "-isystem/usr/local/Cellar/arm-gcc-bin/8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/include/c++/8.2.1/arm-none-eabi/thumb/v7+fp/softfp",
+            "-isystem/usr/local/Cellar/arm-gcc-bin/8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/include/c++/8.2.1/backward",
+            "-isystem/usr/local/Cellar/arm-gcc-bin/8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/include",
+            "-isystem/usr/local/Cellar/arm-gcc-bin/8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/include-fixed",
+            "-isystem/usr/local/Cellar/arm-gcc-bin/8-2018-q4-major/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/include",
+            "-iquote./include",
+            "-iquote./include/./",
+            "-mcpu=cortex-a9",
+            "-mfpu=neon-fp16",
+            "-mfloat-abi=softfp",
+            "-D_POSIX_THREADS",
+            "-D_UNIX98_THREAD_MUTEX_ATTRIBUTES",
+            "-Os",
+            "-Wno-psabi",
+            "-funwind-tables",
+            "-ffunction-sections",
+            "-fdata-sections",
+            "-fdiagnostics-color",
+            "--std=gnu++17",
+            "-o",
+            "bin/lift.cpp.o",
+            "src/lift.cpp"
+        ],
+        "directory": "/Users/BoobsDaddy/Documents/PigPen-Tower-Takeover-Code-master",
+        "file": "src/lift.cpp"
     },
     {
         "arguments": [
@@ -224,11 +224,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "bin/autonomous.cpp.o",
-            "src/autonomous.cpp"
+            "bin/tilter.cpp.o",
+            "src/tilter.cpp"
         ],
         "directory": "/Users/BoobsDaddy/Documents/PigPen-Tower-Takeover-Code-master",
-        "file": "src/autonomous.cpp"
+        "file": "src/tilter.cpp"
     },
     {
         "arguments": [
@@ -257,10 +257,10 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "bin/tilter.cpp.o",
-            "src/tilter.cpp"
+            "bin/autonomous.cpp.o",
+            "src/autonomous.cpp"
         ],
         "directory": "/Users/BoobsDaddy/Documents/PigPen-Tower-Takeover-Code-master",
-        "file": "src/tilter.cpp"
+        "file": "src/autonomous.cpp"
     }
 ]

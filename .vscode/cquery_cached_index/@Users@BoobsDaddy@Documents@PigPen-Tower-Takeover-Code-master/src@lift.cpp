@@ -32,23 +32,17 @@ void lift_brake()
   lift.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 }
 
+void lift_coast()
+{
+  lift.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+}
+
 void moveLift(int time, int speed)
 {
-/*
-  if(tilterPot.get_value() < 750)
-  {
-    pros::Task halfway_pos(halfwayPos);
-  }
-  if(tilterPot.get_value() > 190)
-  {
-    pros::Task tilter_back(tilterBack);
-  }
-*/
   lift.move_velocity(speed);
   wait(time);
   lift.move_velocity(0);
   lift_brake();
-
 }
 
 void short_tower(void*paramameter) {
