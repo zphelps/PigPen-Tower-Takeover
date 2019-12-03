@@ -104,9 +104,9 @@ void scoreOP()
 
   int minSpeed = 70;
 
-  while(tilterPot.get_value() < 1440 - targetError) //|| thetaInDegrees > angle + targetError)
+  while(tilterPot.get_value() < 1450 - targetError) //|| thetaInDegrees > angle + targetError)
   {
-    int error = (1440 - tilterPot.get_value()) + minSpeed;
+    int error = (1450 - tilterPot.get_value()) + minSpeed;
 
     int derivative = error - prevError;
 
@@ -114,7 +114,7 @@ void scoreOP()
 
     int power = (error*kP + derivative*kD);
 
-    if(error > 850)
+    if(error > 750)
     {
       rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
       leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
@@ -319,7 +319,7 @@ void tilterOP()
     tilterBack2();
   }
   else if(master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
-    if(tilterPot.get_value() < 750)
+    if(tilterPot.get_value() < 800)
     {
       tilter.move(-127);
     }

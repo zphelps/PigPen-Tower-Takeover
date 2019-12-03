@@ -147,7 +147,7 @@ void programming_skills()
     pros::Task task1(tilterBack);
     moveRollers(90);
     wait(200);
-    moveBack(7, 135, 100);
+    moveBack(8, 135, 100);
     sweepLeftBackProgramming1(0);
 
     pros::Task cube_collect1(collectCube);
@@ -201,7 +201,7 @@ void programming_skills()
     wait(250);
 
     brakeRollers();
-    moveBack(18, 180, 80);
+    moveBack(19, 180, 80);
     moveRollers(0);
     brakeRollers();
     turnLeftLoadedProgramming(45);
