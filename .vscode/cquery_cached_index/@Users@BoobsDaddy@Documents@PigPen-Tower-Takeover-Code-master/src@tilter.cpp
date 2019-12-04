@@ -188,9 +188,9 @@ void scoreAuton2()
 
   int minSpeed = 70;
 
-  while(tilterPot.get_value() < 1475 - targetError) //|| thetaInDegrees > angle + targetError)
+  while(tilterPot.get_value() < 1485 - targetError) //|| thetaInDegrees > angle + targetError)
   {
-    int error = (1475 - tilterPot.get_value()) + minSpeed;
+    int error = (1485 - tilterPot.get_value()) + minSpeed;
 
     int derivative = error - prevError;
 
@@ -198,12 +198,12 @@ void scoreAuton2()
 
     int power = (error*kP + derivative*kD);
 
-    if(error > 750)
+    if(error > 725)
     {
       rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
       leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
     }
-    else if(error < 150) {
+    else if(error < 100) {
       moveRollers(80);
     }
     else
