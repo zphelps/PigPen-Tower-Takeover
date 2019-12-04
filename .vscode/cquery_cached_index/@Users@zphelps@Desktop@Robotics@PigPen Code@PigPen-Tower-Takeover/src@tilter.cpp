@@ -104,9 +104,9 @@ void scoreOP()
 
   int minSpeed = 70;
 
-  while(tilterPot.get_value() < 1440 - targetError) //|| thetaInDegrees > angle + targetError)
+  while(tilterPot.get_value() < 1450 - targetError) //|| thetaInDegrees > angle + targetError)
   {
-    int error = (1440 - tilterPot.get_value()) + minSpeed;
+    int error = (1450 - tilterPot.get_value()) + minSpeed;
 
     int derivative = error - prevError;
 
@@ -114,7 +114,7 @@ void scoreOP()
 
     int power = (error*kP + derivative*kD);
 
-    if(error > 850)
+    if(error > 750)
     {
       rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
       leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
@@ -148,7 +148,7 @@ void scoreAuton()
 
   while(tilterPot.get_value() < 1440 - targetError) //|| thetaInDegrees > angle + targetError)
   {
-    int error = (1440 - tilterPot.get_value()) + minSpeed;
+    int error = (1420 - tilterPot.get_value()) + minSpeed;
 
     int derivative = error - prevError;
 
@@ -203,7 +203,7 @@ void scoreAuton2()
       rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
       leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
     }
-    else if(error < 150) {
+    else if(error < 100) {
       moveRollers(80);
     }
     else
@@ -279,7 +279,7 @@ void tilterTowerPos()
 
 void tilterBack(void* parameter)
 {
-    while(tilterPot.get_value() > 200) //|| thetaInDegrees > angle + targetError)
+    while(tilterPot.get_value() > 300) //|| thetaInDegrees > angle + targetError)
     {
       moveTilter(200);
       rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
@@ -291,7 +291,7 @@ void tilterBack(void* parameter)
 
 void tilterBack2()
 {
-    while(tilterPot.get_value() > 200) //|| thetaInDegrees > angle + targetError)
+    while(tilterPot.get_value() > 300) //|| thetaInDegrees > angle + targetError)
     {
       driveOP();
       rollersOP();
@@ -306,7 +306,7 @@ void tilterBack2()
 void tilterOP()
 {
   tilter.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-  //pros::lcd::print(1, "%d", tilterPot.get_value());
+  pros::lcd::print(3, "%d", tilterPot.get_value());
   if (master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT)) {
     //scoreAuton();
     scoreOP();
@@ -319,7 +319,7 @@ void tilterOP()
     tilterBack2();
   }
   else if(master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
-    if(tilterPot.get_value() < 750)
+    if(tilterPot.get_value() < 800)
     {
       tilter.move(-127);
     }
