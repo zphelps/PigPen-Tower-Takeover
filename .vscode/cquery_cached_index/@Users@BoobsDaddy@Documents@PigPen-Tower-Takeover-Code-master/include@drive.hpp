@@ -1,51 +1,45 @@
 #ifndef _DRIVE_H_
 #define _DRIVE_H_
 
+//****************POSITION TRACKING FUNCTIONS*****************
 void current_position(void* parameter);
-void resetTheta(int degrees);
-void rightSweep(int angle);
-void leftSweep(int angle);
-void rightSweepBack(int angle);
-void leftSweepBack(int angle);
+void resetTheta(int degrees); //-O
 
-void turnLeft(int angle);
-void turnLeftProgramming(int angle);
-void turnLeftSmooth(int angle);
-void turnLeftLoaded(int angle);
-void turnLeftHalfLoaded(int angle);
-void turnRight(int angle);
-void turnRightProgramming(int angle);
-void turnRightSmooth(int angle);
-void turnRightLoaded(int angle);
-void turnRightLoadedProgramming(int angle);
-void turnLeftLoadedProgramming(int angle);
-void turnRightHalfLoaded(int angle);
-void sweepRight(int angle);
-void sweepRightBack(int angle);
-void sweepRightBackLoaded(int angle);
-void sweepLeftBack(int angle);
-void sweepLeftBackProgramming1(int angle);
-void sweepRightBack_Programming(int angle);
-void sweepLeftBack_Programming(int angle);
-void sweepLeft(int angle);
-void STurn_RedFront();
-void STurn_BlueFront();
-void sweepLeft_Programming(int angle);
+//****************BASIC MOTOR FUNCTIONS*********************
 void brake();
 void wait(int duration);
-void move(int distance, int heading, int speed);
-void moveFastProgramming(int distance, int heading, int speed);
-void moveLoaded(int distance, int heading, int speed);
-void moveHalfLoaded(int distance, int heading, int speed);
-//void moveSlew(int distance, int heading, int speed);
-void moveFast(int distance, int heading, int speed);
-void moveBack(int distance, int heading, int speed);
-void moveBackNoPos(int distance, int speed);
-void moveBackLoaded(int distance, int heading, int speed);
-void moveBackFast(int distance, int heading, int speed);
 void timedDrive(int time, int speed);
 void right(int speed);
 void left(int speed);
+
+//********************TURN FUNCTIONS************************
+void turnLeft(int angle); //-O
+void turnLeftProgramming(int angle); //-O
+void turnLeftLoaded(int angle); //-O
+void turnRight(int angle); //-O
+void turnRightProgramming(int angle); //-O
+void turnRightLoaded(int angle); //-O
+void turnRightLoadedProgramming(int angle); //-O
+void turnLeftLoadedProgramming(int angle); //-O
+void turnRightHalfLoaded(int angle); //-O
+void sweepRight(int angle); //-O
+void sweepRightBack(int angle); //-O
+void sweepLeftBack(int angle); //-O
+void sweepLeftBackProgramming1(int angle); //-O
+void sweepLeft(int angle); //-O
+void STurn_RedFront(); //-O
+void STurn_BlueFront(); //-O
+
+//******************MOVE FUNCTIONS**************************
+void move(int distance, int heading, int speed); //-O
+void moveFastProgramming(int distance, int heading, int speed); //-O
+void moveLoaded(int distance, int heading, int speed); //-O
+void moveHalfLoaded(int distance, int heading, int speed); //-O
+void moveBack(int distance, int heading, int speed); //-O
+void moveBackNoPos(int distance, int speed); //-O
+void moveBackLoaded(int distance, int heading, int speed); //-O
+void moveBackFast(int distance, int heading, int speed); //-O
+
 
 void driveOP();
 
