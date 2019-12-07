@@ -565,7 +565,7 @@ void autonomous()
   //red_back();
 
   //Blue Side
-  blue_front_8_cubes();
+  //blue_front_8_cubes();
   //blue_front_5_cubes();
   //blue_front_6_cubes();
   //blue_back();
@@ -580,7 +580,6 @@ void autonomous()
   turnRightProgramming(360);
   */
 
-/*
   switch(autonIndex){
     case 0:
       red_front_8_cubes();
@@ -611,5 +610,4 @@ void autonomous()
       break;
   }
 
-*/
 }

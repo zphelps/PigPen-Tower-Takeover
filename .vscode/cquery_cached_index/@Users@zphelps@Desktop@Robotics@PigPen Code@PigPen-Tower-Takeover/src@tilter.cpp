@@ -231,7 +231,7 @@ void halfwayPos(void* parameter)
 
   int minSpeed = 100;
 
-  while(tilterPot.get_value() < 750 - targetError) //|| thetaInDegrees > angle + targetError)
+  while(tilterPot.get_value() < 800 - targetError) //|| thetaInDegrees > angle + targetError)
   {
     int error = (750 - tilterPot.get_value()) + minSpeed;
 
