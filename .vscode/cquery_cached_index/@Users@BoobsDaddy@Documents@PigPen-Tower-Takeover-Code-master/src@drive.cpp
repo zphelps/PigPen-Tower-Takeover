@@ -152,7 +152,6 @@ yglobal = yglobal + deltayglobal;
 
 void resetTheta(int degrees)
 {
-
   thetaInRadians = degrees * PI /180;
 }
 

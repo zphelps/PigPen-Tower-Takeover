@@ -225,31 +225,6 @@ void programming_skills()
     moveRollers(90);
     moveBackNoPos(7, 127);
     moveTilter(0);
-    task1.remove();
-    task2.remove();
-    task3.remove();
-    task4.remove();
-    task5.remove();
-    task6.remove();
-    sweepLeftBackProgramming1(-90);
-
-    moveRollers(-200);
-    move(25, -90, 100);
-    timedDrive(250, 40);
-    wait(200);
-    moveBackLoaded(10, -90, 40);
-    moveRollers(200);
-    wait(200);
-    moveRollers(0);
-    brakeRollers();
-    pros::Task task7(halfwayPos);
-    moveLift(1400, -127);
-    move(6, -90, 40);
-    timedDrive(250, 30);
-    moveRollers(70);
-    wait(300);
-
-    moveBackLoaded(3, -90, 40);
 
 }
 
@@ -594,7 +569,7 @@ void autonomous()
   //blue_front_5_cubes();
   //blue_front_6_cubes();
   //blue_back();
-  programming_skills2();
+  //programming_skills2();
   /*
   turnRightProgramming(90);
   wait(500);
@@ -605,7 +580,7 @@ void autonomous()
   turnRightProgramming(360);
   */
 
-/*
+
   switch(autonIndex){
     case 0:
       red_front_8_cubes();
@@ -635,6 +610,6 @@ void autonomous()
       programming_skills();
       break;
   }
-*/
+
 
 }
