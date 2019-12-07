@@ -369,7 +369,7 @@ void turnLeftProgramming(int angle) //-X
 void turnLeftLoaded(int angle) //-O
 {
 
-  double kP = 0.4475; //0.025; //0.17;
+  double kP = 0.465; //0.025; //0.17;
 
   double kI = 0;
 
@@ -1660,9 +1660,9 @@ void STurn_RedFront()
 
 void STurn_BlueFront()
 {
-  sweepLeftBackQuick(-20);
+  sweepLeftBackQuick(-25);
   moveRollers(0);
-  moveBackFast(43, -28, 127);
+  moveBackFast(42, -30, 127);
 }
 
 //***********************DRIVER CONTROL FUNCTIONS**********************
