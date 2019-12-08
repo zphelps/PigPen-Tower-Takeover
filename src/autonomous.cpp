@@ -209,7 +209,7 @@ void programming_skills()
     wait(250);
 
     brakeRollers();
-    moveBack(19, 180, 80);
+    moveBack(18, 180, 80);
     moveRollers(0);
     brakeRollers();
     turnLeftLoadedProgramming(45);
@@ -217,9 +217,9 @@ void programming_skills()
     timedDrive(750, 50);
     wait(400);
     moveRollers(0);
-    moveRollers(15);
-    wait(15);
-    scoreAuton();
+    moveRollers(5);
+    //wait(15);
+    scoreAuton2();
     wait(200);
     pros::Task task6(tilterBack);
     moveRollers(90);
@@ -351,7 +351,7 @@ void red_front_8_cubes()
   deploy();
   moveRollers(-200);
   wait(100);
-  move(44, 0, 80);
+  move(45, 0, 80);
 
   //S-Turn to other Cubes
   STurn_RedFront();
@@ -369,7 +369,7 @@ void red_front_8_cubes()
   scoreAuton2();
   pros::Task task1(tilterBack);
   moveRollers(90);
-  wait(100);
+  wait(150);
   moveBackNoPos(25, 127);
   task1.remove();
   moveTilter(0);
@@ -422,6 +422,7 @@ void red_front_6_cubes()
 
 void red_back()
 {
+  /*
   moveRollers(-200);
   wait(200);
   moveRollers(0);
@@ -434,17 +435,20 @@ void red_back()
   sweepLeftBack(0);
   pros::Task task2(tilterBack);
   moveLift(1500, 100);
+  */
+  deploy();
+  timedDrive(300, -40);
+  wait(300);
   moveRollers(-200);
-  move(1, 0, 40);
+  move(1, 0, 50);
   sweepLeft(-90);
-  move(12, -90, 100);
+  move(8, -90, 100);
   sweepLeft(-135);
+  timedDrive(200, 30);
   moveRollers(200);
   wait(2000);
 
-  moveBack(20, -135, 127);
-  task1.remove();
-  task2.remove();
+  moveBack(10, -135, 127);
 }
 
 //***************BLUE AUTONOMOUS*****************************
@@ -460,16 +464,16 @@ void blue_front_8_cubes()
   //S-Turn to other Cubes
   STurn_BlueFront();
   moveRollers(-200);
-  moveHalfLoaded(36, 0, 90);
+  moveHalfLoaded(35, 0, 90);
   wait(100);
 
   //Turn to the corner
-  turnLeftLoaded(-135);
-  moveLoaded(41, -135, 127);
+  turnLeftLoaded(-136);
+  moveLoaded(41, -136, 127);
   timedDrive(250, 40);
   moveRollers(0);
-  moveRollers(15);
-  wait(15);
+  moveRollers(10);
+  wait(10);
   scoreAuton2();
   pros::Task task1(tilterBack);
   moveRollers(90);
@@ -592,6 +596,7 @@ void autonomous()
       break;
     case 3:
       //Red Back
+      red_back();
       break;
     case 4:
       blue_front_8_cubes();
