@@ -102,11 +102,11 @@ void scoreOP()
 
   double targetError = 20;
 
-  int minSpeed = 70;
+  int minSpeed = 70; //1450
 
-  while(tilterPot.get_value() < 1450 - targetError) //|| thetaInDegrees > angle + targetError)
+  while(tilterPot.get_value() < 1465 - targetError) //|| thetaInDegrees > angle + targetError)
   {
-    int error = (1450 - tilterPot.get_value()) + minSpeed;
+    int error = (1465 - tilterPot.get_value()) + minSpeed;
 
     int derivative = error - prevError;
 
@@ -114,7 +114,7 @@ void scoreOP()
 
     int power = (error*kP + derivative*kD);
 
-    if(error > 750)
+    if(error > 750) //750
     {
       rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
       leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
@@ -146,9 +146,9 @@ void scoreAuton()
 
   int minSpeed = 70;
 
-  while(tilterPot.get_value() < 1440 - targetError) //|| thetaInDegrees > angle + targetError)
+  while(tilterPot.get_value() < 1525 - targetError) //|| thetaInDegrees > angle + targetError)
   {
-    int error = (1420 - tilterPot.get_value()) + minSpeed;
+    int error = (1525 - tilterPot.get_value()) + minSpeed;
 
     int derivative = error - prevError;
 
@@ -156,7 +156,7 @@ void scoreAuton()
 
     int power = (error*kP + derivative*kD);
 
-    if(error > 725)
+    if(error > 700)
     {
       rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
       leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
@@ -188,9 +188,9 @@ void scoreAuton2()
 
   int minSpeed = 70;
 
-  while(tilterPot.get_value() < 1485 - targetError) //|| thetaInDegrees > angle + targetError)
+  while(tilterPot.get_value() < 1475 - targetError) //|| thetaInDegrees > angle + targetError)
   {
-    int error = (1485 - tilterPot.get_value()) + minSpeed;
+    int error = (1475 - tilterPot.get_value()) + minSpeed;
 
     int derivative = error - prevError;
 
@@ -198,7 +198,7 @@ void scoreAuton2()
 
     int power = (error*kP + derivative*kD);
 
-    if(error > 725)
+    if(error > 725) //725
     {
       rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
       leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);

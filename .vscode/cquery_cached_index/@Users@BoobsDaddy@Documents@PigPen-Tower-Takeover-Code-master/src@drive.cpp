@@ -1655,7 +1655,7 @@ void STurn_RedFront()
 {
   sweepRightBackQuick(20);
   moveRollers(0);
-  moveBackFast(41, 28, 127);
+  moveBackFast(42, 28, 127);
 }
 
 void STurn_BlueFront()
