@@ -1,7 +1,7 @@
 #include "main.h"
 
 //motors
-pros::Motor lift(15, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor lift(5, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_DEGREES);
 
 //Sensors
 pros::ADIPotentiometer liftPot ('B');

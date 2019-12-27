@@ -1,7 +1,7 @@
 #include "main.h"
 
 //motors
-pros::Motor tilter (17, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor tilter (1, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
 
 //Sensors
 pros::ADIPotentiometer tilterPot ('H');
