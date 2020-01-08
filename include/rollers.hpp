@@ -7,5 +7,6 @@ void moveRollers(int speed);
 void brakeRollers();
 void coastRollers();
 void collectCube(void*parameter);
+void postion_cube(void*parameter);
 
 #endif

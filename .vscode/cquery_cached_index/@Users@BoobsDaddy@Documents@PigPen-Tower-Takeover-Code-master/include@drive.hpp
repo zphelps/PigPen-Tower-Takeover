@@ -17,6 +17,7 @@ void turnLeft(int angle); //-O
 void turnLeftProgramming(int angle); //-O
 void turnLeftLoaded(int angle); //-O
 void turnRight(int angle); //-O
+void turnRightNoPID(int angle, int speed); //-0
 void turnRightProgramming(int angle); //-O
 void turnRightLoaded(int angle); //-O
 void turnRightLoadedProgramming(int angle); //-O
@@ -24,10 +25,16 @@ void turnLeftLoadedProgramming(int angle); //-O
 void turnRightHalfLoaded(int angle); //-O
 void sweepRight(int angle); //-O
 void sweepRightBack(int angle); //-O
+void sweepRightBackProgramming(int angle, int leftSideSpeed); //-O
+void sweepRightBackLoaded(int angle); //-O
 void sweepLeftBack(int angle); //-O
+void sweepLeftBackProgramming(int angle, int rightSideSpeed); //-O
+void sweepRightBackNoPID(int angle, int speed);
+void sweepLeftBackNoPID(int angle, int speed);
 void sweepLeftBackProgramming1(int angle); //-O
 void sweepLeft(int angle); //-O
 void STurn_RedFront(); //-O
+void STurn_RedFront2(); //-O
 void STurn_BlueFront(); //-O
 
 //******************MOVE FUNCTIONS**************************

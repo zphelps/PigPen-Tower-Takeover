@@ -37,6 +37,14 @@ void collectCube(void*parameter) {
   brakeRollers();
 }
 
+void postion_cube(void*parameter) {
+  while(cubeDetector.get_value() > 1900) {
+    moveRollers(150);
+  }
+  moveRollers(0);
+  brakeRollers();
+}
+
 void rollersOP()
 {
   pros::lcd::print(6, "Color: %d", cubeDetector.get_value());
