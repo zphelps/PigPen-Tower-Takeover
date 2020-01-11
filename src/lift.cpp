@@ -71,6 +71,7 @@ void cube_latch()
   Lift(0);
   lift_brake();
 }
+
 void cube_latch_big_stack()
 {
   Lift(-100);

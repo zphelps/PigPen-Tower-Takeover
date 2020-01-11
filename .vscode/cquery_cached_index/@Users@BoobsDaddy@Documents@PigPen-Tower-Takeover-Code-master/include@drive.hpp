@@ -16,10 +16,12 @@ void left(int speed);
 void turnLeft(int angle); //-O
 void turnLeftProgramming(int angle); //-O
 void turnLeftLoaded(int angle); //-O
+void turnLeftLoadedAuton(int angle); //-O
 void turnRight(int angle); //-O
 void turnRightNoPID(int angle, int speed); //-0
 void turnRightProgramming(int angle); //-O
 void turnRightLoaded(int angle); //-O
+void turnRightLoadedAuton(int angle); //-O
 void turnRightLoadedProgramming(int angle); //-O
 void turnLeftLoadedProgramming(int angle); //-O
 void turnRightHalfLoaded(int angle); //-O
