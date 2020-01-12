@@ -329,7 +329,7 @@ void turnLeft(int angle) //-X
 void turnLeftProgramming(int angle) //-Good
 {
 
-  double kP = 0.5; //0.465
+  double kP = 0.5; //0.5
 
   double kD = 0.35; //0.35
 
@@ -339,7 +339,7 @@ void turnLeftProgramming(int angle) //-Good
 
   int distToAngle = thetaInDegrees - angle;
 
-  int minSpeed = 60;
+  int minSpeed = 62; //60
 
   int error = 0;
 
@@ -369,7 +369,7 @@ void turnLeftProgramming(int angle) //-Good
 void turnLeftLoaded(int angle) //-O
 {
 
-  double kP = 0.49; //0.485
+  double kP = 0.495; //0.49
 
   double kI = 0;
 
@@ -381,7 +381,7 @@ void turnLeftLoaded(int angle) //-O
 
   int distToAngle = thetaInDegrees - angle;
 
-  int minSpeed = 58;
+  int minSpeed = 60; //58
 
   int error = 0;
 
@@ -422,7 +422,7 @@ void turnLeftLoaded(int angle) //-O
 void turnLeftLoadedAuton(int angle) //-O
 {
 
-  double kP = 0.485; //0.465
+  double kP = 0.495; //0.485
 
   double kI = 0;
 
@@ -434,7 +434,7 @@ void turnLeftLoadedAuton(int angle) //-O
 
   int distToAngle = thetaInDegrees - angle;
 
-  int minSpeed = 55;
+  int minSpeed = 60; //55
 
   int error = 0;
 
@@ -573,7 +573,7 @@ void turnRightNoPID(int angle, int speed) //-0
 void turnRightProgramming(int angle) //-O
 {
 
-  double kP = 0.5; //0.465
+  double kP = 0.525; //0.5
 
   double kD = 0.35; //0.06; //0.3; //0.3
 
@@ -583,7 +583,7 @@ void turnRightProgramming(int angle) //-O
 
   int distToAngle = thetaInDegrees - angle;
 
-  int minSpeed = 60; //35;
+  int minSpeed = 63; //60;
 
   while(thetaInDegreesUncorrected < angle - targetError || thetaInDegreesUncorrected > angle + targetError) // || thetaInDegrees > angle + targetError)
   {
@@ -1543,7 +1543,7 @@ void sweepRightBack(int angle) //-O
 
   int distToAngle = thetaInDegrees - angle;
 
-  int minSpeed = 40;
+  int minSpeed = 45; //40
 
     while(thetaInDegreesUncorrected < angle - targetError) //|| thetaInDegrees > angle + targetError)
     {
@@ -1593,7 +1593,7 @@ void sweepRightBackProgramming(int angle, int leftSideSpeed) //-O
 
   int distToAngle = thetaInDegrees - angle;
 
-  int minSpeed = 40;
+  int minSpeed = 45; //40
 
     while(thetaInDegreesUncorrected < angle - targetError) //|| thetaInDegrees > angle + targetError)
     {
@@ -1694,7 +1694,7 @@ void sweepRightBackNoPID(int angle, int speed) //-O
 void sweepLeftBack(int angle) //-O
 {
 
-  double kP = 0.675; //0.025; //0.17;
+  double kP = 0.685; //0.675
 
   double kI = 0;
 
@@ -1706,7 +1706,7 @@ void sweepLeftBack(int angle) //-O
 
   int distToAngle = thetaInDegrees - angle;
 
-  int minSpeed = 40;
+  int minSpeed = 45; //40
 
     while(thetaInDegreesUncorrected > angle + targetError) //|| thetaInDegrees > angle + targetError)
     {

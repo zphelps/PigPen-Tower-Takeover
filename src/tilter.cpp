@@ -142,7 +142,7 @@ void scoreOP()
 
 void scoreAuton()
 {
-  double kP = 0.235;
+  double kP = 0.325;
 
   double kD = 0.1;
 
@@ -150,11 +150,11 @@ void scoreAuton()
 
   double targetError = 20;
 
-  int minSpeed = 70;
+  int minSpeed = 80;
 
-  while(tilterPot.get_value() < 1525 - targetError) //|| thetaInDegrees > angle + targetError)
+  while(tilterPot.get_value() < 1475 - targetError) //|| thetaInDegrees > angle + targetError)
   {
-    int error = (1525 - tilterPot.get_value()) + minSpeed;
+    int error = (1475 - tilterPot.get_value()) + minSpeed;
 
     int derivative = error - prevError;
 
