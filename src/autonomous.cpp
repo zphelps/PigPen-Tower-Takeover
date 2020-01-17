@@ -431,7 +431,7 @@ void programming_skills3()
     cube_latch();
     moveLift(500, -100);
     moveFastProgramming(8, 225, 100);
-    moveRollers(100);
+    moveRollers(75);
     wait(250);
     moveBack(16, 225, 100);
     moveRollers(-200);
@@ -797,7 +797,7 @@ void autonomous()
   //blue_front_5_cubes();
   //blue_front_6_cubes();
   //blue_back();
-  //programming_skills3();
+  programming_skills3();
 
   //sweepLeft(-90);
   /*
@@ -808,7 +808,7 @@ void autonomous()
   wait(500);
   turnRightProgramming(360);
   */
-
+/*
   switch(autonIndex){
     case 0:
       red_front_8_cubes();
@@ -840,5 +840,5 @@ void autonomous()
       programming_skills3();
       break;
   }
-
+*/
 }
