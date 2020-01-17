@@ -585,7 +585,7 @@ void red_front_8_cubes()
   resetTheta(0);
   deploy();
   moveRollers(-200);
-  wait(250);
+  wait(350); //250
   move(45, 0, 80);
 
   //S-Turn to other Cubes
@@ -685,7 +685,7 @@ void blue_front_8_cubes()
   resetTheta(0);
   deploy();
   moveRollers(-200);
-  wait(250);
+  wait(350); //250
   move(44, 0, 80);
 
   //S-Turn to other Cubes
@@ -787,7 +787,7 @@ void autonomous()
   //Red side
   //deploy();
   //red_front_9_cubes();
-  //red_front_8_cubes();
+  red_front_8_cubes();
   //red_front_5_cubes();
   //red_front_6_cubes();
   //red_back();
@@ -797,7 +797,7 @@ void autonomous()
   //blue_front_5_cubes();
   //blue_front_6_cubes();
   //blue_back();
-  programming_skills3();
+  //programming_skills3();
 
   //sweepLeft(-90);
   /*
