@@ -1,4 +1,4 @@
-//Final Tower Bot Branch
+//Tray Bot - V2
 #ifndef _PROS_MAIN_H_
 #define _PROS_MAIN_H_
 

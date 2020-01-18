@@ -1,8 +1,8 @@
 #include "main.h"
 
 //motors
-pros::Motor rightRoller (18, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
-pros::Motor leftRoller (14, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor rightRoller (9, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor leftRoller (3, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
 
 pros::ADILineSensor cubeDetector('B');
 
@@ -32,6 +32,14 @@ void intakeOut()
 void collectCube(void*parameter) {
   while(cubeDetector.get_value() > 1900) {
     moveRollers(-200);
+  }
+  moveRollers(0);
+  brakeRollers();
+}
+
+void postion_cube(void*parameter) {
+  while(cubeDetector.get_value() > 1900) {
+    moveRollers(150);
   }
   moveRollers(0);
   brakeRollers();

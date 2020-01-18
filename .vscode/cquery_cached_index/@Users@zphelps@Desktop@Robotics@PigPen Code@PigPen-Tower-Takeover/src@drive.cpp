@@ -1,14 +1,14 @@
 #include "main.h"
 
 //motors
-pros::Motor leftFront (12, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor leftFront (2, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
 pros::Motor leftBack (11, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
-pros::Motor rightFront(19, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor rightFront(10, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
 pros::Motor rightBack (20, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
 
 //Tracking Encoders
-pros::ADIEncoder R ('E', 'F', false);
-pros::ADIEncoder L ('D', 'C', false);
+pros::ADIEncoder R ('E', 'F', true);
+pros::ADIEncoder L ('D', 'C', true);
 //pros::ADIEncoder S ('G', 'H', false);
 
 //Turn and Move Function Variables and Constants
@@ -17,8 +17,8 @@ int targetAngle = 0;
 //Position Tracking Constants and Variables
 const double wheelDiameter = 3.25;
 const double ticsPerRotation = 360;
-const double leftOffset = 3.45; //3.455; //3.69;
-const double rightOffset = 3.4;//3.455; //3.725;
+const double leftOffset = 3.65;
+const double rightOffset = 3.65;
 const double rearOffset = 4.5; //Likely going to need re-measurement
 
 double prevL = 0;
@@ -326,12 +326,12 @@ void turnLeft(int angle) //-X
 
 }
 
-void turnLeftProgramming(int angle) //-X
+void turnLeftProgramming(int angle) //-Good
 {
 
-  double kP = 0.465; //0.025; //0.17;
+  double kP = 0.5; //0.465
 
-  double kD = 0.35; //0.06; //0.3; //0.3
+  double kD = 0.35; //0.35
 
   double prevError = 0;
 
@@ -339,7 +339,7 @@ void turnLeftProgramming(int angle) //-X
 
   int distToAngle = thetaInDegrees - angle;
 
-  int minSpeed = 55;
+  int minSpeed = 60;
 
   int error = 0;
 
@@ -369,7 +369,7 @@ void turnLeftProgramming(int angle) //-X
 void turnLeftLoaded(int angle) //-O
 {
 
-  double kP = 0.465; //0.025; //0.17;
+  double kP = 0.49; //0.485
 
   double kI = 0;
 
@@ -381,7 +381,60 @@ void turnLeftLoaded(int angle) //-O
 
   int distToAngle = thetaInDegrees - angle;
 
-  int minSpeed = 50;
+  int minSpeed = 58;
+
+  int error = 0;
+
+    while(thetaInDegreesUncorrected > angle + targetError) //|| thetaInDegrees > angle + targetError)
+    {
+      int error = (thetaInDegreesUncorrected - angle) + minSpeed;
+
+      int integral = integral + error;
+
+      if (error == 0 || error < angle)
+      {
+        integral = 0;
+      }
+      if (error > 50)
+      {
+        integral = 0;
+      }
+
+      int derivative = error - prevError;
+
+      prevError = error;
+
+      int power = (error*kP + integral*kI + derivative*kD);
+
+  //    pros::delay(5);
+
+      rightSlewTurn(power);
+      leftSlewTurn(-power);
+    }
+
+    right(0);
+    left(0);
+
+  wait(100);
+
+}
+
+void turnLeftLoadedAuton(int angle) //-O
+{
+
+  double kP = 0.485; //0.465
+
+  double kI = 0;
+
+  double kD = 0; //0.06; //0.3; //0.3
+
+  double prevError = 0;
+
+  double targetError = 0.5;
+
+  int distToAngle = thetaInDegrees - angle;
+
+  int minSpeed = 55;
 
   int error = 0;
 
@@ -422,7 +475,7 @@ void turnLeftLoaded(int angle) //-O
 void turnLeftLoadedProgramming(int angle) //-O
 {
 
-  double kP = 0.425; //0.025; //0.17;
+  double kP = 0.5; //0.025; //0.17;
 
   double kI = 0;
 
@@ -434,7 +487,7 @@ void turnLeftLoadedProgramming(int angle) //-O
 
   int distToAngle = thetaInDegrees - angle;
 
-  int minSpeed = 55; //35;
+  int minSpeed = 60; //35;
 
   while(thetaInDegreesUncorrected > angle + targetError) // || thetaInDegrees > angle + targetError)
   {
@@ -502,10 +555,25 @@ void turnRight(int angle) //-X
   coast();
 }
 
+void turnRightNoPID(int angle, int speed) //-0
+{
+  double targetError = 3;
+
+  while(thetaInDegreesUncorrected < angle - targetError)
+  {
+    rightSlewTurn(-speed);
+    leftSlewTurn(speed);
+  }
+
+  left(0);
+  right(0);
+  coast();
+}
+
 void turnRightProgramming(int angle) //-O
 {
 
-  double kP = 0.465; //0.485
+  double kP = 0.5; //0.465
 
   double kD = 0.35; //0.06; //0.3; //0.3
 
@@ -515,7 +583,7 @@ void turnRightProgramming(int angle) //-O
 
   int distToAngle = thetaInDegrees - angle;
 
-  int minSpeed = 55; //35;
+  int minSpeed = 60; //35;
 
   while(thetaInDegreesUncorrected < angle - targetError || thetaInDegreesUncorrected > angle + targetError) // || thetaInDegrees > angle + targetError)
   {
@@ -588,7 +656,7 @@ void turnRightHalfLoaded(int angle) //-Not needed for current programming_skills
 void turnRightLoaded(int angle) //-O
 {
 
-  double kP = 0.465; //0.025; //0.17;
+  double kP = 0.495; //465
 
   double kI = 0;
 
@@ -600,7 +668,53 @@ void turnRightLoaded(int angle) //-O
 
   int distToAngle = thetaInDegrees - angle;
 
-  int minSpeed = 50; //35;
+  int minSpeed = 65; //50
+
+  while(thetaInDegreesUncorrected < angle - targetError) // || thetaInDegrees > angle + targetError)
+  {
+    int error = (angle - thetaInDegreesUncorrected) + minSpeed;
+
+    if (error < 0)
+    {
+      int error = (angle - thetaInDegreesUncorrected) - minSpeed;
+    }
+
+    int integral = integral + error;
+
+    int derivative = error - prevError;
+
+    prevError = error;
+
+    int power = (error*kP + integral*kI + derivative*kD);
+
+    //pros::delay(5);
+
+    rightSlewTurn(-power);
+    leftSlewTurn(power);
+  }
+
+  left(0);
+  right(0);
+
+  wait(100);
+}
+
+void turnRightLoadedAuton(int angle) //-O
+{
+
+  double kP = 0.485; //465
+
+  double kI = 0;
+
+  double kD = 0; //0.06; //0.3; //0.3
+
+  double prevError = 0;
+
+  double targetError = 0.5;
+
+  int distToAngle = thetaInDegrees - angle;
+
+  int minSpeed = 55; //50
 
   while(thetaInDegreesUncorrected < angle - targetError) // || thetaInDegrees > angle + targetError)
   {
@@ -926,15 +1040,15 @@ void moveHalfLoaded(int distance, int heading, int speed) //-O
 void moveLoaded(int distance, int heading, int speed) //-O
 {
 
-  double kP = 0.35;
+  double kP = 0.34; //0.35
 
   double correctionMultiplier = 0.2;
 
-  double startUpIncrement = 0.00195;
+  double startUpIncrement = 0.0015; //0.00195
 
   double startSpeed = speed;
 
-  double minSpeed = 70;
+  double minSpeed = 90;
 
   double target = abs(L.get_value()) + ticsPerRotation * (distance / (wheelDiameter * pi));
 
@@ -1147,9 +1261,9 @@ void moveBackFast(int distance, int heading, int speed)
 
   double correctionMultiplier = 0.8;
 
-  double minSpeed = 50;
+  double minSpeed = 60; //80
 
-  double startUpIncrement = 0.009; //0.01; //0055
+  double startUpIncrement = 0.1; //0.009
 
   double startSpeed = speed;
 
@@ -1464,6 +1578,119 @@ void sweepRightBack(int angle) //-O
 
 }
 
+void sweepRightBackProgramming(int angle, int leftSideSpeed) //-O
+{
+
+  double kP = 0.675; //0.025; //0.17;
+
+  double kI = 0;
+
+  double kD = 0; //0.06; //0.3; //0.3
+
+  double prevError = 0;
+
+  double targetError = 0.5;
+
+  int distToAngle = thetaInDegrees - angle;
+
+  int minSpeed = 40;
+
+    while(thetaInDegreesUncorrected < angle - targetError) //|| thetaInDegrees > angle + targetError)
+    {
+      int error = ((angle - thetaInDegreesUncorrected) * 2) + minSpeed;
+
+      if (error < 0)
+      {
+        int error = (angle - thetaInDegreesUncorrected) - minSpeed;
+      }
+
+      int integral = integral + error;
+
+      if (error == 0 || error < angle)
+      {
+        integral = 0;
+      }
+      if (error > 50)
+      {
+        integral = 0;
+      }
+
+      int derivative = error - prevError;
+
+      prevError = error;
+
+      int power = (error*kP + integral*kI + derivative*kD);
+
+      rightSlew(-power);
+      leftSlew(leftSideSpeed);
+    }
+
+    left(0);
+    right(0);
+
+}
+
+void sweepRightBackLoaded(int angle) //-O
+{
+
+  double kP = 0.65; //0.025; //0.17;
+
+  double kI = 0;
+
+  double kD = 0; //0.06; //0.3; //0.3
+
+  double prevError = 0;
+
+  double targetError = 0.5;
+
+  int distToAngle = thetaInDegrees - angle;
+
+  int minSpeed = 50;
+
+    while(thetaInDegreesUncorrected < angle - targetError) //|| thetaInDegrees > angle + targetError)
+    {
+      int error = ((angle - thetaInDegreesUncorrected) * 2) + minSpeed;
+
+      if (error < 0)
+      {
+        int error = (angle - thetaInDegreesUncorrected) - minSpeed;
+      }
+
+      int integral = integral + error;
+
+      if (error == 0 || error < angle)
+      {
+        integral = 0;
+      }
+      if (error > 50)
+      {
+        integral = 0;
+      }
+
+      int derivative = error - prevError;
+
+      prevError = error;
+
+      int power = (error*kP + integral*kI + derivative*kD);
+
+      rightSlew(-power);
+    }
+
+    left(0);
+
+}
+
+void sweepRightBackNoPID(int angle, int speed) //-O
+{
+
+  double targetError = 0.5;
+    while(thetaInDegreesUncorrected < angle - targetError) //|| thetaInDegrees > angle + targetError)
+    {
+      rightSlew(-speed);
+    }
+    left(0);
+}
+
 void sweepLeftBack(int angle) //-O
 {
 
@@ -1509,10 +1736,10 @@ void sweepLeftBack(int angle) //-O
 
 }
 
-void sweepLeftBackProgramming1(int angle) //-O
+void sweepLeftBackProgramming(int angle, int rightSideSpeed) //-O
 {
 
-  double kP = 0.575; //.675
+  double kP = 0.675; //0.025; //0.17;
 
   double kI = 0;
 
@@ -1548,7 +1775,67 @@ void sweepLeftBackProgramming1(int angle) //-O
       int power = (error*kP + integral*kI + derivative*kD);
 
       leftSlew(-power);
-      rightSlew(20);
+      rightSlew(rightSideSpeed);
+    }
+    right(0);
+    left(0);
+
+}
+
+void sweepLeftBackNoPID(int angle, int speed) //-O
+{
+
+  double targetError = 0.5;
+
+    while(thetaInDegreesUncorrected > angle + targetError) //|| thetaInDegrees > angle + targetError)
+    {
+      leftSlew(-speed);
+    }
+
+    left(0);
+
+}
+
+void sweepLeftBackProgramming1(int angle) //-O
+{
+
+  double kP = 0.625; //.675
+
+  double kI = 0;
+
+  double kD = 0; //0.06; //0.3; //0.3
+
+  double prevError = 0;
+
+  double targetError = 0.5;
+
+  int distToAngle = thetaInDegrees - angle;
+
+  int minSpeed = 50; //40
+
+    while(thetaInDegreesUncorrected > angle + targetError) //|| thetaInDegrees > angle + targetError)
+    {
+      int error = ((thetaInDegreesUncorrected - angle) * 2) + minSpeed;
+
+      int integral = integral + error;
+
+      if (error == 0 || error < angle)
+      {
+        integral = 0;
+      }
+      if (error > 50)
+      {
+        integral = 0;
+      }
+
+      int derivative = error - prevError;
+
+      prevError = error;
+
+      int power = (error*kP + integral*kI + derivative*kD);
+
+      leftSlew(-power);
+      rightSlew(30); //20
     }
 
     right(0);
@@ -1653,16 +1940,24 @@ void sweepLeftBackQuick(int angle) //-O
 
 void STurn_RedFront()
 {
-  sweepRightBackQuick(20);
+  sweepRightBackQuick(28);
   moveRollers(0);
-  moveBackFast(42, 28, 127);
+  moveBackFast(38, 30, 127);
+}
+
+void STurn_RedFront2()
+{
+  sweepLeftBackQuick(-38);
+  moveRollers(0);
+  moveBackFast(30, -40, 127);
+  turnRightNoPID(0, 50);
 }
 
 void STurn_BlueFront()
 {
-  sweepLeftBackQuick(-25);
+  sweepLeftBackQuick(-28);
   moveRollers(0);
-  moveBackFast(42, -30, 127);
+  moveBackFast(39, -30, 127);
 }
 
 //***********************DRIVER CONTROL FUNCTIONS**********************
