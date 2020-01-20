@@ -668,7 +668,7 @@ void turnRightLoaded(int angle) //-O
 
   int distToAngle = thetaInDegrees - angle;
 
-  int minSpeed = 65; //50
+  int minSpeed = 60; //65
 
   while(thetaInDegreesUncorrected < angle - targetError) // || thetaInDegrees > angle + targetError)
   {

@@ -375,14 +375,15 @@ void programming_skills3()
     moveLift(200, -100);
     moveBackLoaded(10, 0, 100);
     turnRightLoaded(90);
-    moveLoaded(1, 90, 100);
+    //moveLoaded(1, 90, 100);
     moveRollers(75);
     wait(400);
     moveRollers(-200);
+    moveBackLoaded(1, 90, 127);
     pros::Task lift_down1(liftDown);
     sweepLeftBack(42);
 
-    moveLoaded(23, 45, 127);
+    moveLoaded(22, 42, 127);
     timedDrive(250, 40);
     wait(100);
     moveRollers(0);
@@ -394,7 +395,7 @@ void programming_skills3()
     moveBack(10, 45, 100);
     wait(300);
     turnRightProgramming(90);
-    moveBackFast(8, 90, 100);
+    moveBackFast(10, 90, 100); //8
     sweepRightBack(180);
     timedDrive(750, -50);
     resetTheta(180);
@@ -787,7 +788,7 @@ void autonomous()
   //Red side
   //deploy();
   //red_front_9_cubes();
-  red_front_8_cubes();
+  //red_front_8_cubes();
   //red_front_5_cubes();
   //red_front_6_cubes();
   //red_back();
@@ -808,7 +809,7 @@ void autonomous()
   wait(500);
   turnRightProgramming(360);
   */
-/*
+
   switch(autonIndex){
     case 0:
       red_front_8_cubes();
@@ -840,5 +841,5 @@ void autonomous()
       programming_skills3();
       break;
   }
-*/
+
 }
