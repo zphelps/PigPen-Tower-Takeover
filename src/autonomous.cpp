@@ -548,31 +548,39 @@ void programming_skills4()
 //****************RED AUTONOMOUS*****************************
 void red_front_9_cubes()
 {
+  resetTheta(0);
   deploy();
-  moveRollers(0);
   moveRollers(-200);
-  wait(250);
-  move(25, 0, 90);
-  wait(250);
+  wait(350); //250
+  move(27, 0, 90);
+  wait(350);
   moveRollers(0);
-  moveLift(300, -100);
+  moveLift(325, -100);
   moveRollers(-200);
   move(8, 0, 100);
-  moveLift(400, 100);
+  wait(100);
+  pros::Task liftDown(liftDownAuton);
+  move(2, 0, 100);
 
   //S-Turn to other Cubes
-  STurn_RedFront2();
+  STurn_RedFront3();
   moveRollers(-200);
-  moveHalfLoaded(36, 0, 75);
+  move(37, 0, 50);
+  wait(250);
+  moveBack(3, 0, 100);
+  pros::Task halfway(halfwayPos);
+  brakeTilter();
+  moveRollers(0);
 
   //Turn to the corner
-  sweepRightBackLoaded(130);
-  moveLoaded(25, 130, 127);
-  timedDrive(250, 40);
+  sweepRightBackProgramming(135, 2);
+  pros::Task cubePos(postion_cube);
+  moveLoaded(20, 135, 127);
+  timedDrive(300, 30);
+  moveRollers(30);
+  wait(50);
   moveRollers(0);
-  moveRollers(15);
-  wait(15);
-  scoreAuton2();
+  scoreAutonSlow();
   pros::Task task1(tilterBack);
   moveRollers(90);
   moveBackNoPos(25, 127);
@@ -787,7 +795,7 @@ void autonomous()
   //1-10-20
   //Red side
   //deploy();
-  //red_front_9_cubes();
+  red_front_9_cubes();
   //red_front_8_cubes();
   //red_front_5_cubes();
   //red_front_6_cubes();
@@ -809,7 +817,7 @@ void autonomous()
   wait(500);
   turnRightProgramming(360);
   */
-
+/*
   switch(autonIndex){
     case 0:
       red_front_8_cubes();
@@ -841,5 +849,5 @@ void autonomous()
       programming_skills3();
       break;
   }
-
+*/
 }
