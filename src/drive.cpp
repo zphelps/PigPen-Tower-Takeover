@@ -2070,9 +2070,9 @@ void STurn_RedFront3()
 void STurn_RedFront4()
 {
   moveRollers(0);
-  leftSweepBack(-35, 200);
+  leftSweepBack(-45, 200);
   moveRollers(-200);
-  moveBackNoPID(22, -35, 200); //28
+  moveBackNoPID(12, -45, 200); //28
   moveRollers(0);
   sweepRightBackProgramming(0, 2);
 }
@@ -2082,6 +2082,26 @@ void STurn_BlueFront()
   sweepLeftBackQuick(-28);
   moveRollers(0);
   moveBackFast(39, -30, 127);
+}
+
+void STurn_BlueFront3()
+{
+  moveRollers(0);
+  rightSweepBack(25, 200);
+  moveRollers(-200);
+  moveBackNoPID(26, 25, 200); //28
+  moveRollers(0);
+  sweepLeftBackProgramming(0, 2);
+}
+
+void STurn_BlueFront4()
+{
+  moveRollers(0);
+  rightSweepBack(45, 200);
+  moveRollers(-200);
+  moveBackNoPID(12, 45, 200); //28
+  moveRollers(0);
+  sweepLeftBackProgramming(0, 2);
 }
 
 //***********************DRIVER CONTROL FUNCTIONS**********************

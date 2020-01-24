@@ -1208,6 +1208,64 @@ void moveBack(int distance, int heading, int speed) //-O
 
 }
 
+void moveBackNoPID(int distance, int heading, int speed) //-O
+{
+
+  double correctionMultiplier = 0.8;
+
+  double targetTics = ticsPerRotation * (distance / (wheelDiameter * pi));
+
+  double target = L.get_value() - targetTics;
+
+  while(L.get_value() > target)
+  {
+
+    if (heading - thetaInDegreesUncorrected >= 5 || heading - thetaInDegreesUncorrected <= -5)
+    {
+      if (thetaInDegreesUncorrected < heading)
+      {
+        rightSlew(-speed);
+        leftSlew(-(correctionMultiplier * speed));
+      }
+
+      if (thetaInDegreesUncorrected > heading)
+      {
+        rightSlew(-(correctionMultiplier * speed));
+        leftSlew(-speed);
+      }
+
+      if (thetaInDegreesUncorrected == heading)
+      {
+        rightSlew(-speed);
+        leftSlew(-speed);
+      }
+    }
+    else
+    {
+    if (thetaInDegreesUncorrected < heading)
+    {
+      rightSlew(-speed);
+      leftSlew(-(speed * 0.9));
+    }
+
+    if (thetaInDegreesUncorrected > heading)
+    {
+      rightSlew(-(speed * 0.9));
+      leftSlew(-speed);
+    }
+
+    if (thetaInDegreesUncorrected == heading)
+    {
+      rightSlew(-speed);
+      leftSlew(-speed);
+    }
+  }
+}
+
+  right(0);
+  left(0);
+}
+
 void moveBackNoPos(int distance, int speed) //-O
 {
 
@@ -1526,6 +1584,52 @@ void sweepLeft(int angle) //-O
 
     right(0);
 
+}
+
+void rightSweep(int angle, int speed) //-O
+{
+  double targetError = 0.5;
+
+    while(thetaInDegreesUncorrected < angle - targetError) //|| thetaInDegrees > angle + targetError)
+    {
+      leftSlew(speed);
+    }
+    left(0);
+}
+
+void rightSweepBack(int angle, int speed) //-O
+{
+  double targetError = 0.5;
+
+    while(thetaInDegreesUncorrected < angle - targetError) //|| thetaInDegrees > angle + targetError)
+    {
+      right(-speed);
+    }
+    right(0);
+}
+
+void leftSweep(int angle, int speed) //-O
+{
+  double targetError = 0.5;
+
+    while(thetaInDegreesUncorrected > angle + targetError) //|| thetaInDegrees > angle + targetError)
+    {
+      rightSlew(speed);
+    }
+
+    right(0);
+}
+
+void leftSweepBack(int angle, int speed) //-O
+{
+  double targetError = 0.5;
+
+    while(thetaInDegreesUncorrected > angle + targetError) //|| thetaInDegrees > angle + targetError)
+    {
+      left(-speed);
+    }
+
+    left(0);
 }
 
 void sweepRightBack(int angle) //-O
@@ -1953,11 +2057,51 @@ void STurn_RedFront2()
   turnRightNoPID(0, 50);
 }
 
+void STurn_RedFront3()
+{
+  moveRollers(0);
+  leftSweepBack(-25, 200);
+  moveRollers(-200);
+  moveBackNoPID(30, -25, 200); //28
+  moveRollers(0);
+  sweepRightBackProgramming(0, 2);
+}
+
+void STurn_RedFront4()
+{
+  moveRollers(0);
+  leftSweepBack(-45, 200);
+  moveRollers(-200);
+  moveBackNoPID(12, -45, 200); //28
+  moveRollers(0);
+  sweepRightBackProgramming(0, 2);
+}
+
 void STurn_BlueFront()
 {
   sweepLeftBackQuick(-28);
   moveRollers(0);
   moveBackFast(39, -30, 127);
+}
+
+void STurn_BlueFront3()
+{
+  moveRollers(0);
+  rightSweepBack(25, 200);
+  moveRollers(-200);
+  moveBackNoPID(26, 25, 200); //28
+  moveRollers(0);
+  sweepLeftBackProgramming(0, 2);
+}
+
+void STurn_BlueFront4()
+{
+  moveRollers(0);
+  rightSweepBack(45, 200);
+  moveRollers(-200);
+  moveBackNoPID(12, 45, 200); //28
+  moveRollers(0);
+  sweepLeftBackProgramming(0, 2);
 }
 
 //***********************DRIVER CONTROL FUNCTIONS**********************

@@ -59,6 +59,11 @@ void liftDown(void* parameter)
   moveLift(1200, 100);
 }
 
+void liftDownAuton(void* parameter)
+{
+  moveLift(1200, 100);
+}
+
 void cube_latch()
 {
   Lift(-100);

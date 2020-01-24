@@ -21,12 +21,12 @@ void autonSelector(void*parameter)
 	const int autoCount = 9;
   const char *autoNames[autoCount] = {
 		"Red Front - 8 Cubes",
-		"Red Front - 6 Cubes",
-    "Red Front - 5 Cubes",
+		"Red Front - 9 Cubes",
+    "Red Front - 7 Cubes",
 		"Red Back",
 		"Blue Front - 8 Cubes",
-    "Blue Front - 6 Cubes",
-		"Blue Front - 5 Cubes",
+    "Blue Front - 9 Cubes",
+		"Blue Front - 7 Cubes",
     "Blue Back",
     "Programming Skills"
   };
