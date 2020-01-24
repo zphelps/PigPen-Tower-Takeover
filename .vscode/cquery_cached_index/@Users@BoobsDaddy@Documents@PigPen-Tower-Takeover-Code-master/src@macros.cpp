@@ -11,7 +11,7 @@ void deploy() {
   wait(50);
   moveLift(350, 127); //750
 
-  wait(500); //350
+  wait(350); //350
   left(0);
   right(0);
 

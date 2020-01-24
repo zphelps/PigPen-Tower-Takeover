@@ -42,6 +42,7 @@ void leftSweepBack(int angle, int speed); //-O
 void STurn_RedFront(); //-O
 void STurn_RedFront2(); //-O
 void STurn_RedFront3(); //-O
+void STurn_RedFront4(); //-O
 void STurn_BlueFront(); //-O
 
 //******************MOVE FUNCTIONS**************************

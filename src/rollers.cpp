@@ -39,7 +39,7 @@ void collectCube(void*parameter) {
 
 void postion_cube(void*parameter) {
   while(cubeDetector.get_value() > 1900) {
-    moveRollers(150);
+    moveRollers(75);
   }
   moveRollers(0);
   brakeRollers();

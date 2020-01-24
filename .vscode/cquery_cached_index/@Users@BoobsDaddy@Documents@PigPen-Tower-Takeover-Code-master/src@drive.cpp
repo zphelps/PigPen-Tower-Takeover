@@ -2062,7 +2062,17 @@ void STurn_RedFront3()
   moveRollers(0);
   leftSweepBack(-25, 200);
   moveRollers(-200);
-  moveBackNoPID(28, -25, 200);
+  moveBackNoPID(30, -25, 200); //28
+  moveRollers(0);
+  sweepRightBackProgramming(0, 2);
+}
+
+void STurn_RedFront4()
+{
+  moveRollers(0);
+  leftSweepBack(-35, 200);
+  moveRollers(-200);
+  moveBackNoPID(22, -35, 200); //28
   moveRollers(0);
   sweepRightBackProgramming(0, 2);
 }
