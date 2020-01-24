@@ -111,7 +111,7 @@ void liftOP()
       cube_latch();
     }
     else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_B)) {
-      deploy();
+      deployOP();
     }
     else {
       lift.move(partner.get_analog(ANALOG_LEFT_Y));
