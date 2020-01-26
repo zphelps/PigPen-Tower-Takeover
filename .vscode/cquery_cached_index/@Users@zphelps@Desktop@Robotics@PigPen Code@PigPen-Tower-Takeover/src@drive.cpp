@@ -702,7 +702,7 @@ void turnRightLoaded(int angle) //-O
 void turnRightLoadedAuton(int angle) //-O
 {
 
-  double kP = 0.485; //465
+  double kP = 0.47; //485
 
   double kI = 0;
 
@@ -714,7 +714,7 @@ void turnRightLoadedAuton(int angle) //-O
 
   int distToAngle = thetaInDegrees - angle;
 
-  int minSpeed = 55; //50
+  int minSpeed = 55; //55
 
   while(thetaInDegreesUncorrected < angle - targetError) // || thetaInDegrees > angle + targetError)
   {
@@ -2064,17 +2064,17 @@ void STurn_RedFront3()
   moveRollers(-200);
   moveBackNoPID(30, -25, 200); //28
   moveRollers(0);
-  sweepRightBackProgramming(0, 2);
+  sweepRightBackProgramming(-4, 2);
 }
 
 void STurn_RedFront4()
 {
   moveRollers(0);
-  leftSweepBack(-45, 200);
+  leftSweepBack(-42, 200); //-45
   moveRollers(-200);
-  moveBackNoPID(12, -45, 200); //28
+  moveBackNoPID(15, -42, 200); //28
   moveRollers(0);
-  sweepRightBackProgramming(0, 2);
+  sweepRightBackProgramming(-3, 2);
 }
 
 void STurn_BlueFront()
@@ -2087,21 +2087,21 @@ void STurn_BlueFront()
 void STurn_BlueFront3()
 {
   moveRollers(0);
-  rightSweepBack(25, 200);
+  rightSweepBack(20, 200); //20
   moveRollers(-200);
-  moveBackNoPID(26, 25, 200); //28
+  moveBackNoPID(28, 20, 200); //26, 20, 200
   moveRollers(0);
-  sweepLeftBackProgramming(0, 2);
+  sweepLeftBackProgramming(5, 2); //0
 }
 
 void STurn_BlueFront4()
 {
   moveRollers(0);
-  rightSweepBack(45, 200);
+  rightSweepBack(40, 200);
   moveRollers(-200);
-  moveBackNoPID(12, 45, 200); //28
+  moveBackNoPID(12, 40, 200); //28
   moveRollers(0);
-  sweepLeftBackProgramming(0, 2);
+  sweepLeftBackProgramming(5, 2); //0
 }
 
 //***********************DRIVER CONTROL FUNCTIONS**********************

@@ -5,6 +5,8 @@ void scoreOP();
 void scoreAuton();
 void scoreAuton2();
 void scoreAutonSlow();
+void scoreAutonSlow2();
+void scoreAuton7cube();
 void tilterTowerPos();
 void tilterBack(void* parameter);
 void tilterBack2();

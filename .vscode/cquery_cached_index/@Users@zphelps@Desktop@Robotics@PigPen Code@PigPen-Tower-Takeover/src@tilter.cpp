@@ -98,7 +98,7 @@ void scoreProgramming()
 
 void scoreOP()
 {
-  double kP = 0.18; //0.175
+  double kP = 0.1675; //0.175
 
   double kD = 0.1;//2
 
@@ -106,16 +106,22 @@ void scoreOP()
 
   double targetError = 10;//20
 
-  int minSpeed = 35; //1450
+  int minSpeed = 75; //1450
 
-  while(tilterPot.get_value() < 1350 - targetError) //1465
+  while(tilterPot.get_value() < 1375 - targetError) //1465
   {
+
+    if(master.get_digital(pros::E_CONTROLLER_DIGITAL_Y)) {
+      //pros::Task tilter_back(tilterBack);
+      tilterBack2();
+      break;
+    }
 
     driveOP();
     rollersOP();
     liftOP();
 
-    int error = (1350 - tilterPot.get_value()) + minSpeed;
+    int error = (1375 - tilterPot.get_value()) + minSpeed;
 
     int derivative = error - prevError;
 
@@ -123,7 +129,7 @@ void scoreOP()
 
     int power = (error*kP + derivative*kD);
 
-    if(error > 1250) //800
+    if(error > 1100) //1250
     {
       rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
       leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
@@ -227,21 +233,21 @@ void scoreAuton2()
   wait(100);
 }
 
-void scoreAutonSlow()
+void scoreAuton7cube()
 {
-  double kP = 0.15;
+  double kP = 0.4;
 
-  double kD = 0.035;
+  double kD = 0.1;
 
   double prevError = 0;
 
-  double targetError = 150;
+  double targetError = 20;
 
-  int minSpeed = 75;
+  int minSpeed = 90;
 
-  while(tilterPot.get_value() < 1300 - targetError) //|| thetaInDegrees > angle + targetError)
+  while(tilterPot.get_value() < 1475 - targetError) //|| thetaInDegrees > angle + targetError)
   {
-    int error = (1300 - tilterPot.get_value()) + minSpeed;
+    int error = (1475 - tilterPot.get_value()) + minSpeed;
 
     int derivative = error - prevError;
 
@@ -249,7 +255,49 @@ void scoreAutonSlow()
 
     int power = (error*kP + derivative*kD);
 
-    if(error > 900) //725
+    if(error > 1200) //725
+    {
+      rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+      leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+    }
+    else if(error < 100) {
+      moveRollers(80);
+    }
+    else
+    {
+      moveRollers(40);
+      rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+      leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+    }
+    moveTilter(-power);
+  }
+  moveTilter(0);
+  wait(100);
+}
+
+void scoreAutonSlow()
+{
+  double kP = 0.17; //15
+
+  double kD = 0.035;
+
+  double prevError = 0;
+
+  double targetError = 75; //175
+
+  int minSpeed = 75;
+
+  while(tilterPot.get_value() < 1375 - targetError) //|| thetaInDegrees > angle + targetError)
+  {
+    int error = (1375 - tilterPot.get_value()) + minSpeed;
+
+    int derivative = error - prevError;
+
+    prevError = error;
+
+    int power = (error*kP + derivative*kD);
+
+    if(error > 1000) //725
     {
       rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
       leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
@@ -259,7 +307,48 @@ void scoreAutonSlow()
     }
     else
     {
-      moveRollers(10);
+      moveRollers(20); //10
+      rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+      leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+    }
+    moveTilter(-power);
+  }
+  moveTilter(0);
+}
+
+void scoreAutonSlow2()
+{
+  double kP = 0.18;
+
+  double kD = 0.035;
+
+  double prevError = 0;
+
+  double targetError = 100; //150
+
+  int minSpeed = 75;
+
+  while(tilterPot.get_value() < 1375 - targetError) //|| thetaInDegrees > angle + targetError)
+  {
+    int error = (1375 - tilterPot.get_value()) + minSpeed;
+
+    int derivative = error - prevError;
+
+    prevError = error;
+
+    int power = (error*kP + derivative*kD);
+
+    if(error > 1200) //725
+    {
+      rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+      leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+    }
+    else if(error < 200) {
+      moveRollers(80);
+    }
+    else
+    {
+      moveRollers(45); //10
       rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
       leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
     }

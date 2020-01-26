@@ -6,9 +6,9 @@ void deploy() {
   right(-45); //-30
   moveRollers(200);
 
-  moveLift(300, -127); //650
+  moveLift(250, -127); //300
 
-  wait(50);
+  wait(0);
   moveLift(350, 127); //750
 
   wait(350); //350
@@ -23,9 +23,9 @@ void deployOP() {
   //right(-45); //-30
   moveRollers(200);
 
-  moveLift(300, -127); //650
+  moveLift(250, -127); //650
 
-  wait(50);
+  wait(0);
   moveLift(350, 127); //750
 
   //wait(350); //350
