@@ -107,7 +107,7 @@ void liftOP()
     else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
       lift.move_velocity(100);
     }
-    else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_UP)) {
+    else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_RIGHT)) {
       cube_latch();
     }
     else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_B)) {

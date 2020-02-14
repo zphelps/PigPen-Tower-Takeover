@@ -456,7 +456,7 @@ void tilterTowerPos()
 
 void tilterBack(void* parameter)
 {
-    while(tilterPot.get_value() > 10) //150
+    while(tilterPot.get_value() > 20) //150
     {
       moveTilter(200);
       Lift(5);
@@ -470,7 +470,7 @@ void tilterBack(void* parameter)
 
 void tilterBack2()
 {
-    while(tilterPot.get_value() > 10) //150
+    while(tilterPot.get_value() > 20) //150
     {
       driveOP();
       rollersOP();
@@ -492,10 +492,12 @@ void tilterOP()
     //scoreAuton();
     scoreOP();
   }
+  /*
   else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_RIGHT)) {
     //scoreAuton();
     halfwayPos();
   }
+  */
   else if(master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN)) {
     tilter.move(127);
   }
