@@ -289,7 +289,7 @@ void rightSlew(int rightTarget)
 void turnLeft(int angle) //-X
 {
 
-  double kP = 0.525; //0.025; //0.17;
+  double kP = 0.545; //0.025; //0.17;
 
   double kD = 0.25; //0.06; //0.3; //0.3
 
@@ -299,7 +299,7 @@ void turnLeft(int angle) //-X
 
   int distToAngle = thetaInDegrees - angle;
 
-  int minSpeed = 35;
+  int minSpeed = 65;
 
   int error = 0;
 
@@ -381,7 +381,7 @@ void turnLeftLoaded(int angle) //-O
 
   int distToAngle = thetaInDegrees - angle;
 
-  int minSpeed = 58;
+  int minSpeed = 65; //58
 
   int error = 0;
 
@@ -521,7 +521,7 @@ void turnLeftLoadedProgramming(int angle) //-O
 void turnRight(int angle) //-X
 {
 
-  double kP = 0.525; //0.025; //0.17;
+  double kP = 0.545; //0.025; //0.17;
 
   double kD = 0.25; //0.06; //0.3; //0.3
 
@@ -531,7 +531,7 @@ void turnRight(int angle) //-X
 
   int distToAngle = thetaInDegrees - angle;
 
-  int minSpeed = 35; //35;
+  int minSpeed = 65; //35;
 
   while(thetaInDegreesUncorrected < angle - targetError || thetaInDegreesUncorrected > angle + targetError) // || thetaInDegrees > angle + targetError)
   {
@@ -583,7 +583,7 @@ void turnRightProgramming(int angle) //-O
 
   int distToAngle = thetaInDegrees - angle;
 
-  int minSpeed = 60; //35;
+  int minSpeed = 63; //60;
 
   while(thetaInDegreesUncorrected < angle - targetError || thetaInDegreesUncorrected > angle + targetError) // || thetaInDegrees > angle + targetError)
   {
@@ -1697,7 +1697,7 @@ void sweepRightBackProgramming(int angle, int leftSideSpeed) //-O
 
   int distToAngle = thetaInDegrees - angle;
 
-  int minSpeed = 40;
+  int minSpeed = 45; //40
 
     while(thetaInDegreesUncorrected < angle - targetError) //|| thetaInDegrees > angle + targetError)
     {
@@ -1855,7 +1855,7 @@ void sweepLeftBackProgramming(int angle, int rightSideSpeed) //-O
 
   int distToAngle = thetaInDegrees - angle;
 
-  int minSpeed = 40;
+  int minSpeed = 45; //40
 
     while(thetaInDegreesUncorrected > angle + targetError) //|| thetaInDegrees > angle + targetError)
     {
@@ -2060,9 +2060,9 @@ void STurn_RedFront2()
 void STurn_RedFront3()
 {
   moveRollers(0);
-  leftSweepBack(-25, 200);
+  leftSweepBack(-30, 200); //-25
   moveRollers(-200);
-  moveBackNoPID(30, -25, 200); //28
+  moveBackNoPID(26, -35, 200); //30, -25
   moveRollers(0);
   sweepRightBackProgramming(-4, 2);
 }
@@ -2070,11 +2070,11 @@ void STurn_RedFront3()
 void STurn_RedFront4()
 {
   moveRollers(0);
-  leftSweepBack(-42, 200); //-45
+  leftSweepBack(-48, 200); //-45
   moveRollers(-200);
-  moveBackNoPID(15, -42, 200); //28
+  moveBackNoPID(10, -50, 200); //13, -50
   moveRollers(0);
-  sweepRightBackProgramming(-3, 2);
+  sweepRightBackProgramming(-5, 2);
 }
 
 void STurn_BlueFront()
@@ -2097,11 +2097,11 @@ void STurn_BlueFront3()
 void STurn_BlueFront4()
 {
   moveRollers(0);
-  rightSweepBack(40, 200);
+  rightSweepBack(58, 200);
   moveRollers(-200);
-  moveBackNoPID(12, 40, 200); //28
+  moveBackNoPID(5, 60, 200); //28
   moveRollers(0);
-  sweepLeftBackProgramming(5, 2); //0
+  sweepLeftBackProgramming(5, 2); //3
 }
 
 //***********************DRIVER CONTROL FUNCTIONS**********************
