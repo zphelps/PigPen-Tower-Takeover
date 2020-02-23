@@ -1,7 +1,7 @@
 #include "main.h"
 
 //motors
-pros::Motor tilter (1, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor tilter (1, pros::E_MOTOR_GEARSET_36, true, pros::E_MOTOR_ENCODER_DEGREES); //f
 
 //Sensors
 pros::ADIPotentiometer tilterPot ('H');
@@ -98,17 +98,17 @@ void scoreProgramming()
 
 void scoreOP()
 {
-  double kP = 0.2; //0.175
+  double kP = 0.11; //0.175
 
-  double kD = 0.15;//2
+  double kD = 0;//15
 
   double prevError = 0;
 
   double targetError = 10;//20
 
-  int minSpeed = 45; //40
+  int minSpeed = 50; //45
 
-  while(tilterPot.get_value() < 1400 - targetError) //1375
+  while(tilterPot.get_value() < 2375 - targetError) //1400
   {
 
     if(master.get_digital(pros::E_CONTROLLER_DIGITAL_Y)) {
@@ -121,7 +121,7 @@ void scoreOP()
     rollersOP();
     liftOP();
 
-    int error = (1400 - tilterPot.get_value()) + minSpeed;
+    int error = (2375 - tilterPot.get_value()) + minSpeed; //1400
 
     int derivative = error - prevError;
 
@@ -129,7 +129,7 @@ void scoreOP()
 
     int power = (error*kP + derivative*kD);
 
-    if(error > 875) //1250
+    if(error > 875) //875
     {
       rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
       leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
@@ -137,7 +137,7 @@ void scoreOP()
     else
     {
       //moveRollers(15);
-      Lift(15);
+      Lift(5);
       rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
       leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
     }
@@ -501,7 +501,7 @@ void tilterTowerPos()
 
 void tilterBack(void* parameter)
 {
-    while(tilterPot.get_value() > 20) //150
+    while(tilterPot.get_value() > 250) //20
     {
       moveTilter(200);
       Lift(5);
@@ -515,7 +515,7 @@ void tilterBack(void* parameter)
 
 void tilterBack2()
 {
-    while(tilterPot.get_value() > 20) //150
+    while(tilterPot.get_value() > 250) //20
     {
       driveOP();
       rollersOP();

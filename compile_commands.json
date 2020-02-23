@@ -224,11 +224,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "bin/tilter.cpp.o",
-            "src/tilter.cpp"
+            "bin/opcontrol.cpp.o",
+            "src/opcontrol.cpp"
         ],
         "directory": "/Users/zphelps/Desktop/Robotics/PigPen Code/PigPen-Tower-Takeover",
-        "file": "src/tilter.cpp"
+        "file": "src/opcontrol.cpp"
     },
     {
         "arguments": [
@@ -257,10 +257,10 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "bin/opcontrol.cpp.o",
-            "src/opcontrol.cpp"
+            "bin/tilter.cpp.o",
+            "src/tilter.cpp"
         ],
         "directory": "/Users/zphelps/Desktop/Robotics/PigPen Code/PigPen-Tower-Takeover",
-        "file": "src/opcontrol.cpp"
+        "file": "src/tilter.cpp"
     }
 ]
