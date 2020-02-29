@@ -5,6 +5,7 @@ pros::Motor tilter (1, pros::E_MOTOR_GEARSET_36, true, pros::E_MOTOR_ENCODER_DEG
 
 //Sensors
 pros::ADIPotentiometer tilterPot ('H');
+pros::ADIDigitalIn tilterLimit ('G');
 
 //Autonomous FUNCTIONS
 
@@ -17,6 +18,9 @@ void brakeTilter() {
   tilter.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 }
 
+void coastTilter() {
+  tilter.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+}
 void scoreRedFront()
 {
   double kP = 0.4;
@@ -98,7 +102,7 @@ void scoreProgramming()
 
 void scoreOP()
 {
-  double kP = 0.11; //0.175
+  double kP = 0.125; //0.11
 
   double kD = 0;//15
 
@@ -106,9 +110,9 @@ void scoreOP()
 
   double targetError = 10;//20
 
-  int minSpeed = 50; //45
+  int minSpeed = 40; //50
 
-  while(tilterPot.get_value() < 2375 - targetError) //1400
+  while(tilterPot.get_value() < 2350 - targetError) //2375
   {
 
     if(master.get_digital(pros::E_CONTROLLER_DIGITAL_Y)) {
@@ -121,7 +125,7 @@ void scoreOP()
     rollersOP();
     liftOP();
 
-    int error = (2375 - tilterPot.get_value()) + minSpeed; //1400
+    int error = (2350 - tilterPot.get_value()) + minSpeed; //1400
 
     int derivative = error - prevError;
 
@@ -235,7 +239,7 @@ void scoreAuton2()
 
 void scoreAuton7cube()
 {
-  double kP = 0.4;
+  double kP = 0.175; //5
 
   double kD = 0.1;
 
@@ -243,11 +247,11 @@ void scoreAuton7cube()
 
   double targetError = 25; //20
 
-  int minSpeed = 65; //75
+  int minSpeed = 10; //80
 
-  while(tilterPot.get_value() < 1400 - targetError) //1475
+  while(tilterPot.get_value() < 2350 - targetError) //2375
   {
-    int error = (1400 - tilterPot.get_value()) + minSpeed;
+    int error = (2350 - tilterPot.get_value()) + minSpeed;
 
     int derivative = error - prevError;
 
@@ -257,15 +261,15 @@ void scoreAuton7cube()
 
     if(error > 1200) //725
     {
-      rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-      leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+      //rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+      //leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
     }
     else if(error < 100) {
       moveRollers(80);
     }
     else
     {
-      moveRollers(30); //40
+      moveRollers(40); //40
       rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
       leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
     }
@@ -501,7 +505,7 @@ void tilterTowerPos()
 
 void tilterBack(void* parameter)
 {
-    while(tilterPot.get_value() > 250) //20
+    while(tilterLimit.get_value() == 0) //300
     {
       moveTilter(200);
       Lift(5);
@@ -510,12 +514,11 @@ void tilterBack(void* parameter)
     }
     Lift(0);
     moveTilter(0);
-    wait(100);
-  }
+}
 
 void tilterBack2()
 {
-    while(tilterPot.get_value() > 250) //20
+    while(tilterLimit.get_value() == 0) //300
     {
       driveOP();
       rollersOP();
@@ -526,28 +529,33 @@ void tilterBack2()
     }
     Lift(0);
     moveTilter(0);
-    wait(100);
 }
 
 void tilterOP()
 {
   tilter.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
   pros::lcd::print(3, "%d", tilterPot.get_value());
+
   if (master.get_digital(pros::E_CONTROLLER_DIGITAL_LEFT)) {
-    //scoreAuton();
     scoreOP();
   }
-  /*
-  else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_RIGHT)) {
-    //scoreAuton();
-    halfwayPos();
+  else if(master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
+    if(tilterPot.get_value()< 400) {
+      tilter.move(-100);
+    }
+    else{
+      tilter.move(0);
+    }
   }
-  */
-  else if(master.get_digital(pros::E_CONTROLLER_DIGITAL_DOWN)) {
-    tilter.move(127);
+  else if(master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)) {
+    if(tilterPot.get_value()> 275) {
+      tilter.move(30);
+    }
+    else {
+      tilter.move(0);
+    }
   }
   else if(master.get_digital(pros::E_CONTROLLER_DIGITAL_Y)) {
-    //pros::Task tilter_back(tilterBack);
     tilterBack2();
   }
 

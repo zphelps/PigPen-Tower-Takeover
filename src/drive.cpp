@@ -2070,11 +2070,11 @@ void STurn_RedFront3()
 void STurn_RedFront4()
 {
   moveRollers(0);
-  leftSweepBack(-48, 200); //-45
+  leftSweepBack(-60, 200); //-45
   moveRollers(-200);
-  moveBackNoPID(10, -50, 200); //13, -50
+  moveBackNoPID(6, -60, 200); //10, -55
   moveRollers(0);
-  sweepRightBackProgramming(-5, 2);
+  sweepRightBackProgramming(-6, 5); //-5,2
 }
 
 void STurn_BlueFront()
