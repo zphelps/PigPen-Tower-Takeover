@@ -1,7 +1,7 @@
 #include "main.h"
 
 //*****************PROGRAMMING SKILLS************************
-void programming_skills3()
+void programming_skills_65()
 {
     resetTheta(0);
     deploy();
@@ -114,7 +114,7 @@ void programming_skills3()
 
 }
 
-void programming_skills4()
+void programming_skills_70()
 {
   wait(200);
   resetTheta(0);
@@ -124,72 +124,74 @@ void programming_skills4()
   moveRollers(-200);
   move(40, 0, 65); //60
   wait(150);
-  moveBack(2, 0, 100);
+  moveBack(1, 0, 100); //2
 
   sweepRightBackProgramming(90, 2);
   cube_latch();
-  moveLift(150, -100);
+  moveLift(100, -100); //150
   move(8, 90, 100);
-  moveRollers(100);
-  wait(350);
+  moveRollers(150);
+  wait(200); //350
   moveBack(2, 90, 100); //2
 
   moveRollers(-200);
   pros::Task lift_down(liftDown);
   Lift(5);
-  turnLeftLoaded(8);
-  moveFastProgramming(25, 5, 127);
+  turnLeftLoaded(8); //8
+
+  moveFastProgramming(22, 8, 127);
   Lift(0);
-  moveFastProgramming(10, -18, 127);
+  moveFastProgramming(10, -25, 127); //10, -20
+
   moveRollers(0);
   brakeRollers();
   wait(50);
   moveRollers(-200);
-  move(38, 0, 100); //36
+  move(35, 0, 127); //35, 50
   sweepRight(45);
-  moveRollers(0);
 
-  moveLoaded(2, 42, 127);
-  timedDrive(300, 35);
-  coastRollers();
-  moveRollers(0);
-  moveRollers(15);
-  wait(75);
-  scoreAuton2();
+  moveLoaded(4, 45, 127); //2
+  timedDrive(200, 35);
+  pros::Task p(position_cube);
+  scoreAuton9Cube();
   pros::Task task1(tilterBack);
+  p.remove();
   moveRollers(90);
-  moveBack(8, 45, 100);
+  moveBack(6, 45, 100); //8
+
   turnRightProgramming(90);
-  moveBack(16, 90, 127); //10
+  moveBack(18, 90, 127); //16
   sweepRightBackProgramming(180, 2);
-  timedDrive(800, -50);
+  timedDrive(750, -50); //800
   resetTheta(180);
   wait(100);
   moveRollers(-200);
 
-  moveFastProgramming(34, 180, 75);
+  moveFastProgramming(34, 180, 90); //75
 
-  turnLeft(155);
-  move(13, 155, 100);
+  turnLeft(150);
+  moveFastProgramming(13, 150, 90); //155
   moveBack(4, 155, 100);
   cube_latch();
-  moveLift(150, -100);
+  moveLift(125, -100); //175
   move(4, 155, 100);
   moveRollers(75);
-  wait(300);
-  moveBack(8, 155, 100);
+  wait(200);
+  moveBack(6, 155, 100); //180
   moveRollers(-200);
   pros::Task lift_down_1(liftDown);
   turnRightProgramming(180);
 
+  moveRollers(-50);
   moveBack(9, 180, 127); //8
   sweepRightBackProgramming(270, 2); //270,2
+  moveRollers(-200);
   moveFastProgramming(10, 270, 100); //10
   timedDrive(350, 40);
   wait(200);
   moveBackLoaded(12, 270, 40);
   cube_latch();
-  moveLift(500, -127);
+  moveLift(350, -127); //500
   move(4, 270, 40);
   timedDrive(250, 30);
   moveRollers(90);
@@ -199,30 +201,30 @@ void programming_skills4()
   moveRollers(-200);
   pros::Task lift_down2(liftDown);
 
-  turnLeftProgramming(183); //180
+  turnLeftProgramming(180); //180
   moveRollers(0);
   moveRollers(-200);
 
-  moveFastProgramming(86, 183, 127); //86 in total
+  moveFastProgramming(95, 180, 127); //86 in total
+  timedDrive(300, 35);
+  moveRollers(-50);
 
-  moveBack(12, 182, 100);
-  turnRightProgramming(226);
+  moveBackFast(22, 180, 100); //12
+  turnRightProgramming(225);
   moveRollers(0);
   moveRollers(-200);
   cube_latch();
-  moveLift(500, -100);
+  moveLift(350, -100);
   moveFastProgramming(8, 226, 100);
-  moveRollers(75);
+  moveRollers(100);
   wait(250);
   moveBack(12, 220, 100);
   moveRollers(-200);
   pros::Task lift_down3(liftDown);
   turnLeftLoadedProgramming(135);
   moveLoaded(40, 135, 127);
-  timedDrive(250, 40);
-  moveRollers(0);
-  moveRollers(30);
-  wait(50);
+  timedDrive(200, 35);
+  pros::Task p2(position_cube);
   scoreAuton7cube();
   pros::Task task5(tilterBack);
   moveRollers(90);
@@ -233,43 +235,38 @@ void programming_skills4()
 //****************RED AUTONOMOUS*****************************
 void red_front_9_cubes()
 {
+  wait(200);
   resetTheta(0);
-  deploy();
+  deployOP();
   moveRollers(-200);
   Lift(5);
-  move(22, 0, 60);
-  wait(400);
-  moveRollers(0);
-  moveLift(300, -100);
-  moveRollers(-200);
-  move(8, 0, 100);
-  wait(200);
-  pros::Task liftDown(liftDownAuton);
-  move(4, 0, 100);
+  moveFastProgramming(40, 0, 65);
+  wait(300);
 
   //S-Turn to other Cubes
   Lift(0);
-  STurn_RedFront3();
+  STurn_RedFront();
   moveRollers(-200);
-  Lift(5);
-  move(37, 0, 50);
-  wait(100);
-  moveBack(5, 0, 100);
-  pros::Task halfway(halfwayPos);
-  //pros::Task cubep(postion_cube);
-  brakeTilter();
+  move(18, 0, 75);
+  wait(400);
   moveRollers(0);
+  moveLift(400, -100);
+  moveRollers(-200);
+  move(5, 0, 100);
+  //moveRollers(0);
+  pros::Task liftDown(liftDownAuton);
+  moveBack(3, 0, 127);
+  moveRollers(-200);
+  move(8, 0, 100);
 
   //Turn to the corner
-  Lift(0);
-  sweepRightBackProgramming(135, 2);
-  //pros::Task cubePos(postion_cube);
-  moveLoaded(20, 135, 127);
+  turnRightLoaded(135);
+  pros::Task h(halfwayPos);
+  moveLoaded(32, 135, 127);
+  moveRollers(-200);
   timedDrive(300, 30);
-  moveRollers(25);
-  wait(25);
-  moveRollers(0);
-  scoreAutonSlow();
+  scoreAuton9Cube();
+  moveRollers(200);
   pros::Task task1(tilterBack);
   moveRollers(90);
   moveBackNoPos(25, 127);
@@ -280,143 +277,67 @@ void red_front_9_cubes()
 
 void red_front_7_cubes()
 {
+  wait(200);
   resetTheta(0);
-  wait(200);
-  deploy();
+  deployOP();
   moveRollers(-200);
-  moveFastProgramming(24, 0, 50); //22, 0, 127
-  wait(500);
-
-  //S-Turn to other Cubes
-  STurn_RedFront4();
   Lift(5);
-  moveRollers(-200);
-  move(28, 0, 75); //28, 55
-  wait(200);
-  Lift(0);
-  moveBack(3, 0, 100); //6
-  moveRollers(-75);
-
-  //Turn to the corner
-  sweepRightBackProgramming(135, 2);
-  brakeRollers();
-  moveRollers(0);
-  moveLoaded(22, 135, 127);
-  timedDrive(100, 30);
+  moveFastProgramming(42, 0, 55);
   wait(300);
-  coastRollers();
-  moveRollers(100); //25
-  wait(250); //75
-  moveRollers(0);
-  brakeRollers();
+
+  //S-Turn to other Cubes
+  Lift(0);
+  STurn_RedFront();
+  moveRollers(-200);
+  move(20, 0, 75);
+  wait(250);
+
+  //Turn to the corner
+  turnRightProgramming(90);
+  moveFastProgramming(2, 90, 127);
+  moveLoaded(34, 135, 127);
+  timedDrive(350, 40);
+  //pros::Task p(position_cube);
   scoreAuton7cube();
+  moveRollers(200);
   pros::Task task1(tilterBack);
-  moveRollers(30);
-  moveBackNoPos(25, 75);
+  moveRollers(90);
+  moveBackNoPos(25, 127);
   task1.remove();
   moveTilter(0);
-
 }
 
 void red_front_8_cubes()
 {
+  wait(200);
   resetTheta(0);
-  deploy();
+  deployOP();
   moveRollers(-200);
-  move(24, 0, 100); //24, 75
-  wait(350);
-
-  //S-Turn to other Cubes
-  STurn_RedFront4();
   Lift(5);
+  moveFastProgramming(42, 0, 55);
+  wait(300);
+
+  //S-Turn to other Cubes
+  Lift(0);
+  STurn_RedFront();
   moveRollers(-200);
-  move(37, 0, 60); //32, 50
-  wait(150);
-  moveBack(7, 0, 50);
-  brakeTilter();
-  moveRollers(0);
+  move(28, 0, 85); //20
+  wait(250);
 
   //Turn to the corner
-  sweepRightBackProgramming(135, 2);
-  moveLoaded(22, 135, 127);
+  turnRightProgramming(90);
+  moveFastProgramming(2, 90, 127);
+  moveLoaded(34, 135, 127);
   timedDrive(300, 30);
-  moveRollers(25);
-  wait(75);
-  moveRollers(0);
+  //pros::Task p(position_cube);
   scoreAuton7cube();
-  pros::Task task1(tilterBack);
-  moveRollers(90);
-  moveBackNoPos(25, 127);
-  task1.remove();
-  moveTilter(0);
-
-}
-
-/*
-void red_front_8_cubes()
-{
-  resetTheta(0);
-  deploy();
-  moveRollers(-200);
-  wait(500); //350
-  move(45, 0, 60);
-
-  //S-Turn to other Cubes
-  STurn_RedFront();
-  moveRollers(-200);
-  moveHalfLoaded(35, 0, 60);
-  wait(150);
-
-  //Turn to the corner
-  turnRightLoadedAuton(135);
-  moveRollers(0);
-  pros::Task pos_cube(postion_cube);
-  pros::Task half(halfwayPos);
-  brakeTilter();
-  moveLoaded(40, 135, 127); //moveLoaded
-  timedDrive(250, 30);
-  moveRollers(0);
-  moveRollers(20);
-  wait(30);
-  //scoreAuton2();
-  scoreAutonSlow();
+  moveRollers(200);
   pros::Task task1(tilterBack);
   moveRollers(90);
   moveBackNoPos(25, 127);
   task1.remove();
   moveTilter(0);
 }
-*/
-/*
-void red_front_8_cubes()
-{
-  resetTheta(0);
-  deploy();
-  moveRollers(-200);
-  wait(350); //250
-  move(45, 0, 80);
-
-  //S-Turn to other Cubes
-  STurn_RedFront();
-  moveRollers(-200);
-  moveHalfLoaded(38, 0, 90);
-  wait(150);
-
-  //Turn to the corner
-  turnRightLoadedAuton(135);
-  moveLoaded(41, 135, 127);
-  timedDrive(250, 40);
-  moveRollers(0);
-  moveRollers(20);
-  wait(30);
-  scoreAuton2();
-  pros::Task task1(tilterBack);
-  moveRollers(90);
-  moveBackNoPos(25, 127);
-  task1.remove();
-  moveTilter(0);
-}
-*/
 
 void red_back()
 {
@@ -469,7 +390,7 @@ void blue_front_9_cubes()
   move(37, 0, 50);
   wait(250);
   moveBack(3, 0, 100); //6
-  pros::Task cubePos(postion_cube);
+  pros::Task cubePos(position_cube);
   pros::Task halfway(halfwayPos);
   brakeTilter();
   moveRollers(0);
@@ -482,7 +403,7 @@ void blue_front_9_cubes()
   moveRollers(30);
   wait(50);
   moveRollers(0);
-  scoreAutonSlow();
+  scoreAuton9Cube();
   pros::Task task1(tilterBack);
   moveRollers(90);
   moveBackNoPos(25, 127);
@@ -493,35 +414,29 @@ void blue_front_9_cubes()
 
 void blue_front_7_cubes()
 {
-  resetTheta(0);
   wait(200);
-  deploy();
+  resetTheta(0);
+  deployOP();
   moveRollers(-200);
-  move(24, 0, 80); //24, 75
-  wait(350);
+  Lift(5);
+  moveFastProgramming(40, 0, 75);
+  wait(300);
 
   //S-Turn to other Cubes
-  STurn_BlueFront4();
-  Lift(5);
+  Lift(0);
+  STurn_BlueFront();
   moveRollers(-200);
-  //move(32, 0, 55); //32, 50
-  move(20, 0, 55); //32, 50
-  timedDrive(250, 30);
+  move(20, 0, 75);
   wait(250);
-  //moveBack(1, 0, 50);
-  brakeTilter();
-  brakeRollers();
-  moveRollers(0);
 
   //Turn to the corner
-  sweepLeftBackProgramming(-135, 2);
-  moveLoaded(24, -135, 127);
-  timedDrive(400, 40);
-  coastRollers();
-  moveRollers(35);
-  wait(150);
-  moveRollers(0);
+  turnLeftProgramming(-90);
+  moveFastProgramming(2, -90, 127);
+  moveLoaded(30, -135, 127);
+  timedDrive(300, 30);
+  //pros::Task p(position_cube);
   scoreAuton7cube();
+  moveRollers(200);
   pros::Task task1(tilterBack);
   moveRollers(90);
   moveBackNoPos(25, 127);
@@ -559,45 +474,13 @@ void blue_front_8_cubes()
   moveRollers(20);
   wait(30);
   //scoreAuton2();
-  scoreAutonSlow();
+  scoreAuton9Cube();
   pros::Task task1(tilterBack);
   moveRollers(90);
   moveBackNoPos(25, 127);
   task1.remove();
   moveTilter(0);
 }
-
-/*
-void blue_front_8_cubes()
-{
-
-  resetTheta(0);
-  deploy();
-  moveRollers(-200);
-  wait(350); //250
-  move(44, 0, 80);
-
-  //S-Turn to other Cubes
-  STurn_BlueFront();
-  moveRollers(-200);
-  moveHalfLoaded(36, 0, 90);
-  wait(100);
-
-  //Turn to the corner
-  turnLeftLoadedAuton(-135);
-  moveLoaded(41, -135, 127);
-  timedDrive(250, 40);
-  moveRollers(0);
-  moveRollers(20);
-  wait(30);
-  scoreAuton2();
-  pros::Task task1(tilterBack);
-  moveRollers(90);
-  moveBackNoPos(25, 127);
-  task1.remove();
-  moveTilter(0);
-}
-*/
 
 void blue_back()
 {
@@ -644,7 +527,7 @@ void autonomous()
   //blue_front_5_cubes();
   //blue_front_6_cubes();
   //blue_back();
-  //programming_skills4();
+  //programming_skills_70();
 
   //sweepLeft(-90);
   /*

@@ -37,9 +37,18 @@ void collectCube(void*parameter) {
   brakeRollers();
 }
 
-void postion_cube(void*parameter) {
-  while(cubeDetector.get_value() > 1900) {
-    moveRollers(75);
+void position_cube(void*parameter) {
+  while(cubeDetector.get_value() > 2400) {
+    moveRollers(50);
+  }
+  //wait(30);
+  moveRollers(0);
+  brakeRollers();
+}
+
+void position_cube() {
+  while(cubeDetector.get_value() > 2400) {
+    moveRollers(100);
   }
   //wait(30);
   moveRollers(0);
@@ -59,6 +68,10 @@ void rollersOP()
   else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_R2) || (partner.get_digital(pros::E_CONTROLLER_DIGITAL_L2))) {
     leftRoller.move_velocity(-200);
     rightRoller.move_velocity(-200);
+  }
+  else if (master.get_digital(pros::E_CONTROLLER_DIGITAL_X)){
+    pros::Task p(position_cube);
+    scoreAuton7cube();
   }
   else {
     leftRoller.move_velocity(0);

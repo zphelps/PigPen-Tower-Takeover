@@ -573,7 +573,7 @@ void turnRightNoPID(int angle, int speed) //-0
 void turnRightProgramming(int angle) //-O
 {
 
-  double kP = 0.5; //0.465
+  double kP = 0.5; //0.5
 
   double kD = 0.35; //0.06; //0.3; //0.3
 
@@ -583,7 +583,7 @@ void turnRightProgramming(int angle) //-O
 
   int distToAngle = thetaInDegrees - angle;
 
-  int minSpeed = 63; //60;
+  int minSpeed = 65; //63;
 
   while(thetaInDegreesUncorrected < angle - targetError || thetaInDegreesUncorrected > angle + targetError) // || thetaInDegrees > angle + targetError)
   {
@@ -1495,7 +1495,7 @@ void moveBackLoaded(int distance, int heading, int speed) //-O
 void sweepRight(int angle) //-O
 {
 
-  double kP = 0.7; //0.025; //0.17;
+  double kP = 0.9; //0.025; //0.17;
 
   double kI = 0;
 
@@ -1507,7 +1507,7 @@ void sweepRight(int angle) //-O
 
   int distToAngle = thetaInDegrees - angle;
 
-  int minSpeed = 45;
+  int minSpeed = 50; //45
 
     while(thetaInDegreesUncorrected < angle - targetError) //|| thetaInDegrees > angle + targetError)
     {
@@ -2044,9 +2044,9 @@ void sweepLeftBackQuick(int angle) //-O
 
 void STurn_RedFront()
 {
-  sweepRightBackQuick(28);
+  sweepRightBackQuick(35);
   moveRollers(0);
-  moveBackFast(38, 30, 127);
+  moveBackFast(34, 35, 127); //32
 }
 
 void STurn_RedFront2()
@@ -2060,10 +2060,9 @@ void STurn_RedFront2()
 void STurn_RedFront3()
 {
   moveRollers(0);
-  leftSweepBack(-30, 200); //-25
+  leftSweepBack(-28, 200); //-25
   moveRollers(-200);
-  moveBackNoPID(26, -35, 200); //30, -25
-  moveRollers(0);
+  moveBackNoPID(26, -30, 200); //26, -30
   sweepRightBackProgramming(-4, 2);
 }
 
@@ -2079,9 +2078,9 @@ void STurn_RedFront4()
 
 void STurn_BlueFront()
 {
-  sweepLeftBackQuick(-28);
+  sweepLeftBackQuick(-35);
   moveRollers(0);
-  moveBackFast(39, -30, 127);
+  moveBackFast(34, -35, 127);
 }
 
 void STurn_BlueFront3()
