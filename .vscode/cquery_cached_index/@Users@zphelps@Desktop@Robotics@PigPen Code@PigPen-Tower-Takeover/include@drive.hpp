@@ -29,6 +29,7 @@ void sweepRight(int angle); //-O
 void rightSweep(int angle, int speed); //-O
 void rightSweepBack(int angle, int speed); //-O
 void sweepRightBack(int angle); //-O
+void sweepRightProgramming(int angle, int rightSideSpeed); //-O
 void sweepRightBackProgramming(int angle, int leftSideSpeed); //-O
 void sweepRightBackLoaded(int angle); //-O
 void sweepLeftBack(int angle); //-O
@@ -50,9 +51,9 @@ void STurn_BlueFront4(); //-O
 //******************MOVE FUNCTIONS**************************
 void move(int distance, int heading, int speed); //-O
 void moveBackNoPID(int distance, int heading, int speed); //-O
-void moveFastProgramming(int distance, int heading, int speed); //-O
+void moveFast(int distance, int heading, int speed); //-O
+void moveMAX(int distance, int heading, int speed); //accounted for v1.09 voltage change
 void moveLoaded(int distance, int heading, int speed); //-O
-void moveHalfLoaded(int distance, int heading, int speed); //-O
 void moveBack(int distance, int heading, int speed); //-O
 void moveBackNoPos(int distance, int speed); //-O
 void moveBackLoaded(int distance, int heading, int speed); //-O

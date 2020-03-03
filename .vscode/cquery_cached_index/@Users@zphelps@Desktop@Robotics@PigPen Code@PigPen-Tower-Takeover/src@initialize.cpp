@@ -49,7 +49,7 @@ void autonSelector(void*parameter)
 }
 
 void initialize() {
-
+	
 	pros::lcd::initialize();
 
 	pros::lcd::set_text(4, "Red Front - 8 Cubes");

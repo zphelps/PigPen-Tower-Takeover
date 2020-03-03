@@ -118,7 +118,7 @@ void scoreAuton2()
 
 void scoreAuton7cube()
 {
-  double kP = 0.25; //13
+  double kP = 0.125; //0.25
 
   double kD = 0.1;
 
@@ -126,7 +126,7 @@ void scoreAuton7cube()
 
   double targetError = 50; //25
 
-  int minSpeed = 50; //80
+  int minSpeed = 65; //50   35
 
   while(tilterPot.get_value() < 2300 - targetError) //2375
   {
@@ -138,16 +138,13 @@ void scoreAuton7cube()
 
     int power = (error*kP + derivative*kD);
 
-    if(error < 100) {
-      moveRollers(80);
-    }
-    else if(error > 1150) {
+    if(error > 1200) {
       moveRollers(30);
     }
     else
     {
       Lift(5);
-      moveRollers(20); //15
+      moveRollers(35); //15
       rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
       leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
     }
@@ -384,6 +381,7 @@ void tilterBackSlow(void*parameter)
 
 void tilterOP()
 {
+
   tilter.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
   pros::lcd::print(3, "%d", tilterPot.get_value());
 

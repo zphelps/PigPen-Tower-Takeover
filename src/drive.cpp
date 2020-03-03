@@ -873,18 +873,18 @@ void move(int distance, int heading, int speed) //-O
   coast();
 }
 
-void moveFastProgramming(int distance, int heading, int speed) //-O
+void moveFast(int distance, int heading, int speed) //accounted for v1.09 voltage change
 {
 
-  double kP = 0.2;
+  double kP = 0.5; //0.2
 
-  double correctionMultiplier = 0.2;
+  double correctionMultiplier = 0.5; //0.2
 
-  double startUpIncrement = 10;
+  double startUpIncrement = 0.5; //10
 
   double startSpeed = speed;
 
-  double minSpeed = 50; //35
+  double minSpeed = 45; //35
 
   double target = abs(L.get_value()) + ticsPerRotation * (distance / (wheelDiameter * pi));
 
@@ -949,24 +949,20 @@ void moveFastProgramming(int distance, int heading, int speed) //-O
   right(0);
   left(0);
   brake();
-
-  wait(50);
-
-  coast();
 }
 
-void moveHalfLoaded(int distance, int heading, int speed) //-O
+void moveMAX(int distance, int heading, int speed) //accounted for v1.09 voltage change
 {
 
-  double kP = 0.2;
+  double kP = 0.9; //0.2
 
   double correctionMultiplier = 0.2;
 
-  double startUpIncrement = 0.0015;
+  double startUpIncrement = 0.9; //10
 
   double startSpeed = speed;
 
-  double minSpeed = 35;
+  double minSpeed = 90; //35
 
   double target = abs(L.get_value()) + ticsPerRotation * (distance / (wheelDiameter * pi));
 
@@ -1031,24 +1027,20 @@ void moveHalfLoaded(int distance, int heading, int speed) //-O
   right(0);
   left(0);
   brake();
-
-  wait(50);
-
-  coast();
 }
 
-void moveLoaded(int distance, int heading, int speed) //-O
+void moveLoaded(int distance, int heading, int speed) //accounted for v1.09 voltage control
 {
 
-  double kP = 0.34; //0.35
+  double kP = 0.35; //0.34
 
   double correctionMultiplier = 0.2;
 
-  double startUpIncrement = 0.0015; //0.00195
+  double startUpIncrement = 0.025; //0.0015
 
   double startSpeed = speed;
 
-  double minSpeed = 90;
+  double minSpeed = 35; //90
 
   double target = abs(L.get_value()) + ticsPerRotation * (distance / (wheelDiameter * pi));
 
@@ -1113,10 +1105,6 @@ void moveLoaded(int distance, int heading, int speed) //-O
   right(0);
   left(0);
   brake();
-
-  wait(50);
-
-  coast();
 }
 
 void moveBack(int distance, int heading, int speed) //-O
@@ -1314,14 +1302,14 @@ void moveBackNoPos(int distance, int speed) //-O
   coast();
 }
 
-void moveBackFast(int distance, int heading, int speed)
+void moveBackFast(int distance, int heading, int speed) //NOT accounted for v1.09 voltage change
 {
 
   double correctionMultiplier = 0.8;
 
-  double minSpeed = 60; //80
+  double minSpeed = 70; //60
 
-  double startUpIncrement = 0.1; //0.009
+  double startUpIncrement = 0.9; //0.5
 
   double startSpeed = speed;
 
@@ -1335,8 +1323,6 @@ void moveBackFast(int distance, int heading, int speed)
   {
 
     double error = target - L.get_value();
-
-    //double error = L.get_value() - target;
 
     double PIDSpeed = minSpeed + speed * error / (target - startingPoint);
 
@@ -1394,16 +1380,11 @@ void moveBackFast(int distance, int heading, int speed)
   right(0);
   left(0);
   brake();
-
   wait(200);
-
   coast();
-
-
-
 }
 
-void moveBackLoaded(int distance, int heading, int speed) //-O
+void moveBackLoaded(int distance, int heading, int speed) // Only used in programming_skills_65();
 {
 
   double correctionMultiplier = 0.8;
@@ -1682,6 +1663,58 @@ void sweepRightBack(int angle) //-O
 
 }
 
+void sweepRightProgramming(int angle, int rightSideSpeed) //-O
+{
+
+  double kP = 0.675; //0.025; //0.17;
+
+  double kI = 0;
+
+  double kD = 0; //0.06; //0.3; //0.3
+
+  double prevError = 0;
+
+  double targetError = 0.5;
+
+  int distToAngle = thetaInDegrees - angle;
+
+  int minSpeed = 45; //40
+
+    while(thetaInDegreesUncorrected < angle - targetError) //|| thetaInDegrees > angle + targetError)
+    {
+      int error = ((angle - thetaInDegreesUncorrected) * 2) + minSpeed;
+
+      if (error < 0)
+      {
+        int error = (angle - thetaInDegreesUncorrected) - minSpeed;
+      }
+
+      int integral = integral + error;
+
+      if (error == 0 || error < angle)
+      {
+        integral = 0;
+      }
+      if (error > 50)
+      {
+        integral = 0;
+      }
+
+      int derivative = error - prevError;
+
+      prevError = error;
+
+      int power = (error*kP + integral*kI + derivative*kD);
+
+      rightSlew(rightSideSpeed);
+      leftSlew(power);
+    }
+
+    left(0);
+    right(0);
+
+}
+
 void sweepRightBackProgramming(int angle, int leftSideSpeed) //-O
 {
 
@@ -1947,10 +1980,10 @@ void sweepLeftBackProgramming1(int angle) //-O
 
 }
 
-void sweepRightBackQuick(int angle) //-O
+void sweepRightBackQuick(int angle) //NOT accounted for v1.09 voltage change
 {
 
-  double kP = 0.75; //0.025; //0.17;
+  double kP = 0.99; //0.75
 
   double kI = 0;
 
@@ -2044,9 +2077,11 @@ void sweepLeftBackQuick(int angle) //-O
 
 void STurn_RedFront()
 {
-  sweepRightBackQuick(35);
+  sweepRightBackQuick(30); //35
   moveRollers(0);
-  moveBackFast(34, 35, 127); //32
+  brakeRollers();
+  moveBackFast(40, 35, 127); //38
+  moveRollers(-200);
 }
 
 void STurn_RedFront2()
@@ -2109,8 +2144,10 @@ void driveOP()
   coast();
 
   //pros::lcd::print(5, "%d", L.get_value());
-  leftFront.move(master.get_analog(ANALOG_LEFT_Y));
-  leftBack.move(master.get_analog(ANALOG_LEFT_Y));
-  rightFront.move(master.get_analog(ANALOG_RIGHT_Y));
-  rightBack.move(master.get_analog(ANALOG_RIGHT_Y));
+
+    leftFront.move(master.get_analog(ANALOG_LEFT_Y));
+    leftBack.move(master.get_analog(ANALOG_LEFT_Y));
+    rightFront.move(master.get_analog(ANALOG_RIGHT_Y));
+    rightBack.move(master.get_analog(ANALOG_RIGHT_Y));
+
 }
