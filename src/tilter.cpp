@@ -24,17 +24,17 @@ void coastTilter() {
 
 void scoreOP()
 {
-  double kP = 0.12; //0.11
+  double kP = 0.125; //0.12
 
-  double kD = 0;//15
+  double kD = 0.75;//15
 
   double prevError = 0;
 
   double targetError = 10;//20
 
-  int minSpeed = 25; //40
+  int minSpeed = 40; //25
 
-  while(tilterPot.get_value() < 2300 - targetError) //2375
+  while(tilterPot.get_value() < 2250 - targetError) //2300
   {
 
     if(master.get_digital(pros::E_CONTROLLER_DIGITAL_Y)) {
@@ -47,7 +47,7 @@ void scoreOP()
     rollersOP();
     liftOP();
 
-    int error = (2300 - tilterPot.get_value()) + minSpeed; //1400
+    int error = (2250 - tilterPot.get_value()) + minSpeed; //1400
 
     int derivative = error - prevError;
 
@@ -118,7 +118,7 @@ void scoreAuton2()
 
 void scoreAuton7cube()
 {
-  double kP = 0.125; //0.25
+  double kP = 0.185; //0.13
 
   double kD = 0.1;
 
@@ -126,7 +126,7 @@ void scoreAuton7cube()
 
   double targetError = 50; //25
 
-  int minSpeed = 65; //50   35
+  int minSpeed = 35; //35 50
 
   while(tilterPot.get_value() < 2300 - targetError) //2375
   {
@@ -139,12 +139,12 @@ void scoreAuton7cube()
     int power = (error*kP + derivative*kD);
 
     if(error > 1200) {
-      moveRollers(30);
+      moveRollers(10);
     }
     else
     {
-      Lift(5);
-      moveRollers(35); //15
+      Lift(10);
+      moveRollers(25); //15
       rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
       leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
     }

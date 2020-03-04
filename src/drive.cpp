@@ -339,7 +339,7 @@ void turnLeftProgramming(int angle) //-Good
 
   int distToAngle = thetaInDegrees - angle;
 
-  int minSpeed = 60;
+  int minSpeed = 65; //60
 
   int error = 0;
 
@@ -359,10 +359,11 @@ void turnLeftProgramming(int angle) //-Good
       leftSlewTurn(-power);
     }
 
-    right(0);
     left(0);
-
-  wait(100);
+    right(0);
+    brake();
+    wait(100);
+    coast();
 
 }
 
@@ -794,15 +795,15 @@ void turnRightLoadedProgramming(int angle) //-O
 void move(int distance, int heading, int speed) //-O
 {
 
-  double kP = 0.2;
+  double kP = 0.35;
 
   double correctionMultiplier = 0.2;
 
-  double startUpIncrement = 0.008;
+  double startUpIncrement = 0.5;
 
   double startSpeed = speed;
 
-  double minSpeed = 35;
+  double minSpeed = 45;
 
   double target = abs(L.get_value()) + ticsPerRotation * (distance / (wheelDiameter * pi));
 
@@ -878,7 +879,7 @@ void moveFast(int distance, int heading, int speed) //accounted for v1.09 voltag
 
   double kP = 0.5; //0.2
 
-  double correctionMultiplier = 0.5; //0.2
+  double correctionMultiplier = 0.2; //0.2
 
   double startUpIncrement = 0.5; //10
 
@@ -956,7 +957,7 @@ void moveMAX(int distance, int heading, int speed) //accounted for v1.09 voltage
 
   double kP = 0.9; //0.2
 
-  double correctionMultiplier = 0.2;
+  double correctionMultiplier = 0.25; //0.2
 
   double startUpIncrement = 0.9; //10
 
@@ -1193,6 +1194,91 @@ void moveBack(int distance, int heading, int speed) //-O
   coast();
 
 
+
+}
+
+void moveBackMAX(int distance, int heading, int speed) //-O
+{
+
+  double correctionMultiplier = 0.8;
+
+  double minSpeed = 80;
+
+  double startUpIncrement = 0.99; //0.01;
+
+  double startSpeed = speed;
+
+  double startingPoint = L.get_value();
+
+  double targetTics = ticsPerRotation * (distance / (wheelDiameter * pi));
+
+  double target = L.get_value() - targetTics;
+
+  while(L.get_value() > target)
+  {
+
+    double error = target - L.get_value();
+
+    double PIDSpeed = minSpeed + speed * error / (target - startingPoint);
+
+    if (startSpeed < 0)
+    {
+      startSpeed = 0;
+    }
+
+    PIDSpeed = (PIDSpeed - startSpeed);
+
+    startSpeed = startSpeed - startUpIncrement;
+
+    if (heading - thetaInDegreesUncorrected >= 5 || heading - thetaInDegreesUncorrected <= -5)
+    {
+      if (thetaInDegreesUncorrected < heading)
+      {
+        rightSlew(-PIDSpeed);
+        leftSlew(-(correctionMultiplier * PIDSpeed));
+      }
+
+      if (thetaInDegreesUncorrected > heading)
+      {
+        rightSlew(-(correctionMultiplier * PIDSpeed));
+        leftSlew(-PIDSpeed);
+      }
+
+      if (thetaInDegreesUncorrected == heading)
+      {
+        rightSlew(-PIDSpeed);
+        leftSlew(-PIDSpeed);
+      }
+    }
+    else
+    {
+    if (thetaInDegreesUncorrected < heading)
+    {
+      rightSlew(-PIDSpeed);
+      leftSlew(-(PIDSpeed * 0.9));
+    }
+
+    if (thetaInDegreesUncorrected > heading)
+    {
+      rightSlew(-(PIDSpeed * 0.9));
+      leftSlew(-PIDSpeed);
+    }
+
+    if (thetaInDegreesUncorrected == heading)
+    {
+      rightSlew(-PIDSpeed);
+      leftSlew(-PIDSpeed);
+    }
+  }
+}
+
+  right(0);
+  left(0);
+  brake();
+
+  wait(200);
+
+  coast();
 
 }
 
@@ -1718,7 +1804,7 @@ void sweepRightProgramming(int angle, int rightSideSpeed) //-O
 void sweepRightBackProgramming(int angle, int leftSideSpeed) //-O
 {
 
-  double kP = 0.675; //0.025; //0.17;
+  double kP = 0.75; //0.675
 
   double kI = 0;
 
@@ -1730,7 +1816,7 @@ void sweepRightBackProgramming(int angle, int leftSideSpeed) //-O
 
   int distToAngle = thetaInDegrees - angle;
 
-  int minSpeed = 45; //40
+  int minSpeed = 45; //45
 
     while(thetaInDegreesUncorrected < angle - targetError) //|| thetaInDegrees > angle + targetError)
     {
@@ -2080,7 +2166,7 @@ void STurn_RedFront()
   sweepRightBackQuick(30); //35
   moveRollers(0);
   brakeRollers();
-  moveBackFast(40, 35, 127); //38
+  moveBackMAX(38, 32, 127); //40
   moveRollers(-200);
 }
 
@@ -2115,7 +2201,7 @@ void STurn_BlueFront()
 {
   sweepLeftBackQuick(-35);
   moveRollers(0);
-  moveBackFast(34, -35, 127);
+  moveBackFast(42, -38, 127); //38
 }
 
 void STurn_BlueFront3()

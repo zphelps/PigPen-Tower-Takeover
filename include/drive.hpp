@@ -55,6 +55,7 @@ void moveFast(int distance, int heading, int speed); //-O
 void moveMAX(int distance, int heading, int speed); //accounted for v1.09 voltage change
 void moveLoaded(int distance, int heading, int speed); //-O
 void moveBack(int distance, int heading, int speed); //-O
+void moveBackMAX(int distance, int heading, int speed); //-O
 void moveBackNoPos(int distance, int speed); //-O
 void moveBackLoaded(int distance, int heading, int speed); //-O
 void moveBackFast(int distance, int heading, int speed); //-O
