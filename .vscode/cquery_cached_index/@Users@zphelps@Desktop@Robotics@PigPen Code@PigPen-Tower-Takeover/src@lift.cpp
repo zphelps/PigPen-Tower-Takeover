@@ -67,12 +67,12 @@ void liftDownAuton(void* parameter)
 void cube_latch()
 {
   Lift(-100);
-  wait(200);
-  moveRollers(150);
-  wait(220);
+  wait(125); //200
+  moveRollers(200);
+  wait(300); //220
   moveRollers(0);
   brakeRollers();
-  wait(500);
+  wait(500); //500
   Lift(0);
   lift_brake();
 }

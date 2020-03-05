@@ -8,8 +8,8 @@ pros::ADILineSensor cubeDetector('B');
 
 void moveRollers(int speed)
 {
-  leftRoller.move(-speed);
-  rightRoller.move(-speed);
+  leftRoller.move_velocity(-speed);
+  rightRoller.move_velocity(-speed);
 }
 
 void brakeRollers()

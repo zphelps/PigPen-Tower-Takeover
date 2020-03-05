@@ -139,7 +139,7 @@ void scoreAuton7cube()
     int power = (error*kP + derivative*kD);
 
     if(error > 1200) {
-      moveRollers(10);
+      moveRollers(35);
     }
     else
     {

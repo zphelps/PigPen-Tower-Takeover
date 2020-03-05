@@ -879,7 +879,7 @@ void moveFast(int distance, int heading, int speed) //accounted for v1.09 voltag
 
   double kP = 0.5; //0.2
 
-  double correctionMultiplier = 0.2; //0.2
+  double correctionMultiplier = 0.15; //0.2
 
   double startUpIncrement = 0.5; //10
 
@@ -1202,7 +1202,7 @@ void moveBackMAX(int distance, int heading, int speed) //-O
 
   double correctionMultiplier = 0.8;
 
-  double minSpeed = 80;
+  double minSpeed = 70; //80
 
   double startUpIncrement = 0.99; //0.01;
 
@@ -2166,7 +2166,7 @@ void STurn_RedFront()
   sweepRightBackQuick(30); //35
   moveRollers(0);
   brakeRollers();
-  moveBackMAX(38, 32, 127); //40
+  moveBackMAX(38, 35, 127); //38
   moveRollers(-200);
 }
 
@@ -2201,7 +2201,7 @@ void STurn_BlueFront()
 {
   sweepLeftBackQuick(-35);
   moveRollers(0);
-  moveBackFast(42, -38, 127); //38
+  moveBackFast(39, -35, 127); //38
 }
 
 void STurn_BlueFront3()
