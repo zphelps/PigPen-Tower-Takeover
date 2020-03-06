@@ -154,15 +154,15 @@ void programming_skills_75()
   brakeRollers();
   wait(50);
   moveRollers(-200);
-  moveFast(40, 0, 90); //Back to 0 degree heading
+  moveFast(41, 0, 90); //Back to 0 degree heading
   sweepRight(45); //Turn towards goal zone
   moveRollers(0);
   brakeRollers();
 
   moveLoaded(8, 45, 127); //4
   timedDrive(150, 35); //Timed Drive to prevent move() from getting stuck in loop
-  moveRollers(60);
-  wait(400);
+  moveRollers(65);
+  wait(500);
   moveRollers(0);
   scoreAuton9Cube();
   pros::Task task1(tilterBack);
@@ -171,7 +171,7 @@ void programming_skills_75()
   wait(100);
 
   turnRightProgramming(92);
-  moveBackFast(15, 90, 127); //16, 60
+  moveBackFast(16, 90, 127); //16, 60
   wait(100);
   sweepRightBackProgramming(180, 2); //Align towards field perimeter
   timedDrive(800, -50);
@@ -182,6 +182,9 @@ void programming_skills_75()
   moveFast(34, 180, 127); //75
 
   turnLeft(150);
+  moveRollers(0);
+  wait(50);
+  moveRollers(-200); //Failsafe if cube gets stuck
   moveFast(13, 150, 127); //155
   wait(250);
   moveBackFast(6, 150, 127);
@@ -196,8 +199,8 @@ void programming_skills_75()
   pros::Task lift_down_1(liftDown);
   turnRightProgramming(180);
 
-  moveRollers(0);
-  moveBackFast(8, 180, 127); //8
+  moveBackFast(8, 180, 100); //8
+  wait(100);
   sweepRightBackProgramming(270, 2); //turn towards tall tower
   moveRollers(-200);
   moveFast(8, 270, 100); //10
@@ -236,7 +239,7 @@ void programming_skills_75()
   moveFast(8, 220, 50); //8
   moveRollers(200);
   wait(300);
-  moveBackFast(10, 220, 100); //10
+  moveBackFast(14, 220, 100); //10
   moveRollers(-200);
   pros::Task lift_down3(liftDown);
   Lift(10);
@@ -579,7 +582,7 @@ void autonomous()
   //blue_front_5_cubes();
   //blue_front_6_cubes();
   //blue_back();
-  programming_skills_75();
+  //programming_skills_75();
 
   //TEST TURNS*****************************************************************
   /*
@@ -592,36 +595,37 @@ void autonomous()
   */
 
   //Autonomous Switch
-  switch(autonIndex){
-    case 0:
-      red_front_8_cubes();
-      break;
-    case 1:
-      red_front_9_cubes();
-      break;
-    case 2:
-      red_front_7_cubes();
-      break;
-    case 3:
-      //Red Back
-      red_back();
-      break;
-    case 4:
-      blue_front_8_cubes();
-      break;
-    case 5:
-      blue_front_9_cubes();
-      break;
-    case 6:
-      blue_front_7_cubes();
-      break;
-    case 7:
-      //Blue Back
-      blue_back();
-      break;
-    case 8:
-      programming_skills_75();
-      break;
-  }
+  //
+  // switch(autonIndex){
+  //   case 0:
+  //     red_front_8_cubes();
+  //     break;
+  //   case 1:
+  //     red_front_9_cubes();
+  //     break;
+  //   case 2:
+  //     red_front_7_cubes();
+  //     break;
+  //   case 3:
+  //     //Red Back
+  //     red_back();
+  //     break;
+  //   case 4:
+  //     blue_front_8_cubes();
+  //     break;
+  //   case 5:
+  //     blue_front_9_cubes();
+  //     break;
+  //   case 6:
+  //     blue_front_7_cubes();
+  //     break;
+  //   case 7:
+  //     //Blue Back
+  //     blue_back();
+  //     break;
+  //   case 8:
+  //     programming_skills_75();
+  //     break;
+  // }
 
 }
