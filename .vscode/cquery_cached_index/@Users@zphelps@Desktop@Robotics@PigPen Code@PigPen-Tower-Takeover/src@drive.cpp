@@ -51,6 +51,8 @@ double rGlobal = 0;
 double thetaGlobal = 0;
 
 //************POSITION TRACKING*****************
+// current_position(void*parameter) is a task is run in initialize()
+// the task is used for ALL of our autonomous movements
 void current_position(void* parameter)
 {
   pros::lcd::initialize();
@@ -92,20 +94,18 @@ void current_position(void* parameter)
     thetaInDegrees = 360 + thetaInDegrees;
   }
 
-//X & Y Calculation
-/*
-  if (deltaTheta == 0)
-  {
-    deltaxlocal = deltaS;
-    deltaylocal = deltaR;
-  }
-  else
-  {
-    deltaxlocal = 2 * sin(deltaTheta / 2) * ((deltaS / deltaTheta) + rearOffset);
-
-    deltaylocal = 2 * sin(deltaTheta / 2) * ((deltaR / deltaTheta) + rightOffset);
-  }
-*/
+//X & Y Calculation -NOT currently used
+  // if (deltaTheta == 0)
+  // {
+  //   deltaxlocal = deltaS;
+  //   deltaylocal = deltaR;
+  // }
+  // else
+  // {
+  //   deltaxlocal = 2 * sin(deltaTheta / 2) * ((deltaS / deltaTheta) + rearOffset);
+  //
+  //   deltaylocal = 2 * sin(deltaTheta / 2) * ((deltaR / deltaTheta) + rightOffset);
+  // }
 
 deltaxlocal = deltaS;
 deltaylocal = deltaR;
@@ -123,7 +123,6 @@ deltaylocal = deltaR;
   {
     thetaLocal = atan(deltaylocal/deltaxlocal);
   }
-
 
 //Rotate from local to global coordinate System
   rGlobal  = rlocal;
@@ -150,12 +149,14 @@ yglobal = yglobal + deltayglobal;
 
 }
 
+//Resets thetaInDegrees to @param degrees
 void resetTheta(int degrees)
 {
   thetaInRadians = degrees * PI /180;
 }
 
 //************BASIC FUNCTIONS*******************
+//Basic functions used to simplify PROS syntax
 void left(int speed)
 {
   leftFront.move(speed);
@@ -168,6 +169,7 @@ void right(int speed)
   rightBack.move(speed);
 }
 
+//Function used to prevent timeouts
 void timedDrive(int time, int speed)
 {
   right(speed);
@@ -198,7 +200,7 @@ void wait(int duration)
   pros::delay(duration);
 }
 
-//slew control
+//slew control -> smoother autonomous movement
 const int accel_step_turn = 9;
 const int deccel_step_turn = 256; // no decel slew
 
@@ -1388,12 +1390,12 @@ void moveBackNoPos(int distance, int speed) //-O
   coast();
 }
 
-void moveBackFast(int distance, int heading, int speed) //NOT accounted for v1.09 voltage change
+void moveBackFast(int distance, int heading, int speed) //accounted for v1.09 voltage change
 {
 
   double correctionMultiplier = 0.8;
 
-  double minSpeed = 70; //60
+  double minSpeed = 30; //70
 
   double startUpIncrement = 0.9; //0.5
 
@@ -1466,7 +1468,7 @@ void moveBackFast(int distance, int heading, int speed) //NOT accounted for v1.0
   right(0);
   left(0);
   brake();
-  wait(200);
+  wait(50);
   coast();
 }
 
@@ -2161,12 +2163,13 @@ void sweepLeftBackQuick(int angle) //-O
 
 }
 
+//*******************S-Turn Functions for Autonomous routines******************
 void STurn_RedFront()
 {
-  sweepRightBackQuick(30); //35
+  sweepRightBackQuick(35); //35
   moveRollers(0);
   brakeRollers();
-  moveBackMAX(38, 35, 127); //38
+  moveBackMAX(38, 38, 127); //38
   moveRollers(-200);
 }
 
@@ -2224,16 +2227,42 @@ void STurn_BlueFront4()
   sweepLeftBackProgramming(5, 2); //3
 }
 
+void setDriveMAXCurrent() {
+  rightFront.set_current_limit(2500);
+  rightBack.set_current_limit(2500);
+  leftFront.set_current_limit(2500);
+  leftBack.set_current_limit(2500);
+}
+
 //***********************DRIVER CONTROL FUNCTIONS**********************
 void driveOP()
 {
-  coast();
+  coast(); //Fail safe if wrong autonomous is selected
 
-  //pros::lcd::print(5, "%d", L.get_value());
+  //Current control used to account for lowered current cap of motor after v1.0.9
+  //firmware update. Prevents jitter in drive.
+  if(master.get_analog(ANALOG_LEFT_Y) < 15 && master.get_analog(ANALOG_LEFT_Y) > -15) {
+    leftFront.set_current_limit(1500);
+    leftBack.set_current_limit(1500);
+  }
+  else {
+    leftFront.set_current_limit(2500);
+    leftBack.set_current_limit(2500);
+  }
 
-    leftFront.move(master.get_analog(ANALOG_LEFT_Y));
-    leftBack.move(master.get_analog(ANALOG_LEFT_Y));
-    rightFront.move(master.get_analog(ANALOG_RIGHT_Y));
-    rightBack.move(master.get_analog(ANALOG_RIGHT_Y));
+  if(master.get_analog(ANALOG_RIGHT_Y) < 15 && master.get_analog(ANALOG_RIGHT_Y) > -15) {
+    rightFront.set_current_limit(1500);
+    rightBack.set_current_limit(1500);
+  }
+  else {
+    rightFront.set_current_limit(2500);
+    rightBack.set_current_limit(2500);
+  }
+
+  //Tank drive control
+  leftFront.move(master.get_analog(ANALOG_LEFT_Y));
+  leftBack.move(master.get_analog(ANALOG_LEFT_Y));
+  rightFront.move(master.get_analog(ANALOG_RIGHT_Y));
+  rightBack.move(master.get_analog(ANALOG_RIGHT_Y));
 
 }

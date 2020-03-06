@@ -13,10 +13,11 @@ void on_center_button() {
 pros::ADIDigitalIn selector ('A');
 int autonIndex = 0;
 
+//Our autonomous selector is used to switch between various autonomous options
+//and selct one during the initialize() period of a match
 void autonSelector(void*parameter)
 {
-
-	wait(500);
+	wait(500); //Fix Bug that starts index at 2
 
 	const int autoCount = 9;
   const char *autoNames[autoCount] = {
@@ -49,21 +50,21 @@ void autonSelector(void*parameter)
 }
 
 void initialize() {
-	
-	pros::lcd::initialize();
 
-	pros::lcd::set_text(4, "Red Front - 8 Cubes");
+	pros::lcd::initialize(); //Initilize LCD
 
+	pros::lcd::set_text(4, "Red Front - 8 Cubes"); //Auton selector starting text
 
-	pros::Task lcd_task(autonSelector);
-	lcd_task.set_priority(LV_TASK_PRIO_LOW);
+	pros::Task lcd_task(autonSelector); //Initialize autonSelector();
+
+	lcd_task.set_priority(LV_TASK_PRIO_LOW); //Task infinite loop bug fix
 
 	if(pros::competition::is_autonomous()) {
 		lcd_task.remove();
 	}
 
 	//Tasks
-	pros::Task drive_pos(current_position);
+	pros::Task drive_pos(current_position); //Initialize position tracking
 }
 
 /**

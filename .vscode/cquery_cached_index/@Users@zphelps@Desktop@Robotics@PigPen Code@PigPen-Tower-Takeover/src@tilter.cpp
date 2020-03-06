@@ -22,6 +22,7 @@ void coastTilter() {
   tilter.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 }
 
+//Tilter PID loop used for driver control
 void scoreOP()
 {
   double kP = 0.125; //0.12
@@ -72,50 +73,7 @@ void scoreOP()
   //wait(100);
 }
 
-void scoreAuton2()
-{
-  double kP = 0.225;
-
-  double kD = 0.1;
-
-  double prevError = 0;
-
-  double targetError = 20;
-
-  int minSpeed = 45;
-
-  while(tilterPot.get_value() < 1350 - targetError) //|| thetaInDegrees > angle + targetError)
-  {
-    int error = (1350 - tilterPot.get_value()) + minSpeed;
-
-    int derivative = error - prevError;
-
-    prevError = error;
-
-    int power = (error*kP + derivative*kD);
-
-    if(error > 1000) //725
-    {
-      rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-      leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-    }
-    else if(error < 350) {
-      moveRollers(20);
-    }
-    else
-    {
-      Lift(10);
-      moveRollers(10);
-      rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-      leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-    }
-    moveTilter(-power);
-  }
-  Lift(0);
-  moveTilter(0);
-  moveRollers(200);
-}
-
+//Primary autonomous PID loop
 void scoreAuton7cube()
 {
   double kP = 0.185; //0.13
@@ -193,6 +151,7 @@ void scoreAuton8cube()
   //wait(100);
 }
 
+//PID loop used for programming_skills_75() and 9 cube auton
 void scoreAuton9Cube()
 {
   double kP = 0.16; //15
@@ -232,6 +191,7 @@ void scoreAuton9Cube()
   Lift(0);
 }
 
+//Function
 void halfwayPos()
 {
 
@@ -268,6 +228,7 @@ void halfwayPos()
   //moveRollers(0);
 }
 
+//Task
 void halfwayPos(void*parameter)
 {
 

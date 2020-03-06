@@ -29,28 +29,29 @@ void intakeOut()
   moveRollers(-100);
 }
 
+//Task
 void collectCube(void*parameter) {
-  while(cubeDetector.get_value() > 1900) {
+  while(cubeDetector.get_value() > 2400) {
     moveRollers(-200);
   }
   moveRollers(0);
   brakeRollers();
 }
 
+//Task
 void position_cube(void*parameter) {
   while(cubeDetector.get_value() > 2400) {
     moveRollers(50);
   }
-  //wait(30);
   moveRollers(0);
   brakeRollers();
 }
 
+//Function
 void position_cube() {
   while(cubeDetector.get_value() > 2400) {
     moveRollers(100);
   }
-  //wait(30);
   moveRollers(0);
   brakeRollers();
 }
@@ -58,7 +59,7 @@ void position_cube() {
 void rollersOP()
 {
 
-  pros::lcd::print(6, "Color: %d", cubeDetector.get_value());
+  pros::lcd::print(6, "Color: %d", cubeDetector.get_value()); //Testing 
   rightRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
   leftRoller.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 

@@ -6,22 +6,6 @@ pros::Motor lift(5, pros::E_MOTOR_GEARSET_36, false, pros::E_MOTOR_ENCODER_DEGRE
 //Sensors
 pros::ADIPotentiometer liftPot ('B');
 
-//Lift Constants
-int pickUpPos = 950;
-int pickUpPosLow = 1075;
-int downPos = 1150;
-int fourCubes = 350;
-int fiveCubes = 100;
-int allianceTower = 450;
-int shortTower = 450;
-int mediumTower = 100;
-int towerDeposit = 200;
-int mediumTowerDeposit = 15;
-int stackOnFourCubes = 200;
-int depositLastThreeCubes = 50;
-int tallTowerHeight = 25;
-
-
 void Lift(int speed)
 {
   lift.move_velocity(speed);
@@ -56,7 +40,7 @@ void moveLift(int time, int speed)
 
 void liftDown(void* parameter)
 {
-  moveLift(1200, 100);
+  moveLift(1400, 100);
 }
 
 void liftDownAuton(void* parameter)
@@ -88,11 +72,6 @@ void cube_latch_big_stack()
   wait(500);
   Lift(0);
   lift_brake();
-}
-
-void short_tower(void*paramameter)
-{
-  moveLift(1250, -127);
 }
 
 //*************************** - OP Control - ***********************************

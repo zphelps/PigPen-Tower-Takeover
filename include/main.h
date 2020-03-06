@@ -1,4 +1,7 @@
-//Tray Bot - V2
+//Zach Phelps
+//Code for Team 6842Z PigPen for Indiana State Championship
+//3-7-20
+
 #ifndef _PROS_MAIN_H_
 #define _PROS_MAIN_H_
 
@@ -18,6 +21,7 @@
 
 using namespace okapi;
 
+//Globalize Variables, Sensors, and Motors
 extern pros::ADIEncoder R;
 extern pros::ADIEncoder L;
 extern pros::Controller master;

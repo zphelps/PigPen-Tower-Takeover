@@ -1,16 +1,14 @@
 #include "main.h"
 
+//macro used to deploy our tray and roller mechanisms at beginning of match
 void deploy() {
-
   moveFast(4, 0, 127);
   moveRollers(200);
-
 
   Lift(10);
 
   timedDrive(500, -60);
   wait(1000); //500
-
 }
 
 void deployOP() {

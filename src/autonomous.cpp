@@ -1,6 +1,9 @@
 #include "main.h"
 
 //*****************PROGRAMMING SKILLS************************
+
+// programming_skills_65() is not currently used. It is our "safe" programming skills
+// in the event that our 75 point programming skills does not function correctly.
 void programming_skills_65()
 {
     resetTheta(0);
@@ -51,7 +54,7 @@ void programming_skills_65()
     moveRollers(0);
     moveRollers(15);
     wait(30);
-    scoreAuton2();
+    scoreAuton9Cube();
     pros::Task task1(tilterBack);
     moveRollers(90);
     moveBack(10, 45, 100);
@@ -114,24 +117,25 @@ void programming_skills_65()
 
 }
 
-void programming_skills_70()
+// State programming skills
+void programming_skills_75()
 {
-  wait(200);
-  resetTheta(0);
+  wait(200); //Wait to prevent bug that occasionally skips deploy();
+  resetTheta(0); //Reset theta to 0 to account for accidental bumping of the robot before match.
   deploy();
-  wait(500);
+  wait(500); //Allow robot to settle before proceeding
   pros::Task titler_Back(tilterBack);
   moveRollers(-200);
-  moveFast(40, 0, 45); //60 Fast
+  moveFast(40, 0, 45);
   wait(150);
-  moveBack(2, 0, 100); //2
+  moveBack(2, 0, 100);
 
-  sweepRightBackProgramming(90, 2);
+  sweepRightBackProgramming(90, 2); //turn towards alliance tower
   cube_latch();
-  moveLift(150, -100); //150
+  moveLift(150, -100); //raise to alliance tower height
   moveFast(8, 90, 50);//Fast
-  moveRollers(200);
-  wait(300); //350
+  moveRollers(200); //drop cube into tower
+  wait(300);
   moveBack(2, 90, 100); //2
 
   moveRollers(-200);
@@ -139,23 +143,24 @@ void programming_skills_70()
   Lift(5);
   turnLeftLoaded(8); //8
 
-  moveFast(25, 8, 127);
+  moveFast(25, 8, 127); //Move at 8 degree heading to avoid tower.
   moveRollers(0);
   Lift(0);
   wait(10);
   moveRollers(-200);
-  moveFast(8, -30, 127); //10, -30
+  moveFast(8, -30, 127); //Change heading to align with cubes
 
   moveRollers(0);
   brakeRollers();
   wait(50);
   moveRollers(-200);
-  moveFast(40, 0, 90); //38, 90
-  sweepRight(45);
-  moveRollers(-100);
+  moveFast(40, 0, 90); //Back to 0 degree heading
+  sweepRight(45); //Turn towards goal zone
+  moveRollers(0);
+  brakeRollers();
 
   moveLoaded(8, 45, 127); //4
-  timedDrive(150, 35);
+  timedDrive(150, 35); //Timed Drive to prevent move() from getting stuck in loop
   moveRollers(60);
   wait(400);
   moveRollers(0);
@@ -163,44 +168,45 @@ void programming_skills_70()
   pros::Task task1(tilterBack);
   moveRollers(200);
   moveBackFast(6, 45, 50); //8
-
-  turnRightProgramming(90);
-  moveBackFast(15, 90, 75); //16, 60
   wait(100);
-  sweepRightBackProgramming(180, 2);
-  timedDrive(800, -50); //800
-  resetTheta(180);
-  wait(250);
+
+  turnRightProgramming(92);
+  moveBackFast(15, 90, 127); //16, 60
+  wait(100);
+  sweepRightBackProgramming(180, 2); //Align towards field perimeter
+  timedDrive(800, -50);
+  resetTheta(180); //resets theta mid-run to prevent drift
+  wait(250); //Make sure robot settles
   moveRollers(-200);
 
   moveFast(34, 180, 127); //75
 
   turnLeft(150);
-  moveFast(13, 150, 90); //155
+  moveFast(13, 150, 127); //155
   wait(250);
-  moveBackFast(4, 150, 50);
+  moveBackFast(6, 150, 127);
   wait(250);
   cube_latch();
   moveLift(175, -100); //175
-  moveFast(4, 150, 50);
-  moveRollers(150);
-  wait(250);
-  moveBackFast(6, 150, 75); //180
+  moveFast(6, 150, 50);
+  moveRollers(130);
+  wait(350);
+  moveBackFast(5, 150, 100); //180
   moveRollers(-200);
   pros::Task lift_down_1(liftDown);
   turnRightProgramming(180);
 
   moveRollers(0);
-  moveBackFast(8, 180, 100); //8
-  sweepRightBackProgramming(270, 2); //270,2
+  moveBackFast(8, 180, 127); //8
+  sweepRightBackProgramming(270, 2); //turn towards tall tower
   moveRollers(-200);
   moveFast(8, 270, 100); //10
-  timedDrive(350, 35);
-  wait(200);
-  moveBackFast(6, 270, 15);
+  timedDrive(350, 35); //Prevent getting stuck in loop.
+  wait(200);           //Bumps into tower for point of reference
+  moveBackFast(8, 270, 100);
   wait(200);
   cube_latch();
-  moveLift(500, -127); //500
+  moveLift(500, -127);
   moveFast(2, 270, 60);
   timedDrive(250, 30);
   moveRollers(125);
@@ -210,31 +216,34 @@ void programming_skills_70()
   moveRollers(-200);
   pros::Task lift_down2(liftDown);
 
-  turnLeftProgramming(181); //180
+  turnLeftProgramming(180); //turn to 180 degree heading
   moveRollers(-200);
   Lift(10);
 
-  moveMAX(90, 181, 35); //86 in total
+  moveMAX(90, 180, 35); //Cross field and get remaining cubes in L-stacks
+  timedDrive(450, 35);
   Lift(0);
   wait(300);
 
-  moveBackFast(15, 181, 20); //12
+  moveBackFast(25, 180, 127); //15
   wait(200);
   moveRollers(-100);
-  turnRightProgramming(225);
+  turnRightProgramming(220);
   moveRollers(0);
   moveRollers(-200);
   cube_latch();
   moveLift(450, -100);
-  moveFast(5, 225, 50); //8
+  moveFast(8, 220, 50); //8
   moveRollers(200);
   wait(300);
-  moveBackFast(8, 225, 100); //10
+  moveBackFast(10, 220, 100); //10
   moveRollers(-200);
   pros::Task lift_down3(liftDown);
-  turnLeftLoaded(135);
+  Lift(10);
+  turnLeftLoaded(135); //Turn towards goal zone
+  Lift(0);
   moveMAX(40, 135, 127);
-  timedDrive(200, 35);
+  timedDrive(200, 35); //Timeout prevention
   moveRollers(60);
   wait(400);
   moveRollers(0);
@@ -243,13 +252,14 @@ void programming_skills_70()
   pros::Task task5(tilterBack);
   moveRollers(90);
   moveBack(15, 135, 100);
-
 }
 
 //****************RED AUTONOMOUS*****************************
+
+//Only used for matches with weak partner and strong opponent
 void red_front_9_cubes()
 {
-  wait(200);
+  wait(200); //Prevent bug that skips deployOP();
   resetTheta(0);
   deployOP();
   moveRollers(-200);
@@ -259,7 +269,7 @@ void red_front_9_cubes()
 
   //S-Turn to other Cubes
   Lift(0);
-  STurn_RedFront();
+  STurn_RedFront(); //Move to second row of cubes
   moveRollers(-200);
   move(18, 0, 75);
   wait(400);
@@ -267,7 +277,6 @@ void red_front_9_cubes()
   moveLift(400, -100);
   moveRollers(-200);
   move(5, 0, 100);
-  //moveRollers(0);
   pros::Task liftDown(liftDownAuton);
   moveBack(3, 0, 127);
   moveRollers(-200);
@@ -275,10 +284,10 @@ void red_front_9_cubes()
 
   //Turn to the corner
   turnRightLoaded(135);
-  pros::Task h(halfwayPos);
+  pros::Task h(halfwayPos); //move tilter to shorten tilting time in goal zone
   moveLoaded(32, 135, 127);
   moveRollers(-200);
-  timedDrive(300, 30);
+  timedDrive(300, 30); //Timedout prevention
   scoreAuton9Cube();
   moveRollers(200);
   pros::Task task1(tilterBack);
@@ -289,6 +298,7 @@ void red_front_9_cubes()
 
 }
 
+//Default autonomous
 void red_front_7_cubes()
 {
   wait(200);
@@ -323,6 +333,7 @@ void red_front_7_cubes()
   moveTilter(0);
 }
 
+//Not used for state -> GDC line cross ruling
 void red_front_8_cubes()
 {
   wait(200);
@@ -391,6 +402,8 @@ void red_back()
 }
 
 //***************BLUE AUTONOMOUS*****************************
+
+//Only used for matches with weak partner and strong opponent
 void blue_front_9_cubes()
 {
   resetTheta(0);
@@ -439,6 +452,7 @@ void blue_front_9_cubes()
 
 }
 
+//Default autonomous
 void blue_front_7_cubes()
 {
   wait(200);
@@ -474,6 +488,7 @@ void blue_front_7_cubes()
 
 }
 
+//Not used for state -> GDC line cross ruling
 void blue_front_8_cubes()
 {
 
@@ -502,7 +517,6 @@ void blue_front_8_cubes()
   moveRollers(0);
   moveRollers(20);
   wait(30);
-  //scoreAuton2();
   scoreAuton9Cube();
   pros::Task task1(tilterBack);
   moveRollers(90);
@@ -511,6 +525,7 @@ void blue_front_8_cubes()
   moveTilter(0);
 }
 
+//Protected Zone Autonomous
 void blue_back()
 {
   wait(200);
@@ -544,7 +559,10 @@ void blue_back()
 
 void autonomous()
 {
-  //1-10-20
+
+  setDriveMAXCurrent(); //Fixes bug that causes drive to slow during autonomous();
+
+  //AUTON TESTS****************************************************************
   //Red side
   //deploy();
   //red_front_9_cubes();
@@ -561,9 +579,9 @@ void autonomous()
   //blue_front_5_cubes();
   //blue_front_6_cubes();
   //blue_back();
-  programming_skills_70();
+  programming_skills_75();
 
-  //sweepLeft(-90);
+  //TEST TURNS*****************************************************************
   /*
   wait(500);
   turnRightProgramming(180);
@@ -572,7 +590,8 @@ void autonomous()
   wait(500);
   turnRightProgramming(360);
   */
-/*
+
+  //Autonomous Switch
   switch(autonIndex){
     case 0:
       red_front_8_cubes();
@@ -601,9 +620,8 @@ void autonomous()
       blue_back();
       break;
     case 8:
-      programming_skills3();
+      programming_skills_75();
       break;
   }
-*/
 
 }

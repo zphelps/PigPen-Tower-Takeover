@@ -10,6 +10,8 @@ void opcontrol() {
 		liftOP();
 		rollersOP();
     tilterOP();
+
+    //Allows us to run our autonomous with out field control during testing.
     if (master.get_digital(DIGITAL_A) && !pros::competition::is_connected())
     {
       autonomous();

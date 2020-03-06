@@ -60,7 +60,7 @@ void moveBackNoPos(int distance, int speed); //-O
 void moveBackLoaded(int distance, int heading, int speed); //-O
 void moveBackFast(int distance, int heading, int speed); //-O
 
-
+void setDriveMAXCurrent();
 void driveOP();
 
 #endif
