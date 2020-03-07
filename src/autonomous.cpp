@@ -128,52 +128,53 @@ void programming_skills_75()
   moveRollers(-200);
   moveFast(40, 0, 45);
   wait(150);
-  moveBack(2, 0, 100);
+  moveBack(2, 0, 100); //2
 
   sweepRightBackProgramming(90, 2); //turn towards alliance tower
   cube_latch();
   moveLift(150, -100); //raise to alliance tower height
   moveFast(8, 90, 50);//Fast
-  moveRollers(200); //drop cube into tower
+  moveRollers(150); //drop cube into tower //200
   wait(300);
-  moveBack(2, 90, 100); //2
+  moveBack(3, 90, 100); //2
 
   moveRollers(-200);
   pros::Task lift_down(liftDown);
   Lift(5);
-  turnLeftLoaded(8); //8
+  turnLeftProgramming(6); //8 Loaded
 
-  moveFast(25, 8, 127); //Move at 8 degree heading to avoid tower.
+  moveFast(22, 6, 127); //Move at 8 degree heading to avoid tower. //25
   moveRollers(0);
   Lift(0);
   wait(10);
   moveRollers(-200);
-  moveFast(8, -30, 127); //Change heading to align with cubes
+  moveFast(12, -25, 127); //Change heading to align with cubes //8
 
-  moveRollers(0);
+  //moveRollers(0);
   brakeRollers();
   wait(50);
   moveRollers(-200);
-  moveFast(41, 0, 90); //Back to 0 degree heading
+  moveFast(41, -3, 90); //Back to 0 degree heading //41
   sweepRight(45); //Turn towards goal zone
   moveRollers(0);
   brakeRollers();
 
-  moveLoaded(8, 45, 127); //4
+  moveLoaded(6, 45, 127); //8
   timedDrive(150, 35); //Timed Drive to prevent move() from getting stuck in loop
-  moveRollers(65);
-  wait(500);
+  moveRollers(50); //65
+  wait(550);
   moveRollers(0);
   scoreAuton9Cube();
   pros::Task task1(tilterBack);
   moveRollers(200);
-  moveBackFast(6, 45, 50); //8
+  wait(200);
+  moveBackFast(5, 45, 50); //6
   wait(100);
 
-  turnRightProgramming(92);
+  turnRightProgramming(90);
   moveBackFast(16, 90, 127); //16, 60
   wait(100);
-  sweepRightBackProgramming(180, 2); //Align towards field perimeter
+  sweepRightBackProgramming(178, 2); //Align towards field perimeter
   timedDrive(800, -50);
   resetTheta(180); //resets theta mid-run to prevent drift
   wait(250); //Make sure robot settles
@@ -181,17 +182,17 @@ void programming_skills_75()
 
   moveFast(34, 180, 127); //75
 
-  turnLeft(150);
+  turnLeft(145); //150
   moveRollers(0);
   wait(50);
   moveRollers(-200); //Failsafe if cube gets stuck
-  moveFast(13, 150, 127); //155
-  wait(250);
-  moveBackFast(6, 150, 127);
+  moveFast(12, 145, 50); //127
+  wait(300);
+  moveBackFast(6, 145, 127);
   wait(250);
   cube_latch();
   moveLift(175, -100); //175
-  moveFast(6, 150, 50);
+  moveFast(6, 145, 50);
   moveRollers(130);
   wait(350);
   moveBackFast(5, 150, 100); //180
@@ -199,7 +200,7 @@ void programming_skills_75()
   pros::Task lift_down_1(liftDown);
   turnRightProgramming(180);
 
-  moveBackFast(8, 180, 100); //8
+  moveBackFast(9, 180, 100); //8
   wait(100);
   sweepRightBackProgramming(270, 2); //turn towards tall tower
   moveRollers(-200);
@@ -219,16 +220,16 @@ void programming_skills_75()
   moveRollers(-200);
   pros::Task lift_down2(liftDown);
 
-  turnLeftProgramming(180); //turn to 180 degree heading
+  turnLeftProgramming(179); //turn to 180 degree heading
   moveRollers(-200);
   Lift(10);
 
-  moveMAX(90, 180, 35); //Cross field and get remaining cubes in L-stacks
+  moveMAX(90, 179, 35); //Cross field and get remaining cubes in L-stacks
   timedDrive(450, 35);
   Lift(0);
   wait(300);
 
-  moveBackFast(25, 180, 127); //15
+  moveBackFast(25, 179, 127); //15
   wait(200);
   moveRollers(-100);
   turnRightProgramming(220);
@@ -237,9 +238,9 @@ void programming_skills_75()
   cube_latch();
   moveLift(450, -100);
   moveFast(8, 220, 50); //8
-  moveRollers(200);
-  wait(300);
-  moveBackFast(14, 220, 100); //10
+  moveRollers(150);
+  wait(350);
+  moveBackFast(10, 220, 100); //14
   moveRollers(-200);
   pros::Task lift_down3(liftDown);
   Lift(10);
@@ -582,7 +583,7 @@ void autonomous()
   //blue_front_5_cubes();
   //blue_front_6_cubes();
   //blue_back();
-  //programming_skills_75();
+  programming_skills_75();
 
   //TEST TURNS*****************************************************************
   /*
@@ -595,7 +596,7 @@ void autonomous()
   */
 
   //Autonomous Switch
-  //
+
   // switch(autonIndex){
   //   case 0:
   //     red_front_8_cubes();

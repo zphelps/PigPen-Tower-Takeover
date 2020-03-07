@@ -331,7 +331,7 @@ void turnLeft(int angle) //-X
 void turnLeftProgramming(int angle) //-Good
 {
 
-  double kP = 0.5; //0.465
+  double kP = 0.5; //0.5
 
   double kD = 0.35; //0.35
 
@@ -341,7 +341,7 @@ void turnLeftProgramming(int angle) //-Good
 
   int distToAngle = thetaInDegrees - angle;
 
-  int minSpeed = 65; //60
+  int minSpeed = 70; //65
 
   int error = 0;
 
@@ -887,7 +887,7 @@ void moveFast(int distance, int heading, int speed) //accounted for v1.09 voltag
 
   double startSpeed = speed;
 
-  double minSpeed = 45; //35
+  double minSpeed = 55; //45
 
   double target = abs(L.get_value()) + ticsPerRotation * (distance / (wheelDiameter * pi));
 

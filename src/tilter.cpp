@@ -160,9 +160,9 @@ void scoreAuton9Cube()
 
   double prevError = 0;
 
-  double targetError = 30; //20
+  double targetError = 35; //30
 
-  int minSpeed = 25; //20
+  int minSpeed = 35; //25
 
   while(tilterPot.get_value() < 2300 - targetError) //2375
   {
