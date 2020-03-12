@@ -136,25 +136,25 @@ void programming_skills_75()
   moveFast(8, 90, 50);//Fast
   moveRollers(150); //drop cube into tower //200
   wait(300);
-  moveBack(3, 90, 100); //2
+  moveBack(2, 90, 100); //2
 
   moveRollers(-200);
   pros::Task lift_down(liftDown);
   Lift(5);
-  turnLeftProgramming(6); //8 Loaded
+  turnLeftProgramming(8); //8 Loaded
 
-  moveFast(22, 6, 127); //Move at 8 degree heading to avoid tower. //25
+  moveFast(25, 8, 127); //Move at 8 degree heading to avoid tower. //25
   moveRollers(0);
   Lift(0);
   wait(10);
   moveRollers(-200);
-  moveFast(12, -25, 127); //Change heading to align with cubes //8
+  moveFast(8, -30, 127); //Change heading to align with cubes //8
 
   //moveRollers(0);
   brakeRollers();
   wait(50);
   moveRollers(-200);
-  moveFast(41, -3, 90); //Back to 0 degree heading //41
+  moveFast(41, 0, 90); //Back to 0 degree heading //41, -3
   sweepRight(45); //Turn towards goal zone
   moveRollers(0);
   brakeRollers();
@@ -162,7 +162,7 @@ void programming_skills_75()
   moveLoaded(6, 45, 127); //8
   timedDrive(150, 35); //Timed Drive to prevent move() from getting stuck in loop
   moveRollers(50); //65
-  wait(550);
+  wait(500); //550
   moveRollers(0);
   scoreAuton9Cube();
   pros::Task task1(tilterBack);
@@ -171,8 +171,8 @@ void programming_skills_75()
   moveBackFast(5, 45, 50); //6
   wait(100);
 
-  turnRightProgramming(90);
-  moveBackFast(16, 90, 127); //16, 60
+  turnRightProgramming(89); //90
+  moveBackFast(15, 90, 127); //16, 60
   wait(100);
   sweepRightBackProgramming(178, 2); //Align towards field perimeter
   timedDrive(800, -50);
@@ -195,7 +195,7 @@ void programming_skills_75()
   moveFast(6, 145, 50);
   moveRollers(130);
   wait(350);
-  moveBackFast(5, 150, 100); //180
+  moveBackFast(4, 150, 100); //180
   moveRollers(-200);
   pros::Task lift_down_1(liftDown);
   turnRightProgramming(180);
@@ -213,26 +213,28 @@ void programming_skills_75()
   moveLift(500, -127);
   moveFast(2, 270, 60);
   timedDrive(250, 30);
-  moveRollers(125);
-  wait(300);
+  moveRollers(115);
+  wait(350);
 
-  moveBackLoaded(1, 270, 10);
+  moveBackLoaded(3, 270, 10); //1
   moveRollers(-200);
   pros::Task lift_down2(liftDown);
 
-  turnLeftProgramming(179); //turn to 180 degree heading
+  turnLeftProgramming(178); //turn to 180 degree heading
   moveRollers(-200);
   Lift(10);
 
-  moveMAX(90, 179, 35); //Cross field and get remaining cubes in L-stacks
+  moveMAX(90, 178, 35); //Cross field and get remaining cubes in L-stacks
   timedDrive(450, 35);
   Lift(0);
   wait(300);
 
-  moveBackFast(25, 179, 127); //15
+  moveBackFast(25, 178, 127); //15
   wait(200);
-  moveRollers(-100);
-  turnRightProgramming(220);
+  moveRollers(2);
+  wait(50);
+  moveRollers(-200);
+  turnRightLoaded(220);
   moveRollers(0);
   moveRollers(-200);
   cube_latch();
@@ -240,11 +242,11 @@ void programming_skills_75()
   moveFast(8, 220, 50); //8
   moveRollers(150);
   wait(350);
-  moveBackFast(10, 220, 100); //14
+  moveBackFast(16, 220, 100); //14
   moveRollers(-200);
   pros::Task lift_down3(liftDown);
   Lift(10);
-  turnLeftLoaded(135); //Turn towards goal zone
+  turnLeftProgramming(135); //Turn towards goal zone
   Lift(0);
   moveMAX(40, 135, 127);
   timedDrive(200, 35); //Timeout prevention
@@ -310,15 +312,15 @@ void red_front_7_cubes()
   deploy();
   moveRollers(-200);
   Lift(5);
-  moveFast(40, 0, 60); //75
+  moveFast(40, 0, 45); //75
   wait(300);
 
   //S-Turn to other Cubes
   Lift(0);
   STurn_RedFront();
   moveRollers(-200);
-  moveFast(16, 0, 35); //16, 75
-  wait(250);
+  moveFast(14, 0, 25); //16, 75
+  wait(300);
   moveBack(1, 0, 50); //Prevent robot from hitting cube
 
   //Turn to the corner
@@ -331,6 +333,7 @@ void red_front_7_cubes()
   moveRollers(0);
   scoreAuton7cube();
   moveRollers(200);
+  wait(100);
   pros::Task task1(tilterBack);
   moveBackNoPos(25, 127);
   task1.remove();
@@ -464,26 +467,27 @@ void blue_front_7_cubes()
   deploy();
   moveRollers(-200);
   Lift(5);
-  moveFast(40, 0, 60); //75
+  moveFast(40, 0, 45); //60
   wait(300);
 
   //S-Turn to other Cubes
   Lift(0);
   STurn_BlueFront();
   moveRollers(-200);
-  moveFast(10, 0, 35); //16, 75
+  moveFast(12, 0, 35); //10, 35
   wait(250);
   moveBack(1, 0, 50); //Prevent robot from hitting cube
 
   //Turn to the corner
   turnLeftProgramming(-90);
   moveFast(6, -90, 127); //6
-  moveMAX(26, -138, 127); //30
+  moveMAX(25, -138, 127); //30
   timedDrive(350, 30);
   moveRollers(100);
   wait(300);
   moveRollers(0);
   scoreAuton7cube();
+  wait(200);
   moveRollers(200);
   pros::Task task1(tilterBack);
   moveBackNoPos(25, 127);
@@ -583,7 +587,7 @@ void autonomous()
   //blue_front_5_cubes();
   //blue_front_6_cubes();
   //blue_back();
-  programming_skills_75();
+  //programming_skills_75();
 
   //TEST TURNS*****************************************************************
   /*
@@ -597,36 +601,36 @@ void autonomous()
 
   //Autonomous Switch
 
-  // switch(autonIndex){
-  //   case 0:
-  //     red_front_8_cubes();
-  //     break;
-  //   case 1:
-  //     red_front_9_cubes();
-  //     break;
-  //   case 2:
-  //     red_front_7_cubes();
-  //     break;
-  //   case 3:
-  //     //Red Back
-  //     red_back();
-  //     break;
-  //   case 4:
-  //     blue_front_8_cubes();
-  //     break;
-  //   case 5:
-  //     blue_front_9_cubes();
-  //     break;
-  //   case 6:
-  //     blue_front_7_cubes();
-  //     break;
-  //   case 7:
-  //     //Blue Back
-  //     blue_back();
-  //     break;
-  //   case 8:
-  //     programming_skills_75();
-  //     break;
-  // }
+  switch(autonIndex){
+    case 0:
+      red_front_8_cubes();
+      break;
+    case 1:
+      red_front_9_cubes();
+      break;
+    case 2:
+      red_front_7_cubes();
+      break;
+    case 3:
+      //Red Back
+      red_back();
+      break;
+    case 4:
+      blue_front_8_cubes();
+      break;
+    case 5:
+      blue_front_9_cubes();
+      break;
+    case 6:
+      blue_front_7_cubes();
+      break;
+    case 7:
+      //Blue Back
+      blue_back();
+      break;
+    case 8:
+      programming_skills_75();
+      break;
+   }
 
 }

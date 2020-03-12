@@ -7,8 +7,8 @@ void deploy() {
 
   Lift(10);
 
-  timedDrive(500, -60);
-  wait(1000); //500
+  timedDrive(500, -35); //500, -60
+  wait(500); //1000
 }
 
 void deployOP() {

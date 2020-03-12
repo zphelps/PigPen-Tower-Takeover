@@ -659,7 +659,7 @@ void turnRightHalfLoaded(int angle) //-Not needed for current programming_skills
 void turnRightLoaded(int angle) //-O
 {
 
-  double kP = 0.495; //465
+  double kP = 0.5; //465
 
   double kI = 0;
 
@@ -671,7 +671,7 @@ void turnRightLoaded(int angle) //-O
 
   int distToAngle = thetaInDegrees - angle;
 
-  int minSpeed = 60; //65
+  int minSpeed = 70; //65
 
   while(thetaInDegreesUncorrected < angle - targetError) // || thetaInDegrees > angle + targetError)
   {
@@ -1395,7 +1395,7 @@ void moveBackFast(int distance, int heading, int speed) //accounted for v1.09 vo
 
   double correctionMultiplier = 0.8;
 
-  double minSpeed = 30; //70
+  double minSpeed = 50; //30
 
   double startUpIncrement = 0.9; //0.5
 
@@ -2166,10 +2166,10 @@ void sweepLeftBackQuick(int angle) //-O
 //*******************S-Turn Functions for Autonomous routines******************
 void STurn_RedFront()
 {
-  sweepRightBackQuick(35); //35
+  sweepRightBackQuick(30); //35
   moveRollers(0);
   brakeRollers();
-  moveBackMAX(38, 38, 127); //38
+  moveBackMAX(39, 33, 127); //38
   moveRollers(-200);
 }
 
@@ -2202,9 +2202,9 @@ void STurn_RedFront4()
 
 void STurn_BlueFront()
 {
-  sweepLeftBackQuick(-35);
+  sweepLeftBackQuick(-30); //-35
   moveRollers(0);
-  moveBackFast(39, -35, 127); //38
+  moveBackFast(41, -35, 127); //38
 }
 
 void STurn_BlueFront3()
@@ -2241,6 +2241,7 @@ void driveOP()
 
   //Current control used to account for lowered current cap of motor after v1.0.9
   //firmware update. Prevents jitter in drive.
+
   if(master.get_analog(ANALOG_LEFT_Y) < 15 && master.get_analog(ANALOG_LEFT_Y) > -15) {
     leftFront.set_current_limit(1500);
     leftBack.set_current_limit(1500);
